@@ -3,6 +3,8 @@ title: SANS Holiday Hack Challenge 2019
 date: 2020-01-17T20:14:59-05:00
 categories:
   - Uncategorized
+toc: true
+toc_sticky: true
 ---
 ## Ille te videt dum dormit
 

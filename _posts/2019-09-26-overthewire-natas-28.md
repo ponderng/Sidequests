@@ -3,6 +3,8 @@ title: 'OverTheWire: NATAS 28'
 date: 2019-09-26T10:04:43-04:00
 categories:
   - OverTheWire
+toc: true
+toc_sticky: true
 ---
 ### LEVEL 28
 

@@ -3,6 +3,8 @@ title: 'OverTheWire: NATAS 16 &#8211; 20'
 date: 2019-09-13T15:22:13-04:00
 categories:
   - OverTheWire
+toc: true
+toc_sticky: true
 ---
 ### LEVEL 16
 

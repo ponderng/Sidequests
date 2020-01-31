@@ -3,6 +3,8 @@ title: 'OverTheWire: NATAS 21 &#8211; 25'
 date: 2019-09-16T14:49:55-04:00
 categories:
   - OverTheWire
+toc: true
+toc_sticky: true
 ---
 ### LEVEL 21
 

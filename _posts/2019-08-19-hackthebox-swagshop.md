@@ -3,6 +3,8 @@ title: 'HackTheBox: SwagShop'
 date: 2019-08-19T12:40:27-04:00
 categories:
   - HackTheBox
+toc: true
+toc_sticky: true
 ---
 ## Recon
 

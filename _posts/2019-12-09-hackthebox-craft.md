@@ -3,6 +3,8 @@ title: 'HackTheBox: Craft'
 date: 2019-12-09T14:54:54-05:00
 categories:
   - HackTheBox
+toc: true
+toc_sticky: true
 ---
 <img class="alignnone size-full wp-image-402" src="http://dustinwatts.me/wp-content/uploads/2019/12/craft_logo.jpg" alt="" width="300" height="300" srcset="http://dustinwatts.me/wp-content/uploads/2019/12/craft_logo.jpg 300w, http://dustinwatts.me/wp-content/uploads/2019/12/craft_logo-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
 

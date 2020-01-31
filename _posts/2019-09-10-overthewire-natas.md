@@ -3,6 +3,8 @@ title: 'OverTheWire: NATAS 0 &#8211; 10'
 date: 2019-09-10T15:55:39-04:00
 categories:
   - OverTheWire
+toc: true
+toc_sticky: true
 ---
 ### LEVEL 0
 

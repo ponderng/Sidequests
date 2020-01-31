@@ -4,6 +4,8 @@ title: 'HackTheBox: Bastion'
 date: 2019-08-05T16:16:05-04:00
 categories:
   - HackTheBox
+toc: true
+toc_sticky: true
 ---
 ## Recon
 

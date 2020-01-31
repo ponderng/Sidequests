@@ -3,6 +3,8 @@ title: 'OverTheWire: NATAS 29'
 date: 2019-09-27T08:04:40-04:00
 categories:
   - OverTheWire
+toc: true
+toc_sticky: true
 ---
 <img class="alignnone wp-image-336 size-full" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h35_42.png" alt="" width="1098" height="293" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h35_42.png 1098w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h35_42-300x80.png 300w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h35_42-768x205.png 768w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h35_42-1024x273.png 1024w" sizes="(max-width: 1098px) 100vw, 1098px" />
 
