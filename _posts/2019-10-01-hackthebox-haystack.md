@@ -1,11 +1,6 @@
 ---
-id: 346
 title: 'HackTheBox: Haystack'
 date: 2019-10-01T10:21:58-04:00
-author: dwatts.comptech
-layout: posts
-guid: http://dustinwatts.me/?p=346
-permalink: /2019/10/01/hackthebox-haystack/
 categories:
   - HackTheBox
 ---

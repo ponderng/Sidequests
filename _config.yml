@@ -38,7 +38,6 @@ author:
 # Build settings
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
-breadcrumbs: true  # disabled by default
 plugins:
   - jekyll-feed
 
@@ -46,10 +45,11 @@ defaults:
   # _posts
   - scope:
       path: ""
-      type: posts
+      type: "posts"
     values:
       read_time: true
       author_profile: true
+      layout: "single"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

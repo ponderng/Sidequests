@@ -1,9 +1,6 @@
 ---
-id: 488
 title: SANS Holiday Hack Challenge 2019
 date: 2020-01-17T20:14:59-05:00
-author: dwatts.comptech
-layout: posts
 categories:
   - Uncategorized
 ---

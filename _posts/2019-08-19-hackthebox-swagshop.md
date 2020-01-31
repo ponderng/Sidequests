@@ -1,11 +1,6 @@
 ---
-id: 124
 title: 'HackTheBox: SwagShop'
 date: 2019-08-19T12:40:27-04:00
-author: dwatts.comptech
-layout: posts
-guid: http://dustinwatts.me/?p=124
-permalink: /2019/08/19/hackthebox-swagshop/
 categories:
   - HackTheBox
 ---

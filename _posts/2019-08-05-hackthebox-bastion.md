@@ -1,11 +1,7 @@
 ---
-id: 72
+layout: single
 title: 'HackTheBox: Bastion'
 date: 2019-08-05T16:16:05-04:00
-author: dwatts.comptech
-layout: posts
-guid: http://dustinwatts.me/?p=72
-permalink: /2019/08/05/hackthebox-bastion/
 categories:
   - HackTheBox
 ---

@@ -1,11 +1,6 @@
 ---
-id: 293
 title: 'OverTheWire: NATAS 26 &#8211; 27'
 date: 2019-09-19T14:40:12-04:00
-author: dwatts.comptech
-layout: posts
-guid: http://dustinwatts.me/?p=293
-permalink: /2019/09/19/overthewire-natas-26-30/
 categories:
   - OverTheWire
 ---
