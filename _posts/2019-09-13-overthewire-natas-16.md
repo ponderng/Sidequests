@@ -8,7 +8,7 @@ toc_sticky: true
 ---
 ### LEVEL 16
 
-<img class="alignnone size-full wp-image-243" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_14h47_54.png" alt="" width="599" height="302" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_14h47_54.png 599w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_14h47_54-300x151.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-243" src="/assets/uploads/2019/09/2019-09-13_14h47_54.png" alt="" width="599" height="302" srcset="/assets/uploads/2019/09/2019-09-13_14h47_54.png 599w, /assets/uploads/2019/09/2019-09-13_14h47_54-300x151.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 This level looks a lot like level 9 did with the dictionary lookup and it suggests there are now more input checks. Let&#8217;s see the source:
 
@@ -42,7 +42,7 @@ If you put the same query as level 9 <span class="lang:zsh decode:true crayon-in
 
 ### LEVEL 17
 
-<img class="alignnone size-full wp-image-251" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_16h16_02.png" alt="" width="599" height="196" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_16h16_02.png 599w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_16h16_02-300x98.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-251" src="/assets/uploads/2019/09/2019-09-13_16h16_02.png" alt="" width="599" height="196" srcset="/assets/uploads/2019/09/2019-09-13_16h16_02.png 599w, /assets/uploads/2019/09/2019-09-13_16h16_02-300x98.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 This level is a lot like level 15, however, it gives no output at all, ever! Looking at the source code shows that the output fields are just completely commented out.
 
@@ -161,7 +161,7 @@ print("--- %s seconds ---" % (time.time() - start_time))
 
 ### LEVEL 18
 
-<img class="alignnone size-full wp-image-255" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h17_35.png" alt="" width="599" height="295" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h17_35.png 599w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h17_35-300x148.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-255" src="/assets/uploads/2019/09/2019-09-16_08h17_35.png" alt="" width="599" height="295" srcset="/assets/uploads/2019/09/2019-09-16_08h17_35.png 599w, /assets/uploads/2019/09/2019-09-16_08h17_35-300x148.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 sourcecode:
 
@@ -290,7 +290,7 @@ while(True):
 
 ### LEVEL 19
 
-<img class="alignnone size-full wp-image-256" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h37_57.png" alt="" width="600" height="335" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h37_57.png 600w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h37_57-300x168.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
+<img class="alignnone size-full wp-image-256" src="/assets/uploads/2019/09/2019-09-16_08h37_57.png" alt="" width="600" height="335" srcset="/assets/uploads/2019/09/2019-09-16_08h37_57.png 600w, /assets/uploads/2019/09/2019-09-16_08h37_57-300x168.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
 
 This level doesn&#8217;t supply a link to it&#8217;s sourcecode, so we have to logically deduce what is going on behind the scenes. Much of the functionality should be the same as the previous level, but the text suggests there is a change to the session id.
 
@@ -346,7 +346,7 @@ while(num &lt; 640):
 
 ### LEVEL 20
 
-<img class="alignnone size-full wp-image-257" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h53_40.png" alt="" width="600" height="233" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h53_40.png 600w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-16_08h53_40-300x117.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
+<img class="alignnone size-full wp-image-257" src="/assets/uploads/2019/09/2019-09-16_08h53_40.png" alt="" width="600" height="233" srcset="/assets/uploads/2019/09/2019-09-16_08h53_40.png 600w, /assets/uploads/2019/09/2019-09-16_08h53_40-300x117.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
 
 sourcecode:
 

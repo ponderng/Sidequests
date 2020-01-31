@@ -8,15 +8,15 @@ toc_sticky: true
 ---
 ### LEVEL 28
 
-<img class="alignnone size-full wp-image-307" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h53_15.png" alt="" width="599" height="265" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h53_15.png 599w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h53_15-300x133.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-307" src="/assets/uploads/2019/09/2019-09-23_12h53_15.png" alt="" width="599" height="265" srcset="/assets/uploads/2019/09/2019-09-23_12h53_15.png 599w, /assets/uploads/2019/09/2019-09-23_12h53_15-300x133.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 No sourcecode, this will be fun. The program takes your query and searches it against a list of jokes, possibly in a database (since it says &#8220;whack computer joke database&#8221;).
 
 Checking out the requests in Burp shows that my test query &#8220;the&#8221; is sent to the server and the response returns our query encoded, likely base64. This encoded query is then used in a redirect to &#8220;/search.php&#8221;.  
-<img class="alignnone wp-image-309 size-full" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_14h15_11.png" alt="" width="1230" height="772" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_14h15_11.png 1230w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_14h15_11-300x188.png 300w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_14h15_11-768x482.png 768w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_14h15_11-1024x643.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" /> 
+<img class="alignnone wp-image-309 size-full" src="/assets/uploads/2019/09/2019-09-23_14h15_11.png" alt="" width="1230" height="772" srcset="/assets/uploads/2019/09/2019-09-23_14h15_11.png 1230w, /assets/uploads/2019/09/2019-09-23_14h15_11-300x188.png 300w, /assets/uploads/2019/09/2019-09-23_14h15_11-768x482.png 768w, /assets/uploads/2019/09/2019-09-23_14h15_11-1024x643.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" /> 
 
 It&#8217;s the &#8220;search.php&#8221; page that actually returns the results.  
-<img class="alignnone wp-image-308 size-full" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h57_11.png" alt="" width="1229" height="775" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h57_11.png 1229w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h57_11-300x189.png 300w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h57_11-768x484.png 768w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-23_12h57_11-1024x646.png 1024w" sizes="(max-width: 1229px) 100vw, 1229px" /> 
+<img class="alignnone wp-image-308 size-full" src="/assets/uploads/2019/09/2019-09-23_12h57_11.png" alt="" width="1229" height="775" srcset="/assets/uploads/2019/09/2019-09-23_12h57_11.png 1229w, /assets/uploads/2019/09/2019-09-23_12h57_11-300x189.png 300w, /assets/uploads/2019/09/2019-09-23_12h57_11-768x484.png 768w, /assets/uploads/2019/09/2019-09-23_12h57_11-1024x646.png 1024w" sizes="(max-width: 1229px) 100vw, 1229px" /> 
 
 The output of base64 decoding isn&#8217;t quite what I expected though, it looks random enough to be an encryption. Surely it&#8217;s either a homegrown encryption, or one that has known exploitable weaknesses.
 
@@ -174,7 +174,7 @@ root@kali:~/otw/natas# echo "eaf50dd768f1418c5dde5c5fd3d3c08c098e1987d3fd9068b17
 6vUN12jxQYxd3lxf09PAjAmOGYfT/ZBosXI1SRye/jRzil/7SkUAJGd1F1rllrvW803zOcae3OEfZlC7ztYnAg==</pre>
 
 And the result in Burp:  
-<img class="alignnone wp-image-311 size-full" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-25_09h38_19.png" alt="" width="1230" height="772" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-25_09h38_19.png 1230w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-25_09h38_19-300x188.png 300w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-25_09h38_19-768x482.png 768w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-25_09h38_19-1024x643.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" /> 
+<img class="alignnone wp-image-311 size-full" src="/assets/uploads/2019/09/2019-09-25_09h38_19.png" alt="" width="1230" height="772" srcset="/assets/uploads/2019/09/2019-09-25_09h38_19.png 1230w, /assets/uploads/2019/09/2019-09-25_09h38_19-300x188.png 300w, /assets/uploads/2019/09/2019-09-25_09h38_19-768x482.png 768w, /assets/uploads/2019/09/2019-09-25_09h38_19-1024x643.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" /> 
 
 Awesome! We have jokes!
 
@@ -308,4 +308,4 @@ print("--- %s seconds ---" % (time.time() - start_time))
 
 It took a while on my VM though:
 
-<img class="alignnone size-full wp-image-333" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h14_56.png" alt="" width="990" height="63" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h14_56.png 990w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h14_56-300x19.png 300w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-26_14h14_56-768x49.png 768w" sizes="(max-width: 990px) 100vw, 990px" />
+<img class="alignnone size-full wp-image-333" src="/assets/uploads/2019/09/2019-09-26_14h14_56.png" alt="" width="990" height="63" srcset="/assets/uploads/2019/09/2019-09-26_14h14_56.png 990w, /assets/uploads/2019/09/2019-09-26_14h14_56-300x19.png 300w, /assets/uploads/2019/09/2019-09-26_14h14_56-768x49.png 768w" sizes="(max-width: 990px) 100vw, 990px" />

@@ -6,7 +6,7 @@ categories:
 toc: true
 toc_sticky: true
 ---
-<img class="alignnone size-large wp-image-381" src="http://dustinwatts.me/wp-content/uploads/2019/10/2019-10-04_15h26_33-1024x283.png" alt="" width="640" height="177" srcset="http://dustinwatts.me/wp-content/uploads/2019/10/2019-10-04_15h26_33-1024x283.png 1024w, http://dustinwatts.me/wp-content/uploads/2019/10/2019-10-04_15h26_33-300x83.png 300w, http://dustinwatts.me/wp-content/uploads/2019/10/2019-10-04_15h26_33-768x213.png 768w, http://dustinwatts.me/wp-content/uploads/2019/10/2019-10-04_15h26_33.png 1095w" sizes="(max-width: 640px) 100vw, 640px" />
+<img class="alignnone size-large wp-image-381" src="/assets/uploads/2019/10/2019-10-04_15h26_33-1024x283.png" alt="" width="640" height="177" srcset="/assets/uploads/2019/10/2019-10-04_15h26_33-1024x283.png 1024w, /assets/uploads/2019/10/2019-10-04_15h26_33-300x83.png 300w, /assets/uploads/2019/10/2019-10-04_15h26_33-768x213.png 768w, /assets/uploads/2019/10/2019-10-04_15h26_33.png 1095w" sizes="(max-width: 640px) 100vw, 640px" />
 
 This is another basic login form. The unique thing about this one is the sourcecode is in PERL.
 

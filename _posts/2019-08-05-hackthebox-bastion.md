@@ -11,7 +11,7 @@ toc_sticky: true
 
 ### **Port scan**
 
-<img class="alignnone wp-image-73" src="http://dustinwatts.me/wp-content/uploads/2019/07/2019-07-23_16h26_58-300x97.png" alt="" width="662" height="214" srcset="http://dustinwatts.me/wp-content/uploads/2019/07/2019-07-23_16h26_58-300x97.png 300w, http://dustinwatts.me/wp-content/uploads/2019/07/2019-07-23_16h26_58.png 722w" sizes="(max-width: 662px) 100vw, 662px" /> 
+<img class="alignnone wp-image-73" src="/assets/uploads/2019/07/2019-07-23_16h26_58-300x97.png" alt="" width="662" height="214" srcset="/assets/uploads/2019/07/2019-07-23_16h26_58-300x97.png 300w, /assets/uploads/2019/07/2019-07-23_16h26_58.png 722w" sizes="(max-width: 662px) 100vw, 662px" /> 
 
 Jumping into this box with a basic NMAP scan shows us a couple of interesting things. First, the SSH server, but that&#8217;s pretty normal for HTB boxes. I tried to log into it with anonymous credentials, but that didn&#8217;t work out. The most important thing to pick up on from the scan is that it&#8217;s likely a Windows machine with NetBIOS and SMB shares, due to the ports 135,139, and 445. Port 135 had several well-known vulnerabilities plague it over the years, so maybe it could be vulnerable to one on this box. Also, there have been vulnerabilities for SMB, like the famous EternalBlue. So we could run some exploit tests against those ports just in case&#8230;
 
@@ -23,15 +23,15 @@ Jumping into this box with a basic NMAP scan shows us a couple of interesting th
 
 I didn&#8217;t find anything useful for RPC exploits, but did find some for the EternalBlue SMB exploit.
 
-<img class="alignnone wp-image-79" src="http://dustinwatts.me/wp-content/uploads/2019/07/search_eternalblue-300x199.png" alt="" width="660" height="438" srcset="http://dustinwatts.me/wp-content/uploads/2019/07/search_eternalblue-300x199.png 300w, http://dustinwatts.me/wp-content/uploads/2019/07/search_eternalblue.png 735w" sizes="(max-width: 660px) 100vw, 660px" /> 
+<img class="alignnone wp-image-79" src="/assets/uploads/2019/07/search_eternalblue-300x199.png" alt="" width="660" height="438" srcset="/assets/uploads/2019/07/search_eternalblue-300x199.png 300w, /assets/uploads/2019/07/search_eternalblue.png 735w" sizes="(max-width: 660px) 100vw, 660px" /> 
 
 Then I made another search, this time on &#8220;ms17-010&#8221;, the vulnerability CVE code.
 
-<img class="alignnone wp-image-81" src="http://dustinwatts.me/wp-content/uploads/2019/08/search_ms17-010-300x200.png" alt="" width="657" height="438" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/search_ms17-010-300x200.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/search_ms17-010.png 736w" sizes="(max-width: 657px) 100vw, 657px" /> 
+<img class="alignnone wp-image-81" src="/assets/uploads/2019/08/search_ms17-010-300x200.png" alt="" width="657" height="438" srcset="/assets/uploads/2019/08/search_ms17-010-300x200.png 300w, /assets/uploads/2019/08/search_ms17-010.png 736w" sizes="(max-width: 657px) 100vw, 657px" /> 
 
 Then I ran the exploit &#8230;
 
-<img class="alignnone wp-image-82" src="http://dustinwatts.me/wp-content/uploads/2019/08/run_ms17-010-300x58.png" alt="" width="657" height="127" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/run_ms17-010-300x58.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/run_ms17-010.png 736w" sizes="(max-width: 657px) 100vw, 657px" /> 
+<img class="alignnone wp-image-82" src="/assets/uploads/2019/08/run_ms17-010-300x58.png" alt="" width="657" height="127" srcset="/assets/uploads/2019/08/run_ms17-010-300x58.png 300w, /assets/uploads/2019/08/run_ms17-010.png 736w" sizes="(max-width: 657px) 100vw, 657px" /> 
 
 But no dice&#8230; the exploit path is probably a bust, so I moved on from wasting any more time on that approach.
 
@@ -41,33 +41,33 @@ But no dice&#8230; the exploit path is probably a bust, so I moved on from wasti
 
 Then I tried the easy thing that should have been done first: connect to SMB without credentials.
 
-<img class="alignnone wp-image-84" src="http://dustinwatts.me/wp-content/uploads/2019/08/smb_fileexplorer-300x209.png" alt="" width="657" height="458" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/smb_fileexplorer-300x209.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/smb_fileexplorer-768x534.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/smb_fileexplorer.png 850w" sizes="(max-width: 657px) 100vw, 657px" /> 
+<img class="alignnone wp-image-84" src="/assets/uploads/2019/08/smb_fileexplorer-300x209.png" alt="" width="657" height="458" srcset="/assets/uploads/2019/08/smb_fileexplorer-300x209.png 300w, /assets/uploads/2019/08/smb_fileexplorer-768x534.png 768w, /assets/uploads/2019/08/smb_fileexplorer.png 850w" sizes="(max-width: 657px) 100vw, 657px" /> 
 
 I tried first connecting with the file explorer in kali, but it wouldn&#8217;t accept a connection without credentials. So I tried smbmap next.
 
-<img class="alignnone wp-image-85" src="http://dustinwatts.me/wp-content/uploads/2019/08/smb_smbmap-300x200.png" alt="" width="668" height="445" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/smb_smbmap-300x200.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/smb_smbmap.png 736w" sizes="(max-width: 668px) 100vw, 668px" /> 
+<img class="alignnone wp-image-85" src="/assets/uploads/2019/08/smb_smbmap-300x200.png" alt="" width="668" height="445" srcset="/assets/uploads/2019/08/smb_smbmap-300x200.png 300w, /assets/uploads/2019/08/smb_smbmap.png 736w" sizes="(max-width: 668px) 100vw, 668px" /> 
 
 That also didn&#8217;t work, but maybe I was just using it wrong. Either way, I moved on to trying smbclient.
 
-<img class="alignnone wp-image-86" src="http://dustinwatts.me/wp-content/uploads/2019/08/smb_smbclient-300x199.png" alt="" width="672" height="446" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/smb_smbclient-300x199.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/smb_smbclient.png 736w" sizes="(max-width: 672px) 100vw, 672px" /> 
+<img class="alignnone wp-image-86" src="/assets/uploads/2019/08/smb_smbclient-300x199.png" alt="" width="672" height="446" srcset="/assets/uploads/2019/08/smb_smbclient-300x199.png 300w, /assets/uploads/2019/08/smb_smbclient.png 736w" sizes="(max-width: 672px) 100vw, 672px" /> 
 
 Finally I was getting somewhere, I could see the shares listed on the SMB service!
 
 So then I used smbclient to log in and went exploring&#8230;
 
-<img class="alignnone wp-image-87" src="http://dustinwatts.me/wp-content/uploads/2019/08/smb_explore-300x199.png" alt="" width="677" height="449" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/smb_explore-300x199.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/smb_explore.png 737w" sizes="(max-width: 677px) 100vw, 677px" /> 
+<img class="alignnone wp-image-87" src="/assets/uploads/2019/08/smb_explore-300x199.png" alt="" width="677" height="449" srcset="/assets/uploads/2019/08/smb_explore-300x199.png 300w, /assets/uploads/2019/08/smb_explore.png 737w" sizes="(max-width: 677px) 100vw, 677px" /> 
 
 After looking at all the folders, the only interesting one is WindowsImageBackup. Also there is a warning about downloading the entire backup file:
 
-<img class="alignnone wp-image-88" src="http://dustinwatts.me/wp-content/uploads/2019/08/smb_warning-300x199.png" alt="" width="681" height="452" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/smb_warning-300x199.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/smb_warning.png 737w" sizes="(max-width: 681px) 100vw, 681px" /> 
+<img class="alignnone wp-image-88" src="/assets/uploads/2019/08/smb_warning-300x199.png" alt="" width="681" height="452" srcset="/assets/uploads/2019/08/smb_warning-300x199.png 300w, /assets/uploads/2019/08/smb_warning.png 737w" sizes="(max-width: 681px) 100vw, 681px" /> 
 
 After digging into the &#8220;Backups&#8221; share, I found a WindowsImageBackup with two VHD files.
 
-<img class="alignnone wp-image-89" src="http://dustinwatts.me/wp-content/uploads/2019/08/backup_vhd_listing-300x201.png" alt="" width="681" height="456" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/backup_vhd_listing-300x201.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/backup_vhd_listing-768x514.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/backup_vhd_listing.png 835w" sizes="(max-width: 681px) 100vw, 681px" /> 
+<img class="alignnone wp-image-89" src="/assets/uploads/2019/08/backup_vhd_listing-300x201.png" alt="" width="681" height="456" srcset="/assets/uploads/2019/08/backup_vhd_listing-300x201.png 300w, /assets/uploads/2019/08/backup_vhd_listing-768x514.png 768w, /assets/uploads/2019/08/backup_vhd_listing.png 835w" sizes="(max-width: 681px) 100vw, 681px" /> 
 
 I don&#8217;t often listen to signs well, so I proceeded to download the VHDs anyway, but it disconnected the session pretty quickly.
 
-<img class="alignnone wp-image-90" src="http://dustinwatts.me/wp-content/uploads/2019/08/backup_disconnect-300x202.png" alt="" width="686" height="462" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/backup_disconnect-300x202.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/backup_disconnect-768x516.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/backup_disconnect.png 835w" sizes="(max-width: 686px) 100vw, 686px" /> 
+<img class="alignnone wp-image-90" src="/assets/uploads/2019/08/backup_disconnect-300x202.png" alt="" width="686" height="462" srcset="/assets/uploads/2019/08/backup_disconnect-300x202.png 300w, /assets/uploads/2019/08/backup_disconnect-768x516.png 768w, /assets/uploads/2019/08/backup_disconnect.png 835w" sizes="(max-width: 686px) 100vw, 686px" /> 
 
 &nbsp;
 
@@ -86,7 +86,7 @@ Eventually found an article explaining how to open VHD files remotely from linux
 
 That is the command explained in the article above, and it allowed me to mount the remote SMB share to a local folder&#8230;
 
-<img class="alignnone wp-image-91" src="http://dustinwatts.me/wp-content/uploads/2019/08/backups_mounted-300x22.png" alt="" width="696" height="51" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/backups_mounted-300x22.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/backups_mounted.png 722w" sizes="(max-width: 696px) 100vw, 696px" /> 
+<img class="alignnone wp-image-91" src="/assets/uploads/2019/08/backups_mounted-300x22.png" alt="" width="696" height="51" srcset="/assets/uploads/2019/08/backups_mounted-300x22.png 300w, /assets/uploads/2019/08/backups_mounted.png 722w" sizes="(max-width: 696px) 100vw, 696px" /> 
 
 &#8230; where I could see and access the VHD files directly! Awesome way to do things and I&#8217;ll definitely be keeping notes on this method.
 
@@ -94,7 +94,7 @@ Another cool technique is to seperately mount the VHD files to another folder an
 
 I first opened the smaller VHD, but it turned out to be a system boot partition, so then I opened the larger one to find the next clue.
 
-<img class="alignnone wp-image-92" src="http://dustinwatts.me/wp-content/uploads/2019/08/backups_vhd_opened-300x58.png" alt="" width="693" height="134" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/backups_vhd_opened-300x58.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/backups_vhd_opened.png 722w" sizes="(max-width: 693px) 100vw, 693px" /> 
+<img class="alignnone wp-image-92" src="/assets/uploads/2019/08/backups_vhd_opened-300x58.png" alt="" width="693" height="134" srcset="/assets/uploads/2019/08/backups_vhd_opened-300x58.png 300w, /assets/uploads/2019/08/backups_vhd_opened.png 722w" sizes="(max-width: 693px) 100vw, 693px" /> 
 
 &nbsp;
 
@@ -108,7 +108,7 @@ Tried mimikatz, but it didn&#8217;t run in kali well.
 Tried a tool to open the registry like a filesystem and poke around, that didn&#8217;t work.  
 Eventually found pwdump from the creddump package that works the best:
 
-<img class="alignnone wp-image-93" src="http://dustinwatts.me/wp-content/uploads/2019/08/vhd_pwdump-300x53.png" alt="" width="696" height="123" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/vhd_pwdump-300x53.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/vhd_pwdump.png 720w" sizes="(max-width: 696px) 100vw, 696px" /> 
+<img class="alignnone wp-image-93" src="/assets/uploads/2019/08/vhd_pwdump-300x53.png" alt="" width="696" height="123" srcset="/assets/uploads/2019/08/vhd_pwdump-300x53.png 300w, /assets/uploads/2019/08/vhd_pwdump.png 720w" sizes="(max-width: 696px) 100vw, 696px" /> 
 
 I knew there were some programs for cracking these hashes with dictionary files, hashcat being one I&#8217;ve used before and also John the Ripper.
 
@@ -120,11 +120,11 @@ To get the available formats for John, use:
 
 This is the result of the password cracking:
 
-<img class="alignnone wp-image-94" src="http://dustinwatts.me/wp-content/uploads/2019/08/vhd_john-300x89.png" alt="" width="701" height="208" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/vhd_john-300x89.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/vhd_john.png 721w" sizes="(max-width: 701px) 100vw, 701px" /> 
+<img class="alignnone wp-image-94" src="/assets/uploads/2019/08/vhd_john-300x89.png" alt="" width="701" height="208" srcset="/assets/uploads/2019/08/vhd_john-300x89.png 300w, /assets/uploads/2019/08/vhd_john.png 721w" sizes="(max-width: 701px) 100vw, 701px" /> 
 
 Awesome, a user password for L4mpje!!!  bureaulampje
 
-###<img class="alignnone wp-image-95" src="http://dustinwatts.me/wp-content/uploads/2019/08/ssh_user-300x89.png" alt="" width="701" height="208" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ssh_user-300x89.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ssh_user.png 722w" sizes="(max-width: 701px) 100vw, 701px" /> 
+###<img class="alignnone wp-image-95" src="/assets/uploads/2019/08/ssh_user-300x89.png" alt="" width="701" height="208" srcset="/assets/uploads/2019/08/ssh_user-300x89.png 300w, /assets/uploads/2019/08/ssh_user.png 722w" sizes="(max-width: 701px) 100vw, 701px" /> 
 
 Using the credentials found in the Registry, I logged into the SSH and the flag is in the Desktop folder.
 
@@ -138,11 +138,11 @@ With the user flag found and a live login to the box, I searched around the file
 
 When reading the forum for clues, several people said to look for a program that seems out of place:
 
-<img class="alignnone wp-image-98" src="http://dustinwatts.me/wp-content/uploads/2019/08/ssh_program_files-300x161.png" alt="" width="706" height="379" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ssh_program_files-300x161.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ssh_program_files.png 726w" sizes="(max-width: 706px) 100vw, 706px" /> 
+<img class="alignnone wp-image-98" src="/assets/uploads/2019/08/ssh_program_files-300x161.png" alt="" width="706" height="379" srcset="/assets/uploads/2019/08/ssh_program_files-300x161.png 300w, /assets/uploads/2019/08/ssh_program_files.png 726w" sizes="(max-width: 706px) 100vw, 706px" /> 
 
 Nothing really out of place there, how about the x86 program files:
 
-<img class="alignnone wp-image-99" src="http://dustinwatts.me/wp-content/uploads/2019/08/ssh_x86_program_files-300x150.png" alt="" width="708" height="354" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ssh_x86_program_files-300x150.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ssh_x86_program_files.png 720w" sizes="(max-width: 708px) 100vw, 708px" /> 
+<img class="alignnone wp-image-99" src="/assets/uploads/2019/08/ssh_x86_program_files-300x150.png" alt="" width="708" height="354" srcset="/assets/uploads/2019/08/ssh_x86_program_files-300x150.png 300w, /assets/uploads/2019/08/ssh_x86_program_files.png 720w" sizes="(max-width: 708px) 100vw, 708px" /> 
 
 Bingo! mRemoteNG looks pretty out of place! I&#8217;ve used this software before, so I know that it stores connections to things, which necessarily includes the passwords. Maybe there&#8217;s some passwords we can retrieve.
 
@@ -466,11 +466,11 @@ If you download the Zip version instead of installer, everything stays in the sa
 
 After copying the text, saving it, and opening mRemoteNG, I got an error:
 
-<img class="alignnone wp-image-100" src="http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_error-300x180.png" alt="" width="495" height="297" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_error-300x180.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_error.png 568w" sizes="(max-width: 495px) 100vw, 495px" />  
+<img class="alignnone wp-image-100" src="/assets/uploads/2019/08/mremoteng_error-300x180.png" alt="" width="495" height="297" srcset="/assets/uploads/2019/08/mremoteng_error-300x180.png 300w, /assets/uploads/2019/08/mremoteng_error.png 568w" sizes="(max-width: 495px) 100vw, 495px" />  
 Turns out a straight copy of the text from the shell resulted in data not formed well, so I had to clean up the XML and reload. After that it worked great.
 
 Then the external tools script could be put in to extract the password.
 
-<img class="alignnone wp-image-101 size-full" src="http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_showpass.png" alt="" width="1087" height="759" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_showpass.png 1087w, http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_showpass-300x209.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_showpass-768x536.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/mremoteng_showpass-1024x715.png 1024w" sizes="(max-width: 1087px) 100vw, 1087px" /> 
+<img class="alignnone wp-image-101 size-full" src="/assets/uploads/2019/08/mremoteng_showpass.png" alt="" width="1087" height="759" srcset="/assets/uploads/2019/08/mremoteng_showpass.png 1087w, /assets/uploads/2019/08/mremoteng_showpass-300x209.png 300w, /assets/uploads/2019/08/mremoteng_showpass-768x536.png 768w, /assets/uploads/2019/08/mremoteng_showpass-1024x715.png 1024w" sizes="(max-width: 1087px) 100vw, 1087px" /> 
 
 Admin password found!! With that you can log into the SSH with Administrator and grab the root flag!

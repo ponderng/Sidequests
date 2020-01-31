@@ -8,7 +8,7 @@ toc_sticky: true
 ---
 ### LEVEL 11
 
-<img class="alignnone size-full wp-image-221" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-11_13h57_52.png" alt="" width="604" height="218" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-11_13h57_52.png 604w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-11_13h57_52-300x108.png 300w" sizes="(max-width: 604px) 100vw, 604px" /> 
+<img class="alignnone size-full wp-image-221" src="/assets/uploads/2019/09/2019-09-11_13h57_52.png" alt="" width="604" height="218" srcset="/assets/uploads/2019/09/2019-09-11_13h57_52.png 604w, /assets/uploads/2019/09/2019-09-11_13h57_52-300x108.png 300w" sizes="(max-width: 604px) 100vw, 604px" /> 
 
 PHP sourcecode:
 
@@ -158,7 +158,7 @@ if __name__ == '__main__':
 
 ### LEVEL 12
 
-<img class="alignnone size-full wp-image-223" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-12_11h53_28.png" alt="" width="606" height="218" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-12_11h53_28.png 606w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-12_11h53_28-300x108.png 300w" sizes="(max-width: 606px) 100vw, 606px" /> 
+<img class="alignnone size-full wp-image-223" src="/assets/uploads/2019/09/2019-09-12_11h53_28.png" alt="" width="606" height="218" srcset="/assets/uploads/2019/09/2019-09-12_11h53_28.png 606w, /assets/uploads/2019/09/2019-09-12_11h53_28-300x108.png 300w" sizes="(max-width: 606px) 100vw, 606px" /> 
 
 Sourcecode PHP:
 
@@ -219,7 +219,7 @@ This level has a file upload, so there&#8217;s a couple of probable ways this co
 
 I made a very small JPEG file since the max is only 1KB, and first tested it on the site to make sure it would go through.
 
-<img class="alignnone size-full wp-image-230" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h18_19.png" alt="" width="601" height="139" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h18_19.png 601w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h18_19-300x69.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
+<img class="alignnone size-full wp-image-230" src="/assets/uploads/2019/09/2019-09-13_09h18_19.png" alt="" width="601" height="139" srcset="/assets/uploads/2019/09/2019-09-13_09h18_19.png 601w, /assets/uploads/2019/09/2019-09-13_09h18_19-300x69.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
 So it does randomize the name but preserve the extension. If I put in &#8220;/../&#8221; into the extension, maybe I can go up a directory. My system gave me a warning that files can&#8217;t be named with &#8220;/&#8221; in it, so maybe I can use URL encoding to get around that. I am able to save a filename that way, but the page doesn&#8217;t care, it replaces my filename completely and appends a &#8220;.jpg&#8221; as the extension with <span class="lang:php decode:true crayon-inline"><input type=&#8221;hidden&#8221; name=&#8221;filename&#8221; value=&#8221;<? print genRandomString(); ?>.jpg&#8221; /></span> .
 
@@ -227,7 +227,7 @@ So it does randomize the name but preserve the extension. If I put in &#8220;/..
 
 Instead of directly using the filename, we can use Burp to send it whatever we want in the form. Some experimentation shows that it does preserve the extension when put into the form with Burp.
 
-<img class="alignnone wp-image-234 size-full" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h38_21-1.png" alt="" width="1228" height="631" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h38_21-1.png 1228w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h38_21-1-300x154.png 300w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h38_21-1-768x395.png 768w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_09h38_21-1-1024x526.png 1024w" sizes="(max-width: 1228px) 100vw, 1228px" /> 
+<img class="alignnone wp-image-234 size-full" src="/assets/uploads/2019/09/2019-09-13_09h38_21-1.png" alt="" width="1228" height="631" srcset="/assets/uploads/2019/09/2019-09-13_09h38_21-1.png 1228w, /assets/uploads/2019/09/2019-09-13_09h38_21-1-300x154.png 300w, /assets/uploads/2019/09/2019-09-13_09h38_21-1-768x395.png 768w, /assets/uploads/2019/09/2019-09-13_09h38_21-1-1024x526.png 1024w" sizes="(max-width: 1228px) 100vw, 1228px" /> 
 
 I confirmed the vulnerability does allow me to load a PHP file. Since a link to the file is returned, it&#8217;s almost certain to allow me to use a webshell.
 
@@ -257,11 +257,11 @@ And this command gave the password: <span class="lang:php highlight:0 decode:tru
 
 ### LEVEL 13
 
-<img class="alignnone size-full wp-image-235" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h09_37.png" alt="" width="602" height="246" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h09_37.png 602w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h09_37-300x123.png 300w" sizes="(max-width: 602px) 100vw, 602px" /> 
+<img class="alignnone size-full wp-image-235" src="/assets/uploads/2019/09/2019-09-13_10h09_37.png" alt="" width="602" height="246" srcset="/assets/uploads/2019/09/2019-09-13_10h09_37.png 602w, /assets/uploads/2019/09/2019-09-13_10h09_37-300x123.png 300w" sizes="(max-width: 602px) 100vw, 602px" /> 
 
 Uploading the same PHP file as last time gives an error:
 
-<img class="alignnone size-full wp-image-236" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h10_15.png" alt="" width="601" height="178" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h10_15.png 601w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h10_15-300x89.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
+<img class="alignnone size-full wp-image-236" src="/assets/uploads/2019/09/2019-09-13_10h10_15.png" alt="" width="601" height="178" srcset="/assets/uploads/2019/09/2019-09-13_10h10_15.png 601w, /assets/uploads/2019/09/2019-09-13_10h10_15-300x89.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
 So there&#8217;s a check on the file contents itself. We can probably add just the &#8220;magic bytes&#8221; at the beginning of the file to make it look like a JPEG. Or hide PHP code within the EXIF data of a legitimate JPEG file.
 
@@ -271,13 +271,13 @@ Using some tools on my Kali box, I wrote the PHP webshell into the comment secti
 
 After I uploaded it with the form, I used Burp to modify the form submission to change the extension (like the last level) to php. The results:
 
-<img class="alignnone size-full wp-image-237" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h36_40.png" alt="" width="930" height="125" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h36_40.png 930w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h36_40-300x40.png 300w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h36_40-768x103.png 768w" sizes="(max-width: 930px) 100vw, 930px" /> 
+<img class="alignnone size-full wp-image-237" src="/assets/uploads/2019/09/2019-09-13_10h36_40.png" alt="" width="930" height="125" srcset="/assets/uploads/2019/09/2019-09-13_10h36_40.png 930w, /assets/uploads/2019/09/2019-09-13_10h36_40-300x40.png 300w, /assets/uploads/2019/09/2019-09-13_10h36_40-768x103.png 768w" sizes="(max-width: 930px) 100vw, 930px" /> 
 
 &nbsp;
 
 ### LEVEL 14
 
-<img class="alignnone size-full wp-image-238" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h49_40.png" alt="" width="596" height="227" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h49_40.png 596w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h49_40-300x114.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
+<img class="alignnone size-full wp-image-238" src="/assets/uploads/2019/09/2019-09-13_10h49_40.png" alt="" width="596" height="227" srcset="/assets/uploads/2019/09/2019-09-13_10h49_40.png 596w, /assets/uploads/2019/09/2019-09-13_10h49_40-300x114.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
 
 This level is a common user authentication form. Let&#8217;s see the sourcecode.
 
@@ -309,17 +309,17 @@ Password: &lt;input name="password"&gt;&lt;br&gt;
 
 There is a simple SQL Injection vulnerability since the input has no filters or checks on it.  Sending a double quote character will break the SQL and prove the vulnerability:
 
-<img class="alignnone size-full wp-image-239" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h54_10.png" alt="" width="594" height="209" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h54_10.png 594w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_10h54_10-300x106.png 300w" sizes="(max-width: 594px) 100vw, 594px" /> 
+<img class="alignnone size-full wp-image-239" src="/assets/uploads/2019/09/2019-09-13_10h54_10.png" alt="" width="594" height="209" srcset="/assets/uploads/2019/09/2019-09-13_10h54_10.png 594w, /assets/uploads/2019/09/2019-09-13_10h54_10-300x106.png 300w" sizes="(max-width: 594px) 100vw, 594px" /> 
 
 A simple SQLi statement should get us in, we don&#8217;t even need to put anything in the password field if we comment out the rest of the query.  The most basic statement is <span class="lang:tsql highlight:0 decode:true crayon-inline">&#8220;or 1=1 &#8212;</span> but it only works if there&#8217;s a trailing space. I suppose that&#8217;s so the query sees the comment mark &#8216;&#8211;&#8216; instead of &#8216;&#8211;\&#8221;&#8216;. Alternatively, you could probably use the other comment character &#8220;#&#8221;.
 
-<img class="alignnone size-full wp-image-240" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h00_23.png" alt="" width="601" height="157" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h00_23.png 601w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h00_23-300x78.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
+<img class="alignnone size-full wp-image-240" src="/assets/uploads/2019/09/2019-09-13_11h00_23.png" alt="" width="601" height="157" srcset="/assets/uploads/2019/09/2019-09-13_11h00_23.png 601w, /assets/uploads/2019/09/2019-09-13_11h00_23-300x78.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
 &nbsp;
 
 ### LEVEL 15
 
-<img class="alignnone size-full wp-image-241" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h03_14.png" alt="" width="598" height="192" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h03_14.png 598w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h03_14-300x96.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
+<img class="alignnone size-full wp-image-241" src="/assets/uploads/2019/09/2019-09-13_11h03_14.png" alt="" width="598" height="192" srcset="/assets/uploads/2019/09/2019-09-13_11h03_14.png 598w, /assets/uploads/2019/09/2019-09-13_11h03_14-300x96.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
 
 And the sourcecode:
 
@@ -366,7 +366,7 @@ It looks like another SQL Injection just like the previous level. Let&#8217;s tr
 
 <span class="lang:mysql decode:true crayon-inline">&#8220;or 1=1 &#8212; </span>
 
-<img class="alignnone size-full wp-image-242" src="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h05_51.png" alt="" width="595" height="136" srcset="http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h05_51.png 595w, http://dustinwatts.me/wp-content/uploads/2019/09/2019-09-13_11h05_51-300x69.png 300w" sizes="(max-width: 595px) 100vw, 595px" /> 
+<img class="alignnone size-full wp-image-242" src="/assets/uploads/2019/09/2019-09-13_11h05_51.png" alt="" width="595" height="136" srcset="/assets/uploads/2019/09/2019-09-13_11h05_51.png 595w, /assets/uploads/2019/09/2019-09-13_11h05_51-300x69.png 300w" sizes="(max-width: 595px) 100vw, 595px" /> 
 
 So it&#8217;s proven to be vulnerable, now we need to exploit it to get the password out. I checked that natas16 is a user, so we need to pull the password out of that record specifically.
 

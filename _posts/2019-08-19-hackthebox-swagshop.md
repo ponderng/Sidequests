@@ -8,7 +8,7 @@ toc_sticky: true
 ---
 ## Recon
 
-<img class="alignnone wp-image-125" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_cover-300x217.png" alt="" width="863" height="624" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_cover-300x217.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_cover-768x554.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_cover.png 798w" sizes="(max-width: 863px) 100vw, 863px" /> 
+<img class="alignnone wp-image-125" src="/assets/uploads/2019/08/ss_html_cover-300x217.png" alt="" width="863" height="624" srcset="/assets/uploads/2019/08/ss_html_cover-300x217.png 300w, /assets/uploads/2019/08/ss_html_cover-768x554.png 768w, /assets/uploads/2019/08/ss_html_cover.png 798w" sizes="(max-width: 863px) 100vw, 863px" /> 
 
 This site is a basic e-commerce site with just a few products filled in as examples. Magento is the platform and it&#8217;s very well-known.
 
@@ -78,7 +78,7 @@ http://10.10.10.140/var (Status: 301)
 
 Going through each of the directories and searching for anything out of the ordinary didn&#8217;t return very much results. However, the &#8216;downloader&#8217; page gives details on the version of Magento:
 
-<img class="alignnone wp-image-126" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_downloader-300x235.png" alt="" width="885" height="693" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_downloader-300x235.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_downloader.png 753w" sizes="(max-width: 885px) 100vw, 885px" /> 
+<img class="alignnone wp-image-126" src="/assets/uploads/2019/08/ss_html_downloader-300x235.png" alt="" width="885" height="693" srcset="/assets/uploads/2019/08/ss_html_downloader-300x235.png 300w, /assets/uploads/2019/08/ss_html_downloader.png 753w" sizes="(max-width: 885px) 100vw, 885px" /> 
 
 We have Magento Connect Manager ver. 1.9.0.0, which the base version should match.
 
@@ -88,7 +88,7 @@ We have Magento Connect Manager ver. 1.9.0.0, which the base version should matc
 
 With the information found so far, we can look for public exploits or vulnerabilities to use.
 
-<img class="alignnone wp-image-127" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_searchsploit-300x144.png" alt="" width="763" height="366" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_searchsploit-300x144.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_searchsploit.png 723w" sizes="(max-width: 763px) 100vw, 763px" /> 
+<img class="alignnone wp-image-127" src="/assets/uploads/2019/08/ss_searchsploit-300x144.png" alt="" width="763" height="366" srcset="/assets/uploads/2019/08/ss_searchsploit-300x144.png 300w, /assets/uploads/2019/08/ss_searchsploit.png 723w" sizes="(max-width: 763px) 100vw, 763px" /> 
 
 There are a few that are applicable to this version, and after researching them for a little bit, it is obvious the [one we need](https://www.exploit-db.com/exploits/37977) is related to the ShopLift vuln. During research on the ShopLift vuln, I found another public [exploit](https://github.com/joren485/Magento-Shoplift-SQLI/blob/master/poc.py) that has slight differences, and it could be useful to have both.
 
@@ -96,7 +96,7 @@ There are a few that are applicable to this version, and after researching them 
 
 After seeing there&#8217;s a preprogrammed password in the exploit, and it&#8217;s a very easily found one, I thought there might be some other hackers on the free server I&#8217;m using that would simply leave the default creds in. So I put them into the &#8216;/downloader&#8217; page, and voila!
 
-<img class="alignnone wp-image-128" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_downloader_admin-300x259.png" alt="" width="871" height="752" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_downloader_admin-300x259.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_html_downloader_admin.png 750w" sizes="(max-width: 871px) 100vw, 871px" /> 
+<img class="alignnone wp-image-128" src="/assets/uploads/2019/08/ss_html_downloader_admin-300x259.png" alt="" width="871" height="752" srcset="/assets/uploads/2019/08/ss_html_downloader_admin-300x259.png 300w, /assets/uploads/2019/08/ss_html_downloader_admin.png 750w" sizes="(max-width: 871px) 100vw, 871px" /> 
 
 There&#8217;s a &#8220;Return to Admin&#8221; button that will then take us to the normal admin dashboard. Or&#8230;
 
@@ -108,7 +108,7 @@ Thing is the exploit code as it comes doesn&#8217;t work, even after changing th
 
 So good thing we found a second exploit version.
 
-<img class="alignnone wp-image-129" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_exploit_diff-300x177.png" alt="" width="863" height="509" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_exploit_diff-300x177.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_exploit_diff-768x453.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_exploit_diff-1024x603.png 1024w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_exploit_diff.png 1171w" sizes="(max-width: 863px) 100vw, 863px" /> 
+<img class="alignnone wp-image-129" src="/assets/uploads/2019/08/ss_exploit_diff-300x177.png" alt="" width="863" height="509" srcset="/assets/uploads/2019/08/ss_exploit_diff-300x177.png 300w, /assets/uploads/2019/08/ss_exploit_diff-768x453.png 768w, /assets/uploads/2019/08/ss_exploit_diff-1024x603.png 1024w, /assets/uploads/2019/08/ss_exploit_diff.png 1171w" sizes="(max-width: 863px) 100vw, 863px" /> 
 
 The critical difference is the addition of /index.php/ to the target URL, as shown in the screenshot.
 
@@ -122,9 +122,9 @@ I was able to find one [CVE](https://www.cvedetails.com/cve/CVE-2019-7932/) for 
 
 First I tried to manipulate the extension creation process to get some code exec result, but I eventually gave up that route and figured there&#8217;s probably already some extension to load that would help. Thanks to other hackers on the free server, it was relatively easy to figure out what extension that could be. On the Magento Downloader page, there is a section that lists which extensions are loaded:
 
-<img class="alignnone wp-image-132" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_manage_extensions-300x300.png" alt="" width="867" height="867" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_manage_extensions-300x300.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_manage_extensions-150x150.png 150w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_manage_extensions.png 749w" sizes="(max-width: 867px) 100vw, 867px" /> 
+<img class="alignnone wp-image-132" src="/assets/uploads/2019/08/ss_manage_extensions-300x300.png" alt="" width="867" height="867" srcset="/assets/uploads/2019/08/ss_manage_extensions-300x300.png 300w, /assets/uploads/2019/08/ss_manage_extensions-150x150.png 150w, /assets/uploads/2019/08/ss_manage_extensions.png 749w" sizes="(max-width: 867px) 100vw, 867px" /> 
 
-<img class="alignnone wp-image-133" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_manage_extensions_2-300x286.png" alt="" width="838" height="799" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_manage_extensions_2-300x286.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_manage_extensions_2.png 746w" sizes="(max-width: 838px) 100vw, 838px" /> 
+<img class="alignnone wp-image-133" src="/assets/uploads/2019/08/ss_manage_extensions_2-300x286.png" alt="" width="838" height="799" srcset="/assets/uploads/2019/08/ss_manage_extensions_2-300x286.png 300w, /assets/uploads/2019/08/ss_manage_extensions_2.png 746w" sizes="(max-width: 838px) 100vw, 838px" /> 
 
 And at the bottom of the list, there is an extension allowing access to the filesystem! That can&#8217;t be there normally&#8230;
 
@@ -132,13 +132,13 @@ Since it&#8217;s already loaded in this instance, I shouldn&#8217;t need to load
 
 How to use the extension:
 
-<img class="alignnone wp-image-134" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_use_mpfilesystem-300x198.png" alt="" width="853" height="563" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_use_mpfilesystem-300x198.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_use_mpfilesystem-768x507.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_use_mpfilesystem.png 999w" sizes="(max-width: 853px) 100vw, 853px" /> 
+<img class="alignnone wp-image-134" src="/assets/uploads/2019/08/ss_use_mpfilesystem-300x198.png" alt="" width="853" height="563" srcset="/assets/uploads/2019/08/ss_use_mpfilesystem-300x198.png 300w, /assets/uploads/2019/08/ss_use_mpfilesystem-768x507.png 768w, /assets/uploads/2019/08/ss_use_mpfilesystem.png 999w" sizes="(max-width: 853px) 100vw, 853px" /> 
 
 Once in the filesystem, I tried to create a file, but there was no clear way to do so with MagPleasure.
 
 Another thing to do is to modify files already on the system, and there are several targets to choose from. From having to restart so many times dues to service unavailable issues, I&#8217;ve noticed other hackers tend to prefer the &#8216;get.php&#8217; file. To not get clobbered, I used the &#8216;install.php&#8217; file for my reverse shell.
 
-<img class="alignnone wp-image-136" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_filesystem_shell-300x205.png" alt="" width="860" height="588" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_filesystem_shell-300x205.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_filesystem_shell-768x525.png 768w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_filesystem_shell.png 970w" sizes="(max-width: 860px) 100vw, 860px" /> 
+<img class="alignnone wp-image-136" src="/assets/uploads/2019/08/ss_filesystem_shell-300x205.png" alt="" width="860" height="588" srcset="/assets/uploads/2019/08/ss_filesystem_shell-300x205.png 300w, /assets/uploads/2019/08/ss_filesystem_shell-768x525.png 768w, /assets/uploads/2019/08/ss_filesystem_shell.png 970w" sizes="(max-width: 860px) 100vw, 860px" /> 
 
 ### Escalation
 
@@ -146,11 +146,11 @@ For the first shell connection, we&#8217;re logged in as &#8216;www-data&#8217;.
 
 Now to find a privilege escalation to the user account.
 
-<img class="alignnone wp-image-137" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_shell1-300x88.png" alt="" width="699" height="205" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_shell1-300x88.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_shell1.png 722w" sizes="(max-width: 699px) 100vw, 699px" /> 
+<img class="alignnone wp-image-137" src="/assets/uploads/2019/08/ss_shell1-300x88.png" alt="" width="699" height="205" srcset="/assets/uploads/2019/08/ss_shell1-300x88.png 300w, /assets/uploads/2019/08/ss_shell1.png 722w" sizes="(max-width: 699px) 100vw, 699px" /> 
 
 I was going to find a way to upload LinEnum and do proper enumeration, but I remember reading on several forum posts that there&#8217;s a very basic permissions issue to use for root privileges escalation. One of the very first things to look for is <span class="lang:python decode:true crayon-inline">sudo</span> permissions, so that&#8217;s what I did:
 
-<img class="alignnone wp-image-138" src="http://dustinwatts.me/wp-content/uploads/2019/08/ss_sudo-300x59.png" alt="" width="702" height="138" srcset="http://dustinwatts.me/wp-content/uploads/2019/08/ss_sudo-300x59.png 300w, http://dustinwatts.me/wp-content/uploads/2019/08/ss_sudo.png 721w" sizes="(max-width: 702px) 100vw, 702px" /> 
+<img class="alignnone wp-image-138" src="/assets/uploads/2019/08/ss_sudo-300x59.png" alt="" width="702" height="138" srcset="/assets/uploads/2019/08/ss_sudo-300x59.png 300w, /assets/uploads/2019/08/ss_sudo.png 721w" sizes="(max-width: 702px) 100vw, 702px" /> 
 
 Look at that! We can use <span class="lang:python decode:true crayon-inline">vi</span>  as root, and then a simple shell escape from inside vi:
 
