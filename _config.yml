@@ -29,6 +29,12 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+author:
+  name     : "Dustin Watts"
+  avatar   : "/assets/images/jamack.jpg"
+  bio      : "My awesome biography constrained to a sentence or two goes here."
+  location : "South Carolina, USA"   
+
 # Build settings
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
@@ -40,9 +46,10 @@ defaults:
   # _posts
   - scope:
       path: ""
-      type: post
+      type: posts
     values:
       read_time: true
+      author_profile: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.

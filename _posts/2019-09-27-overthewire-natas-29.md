@@ -3,7 +3,7 @@ id: 335
 title: 'OverTheWire: NATAS 29'
 date: 2019-09-27T08:04:40-04:00
 author: dwatts.comptech
-layout: post
+layout: posts
 guid: http://dustinwatts.me/?p=335
 permalink: /2019/09/27/overthewire-natas-29/
 categories:

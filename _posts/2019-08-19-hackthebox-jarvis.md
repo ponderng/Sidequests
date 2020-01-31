@@ -3,7 +3,7 @@ id: 121
 title: 'HackTheBox: Jarvis'
 date: 2019-08-19T10:04:56-04:00
 author: dwatts.comptech
-layout: post
+layout: posts
 guid: http://dustinwatts.me/?p=121
 permalink: /2019/08/19/hackthebox-jarvis/
 categories:

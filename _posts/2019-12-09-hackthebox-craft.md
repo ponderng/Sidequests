@@ -3,7 +3,7 @@ id: 400
 title: 'HackTheBox: Craft'
 date: 2019-12-09T14:54:54-05:00
 author: dwatts.comptech
-layout: post
+layout: posts
 guid: http://dustinwatts.me/?p=400
 permalink: /2019/12/09/hackthebox-craft/
 categories:

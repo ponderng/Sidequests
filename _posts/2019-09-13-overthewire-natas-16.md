@@ -3,7 +3,7 @@ id: 244
 title: 'OverTheWire: NATAS 16 &#8211; 20'
 date: 2019-09-13T15:22:13-04:00
 author: dwatts.comptech
-layout: post
+layout: posts
 guid: http://dustinwatts.me/?p=244
 permalink: /2019/09/13/overthewire-natas-16/
 categories:
