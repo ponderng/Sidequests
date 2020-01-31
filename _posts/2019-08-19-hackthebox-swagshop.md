@@ -16,7 +16,8 @@ This site is a basic e-commerce site with just a few products filled in as examp
 
 NMAP doesn&#8217;t show anything out of the ordinary for a web host:
 
-<pre class="lang:sh highlight:0 decode:true">PORT   STATE SERVICE REASON         VERSION
+{% highlight plain_text %}
+PORT   STATE SERVICE REASON         VERSION
 <strong>22/tcp open </strong> <strong>ssh    </strong> syn-ack ttl 63 OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey: 
 |   2048 b6:55:2b:d2:4e:8f:a3:81:72:61:37:9a:12:f6:24:ec (RSA)
@@ -35,7 +36,8 @@ Uptime guess: 0.003 days (since Tue Aug 13 09:45:05 2019)
 Network Distance: 2 hops
 TCP Sequence Prediction: Difficulty=261 (Good luck!)
 IP ID Sequence Generation: All zeros
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</pre>
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+{% endhighlight %}
 
 We can see that Apache 2.4.18 is the web server platform.
 
@@ -43,7 +45,8 @@ We can see that Apache 2.4.18 is the web server platform.
 
 GoBuster was able to find quite a few directories related to Magento:
 
-<pre class="lang:sh highlight:0 decode:true">=====================================================
+{% highlight plain_text %}
+=====================================================
 Gobuster v2.0.0              OJ Reeves (@TheColonial)
 =====================================================
 [+] Mode         : dir
@@ -74,7 +77,7 @@ http://10.10.10.140/var (Status: 301)
 =====================================================
 2019/08/13 13:33:45 Finished
 =====================================================
-</pre>
+{% endhighlight %}
 
 Going through each of the directories and searching for anything out of the ordinary didn&#8217;t return very much results. However, the &#8216;downloader&#8217; page gives details on the version of Magento:
 
@@ -142,20 +145,20 @@ Another thing to do is to modify files already on the system, and there are seve
 
 ### Escalation
 
-For the first shell connection, we&#8217;re logged in as &#8216;www-data&#8217;. Not too surprising. What is surprising though, is that www-data can access the user home directory! That&#8217;s not really a normal scenario, but I&#8217;ll take it! Just <span class="lang:python decode:true crayon-inline">cat /home/haris/user.txt</span>  for the flag.
+For the first shell connection, we&#8217;re logged in as &#8216;www-data&#8217;. Not too surprising. What is surprising though, is that www-data can access the user home directory! That&#8217;s not really a normal scenario, but I&#8217;ll take it! Just `cat /home/haris/user.txt` for the flag.
 
 Now to find a privilege escalation to the user account.
 
 <img class="alignnone wp-image-137" src="/assets/uploads/2019/08/ss_shell1-300x88.png" alt="" width="699" height="205" srcset="/assets/uploads/2019/08/ss_shell1-300x88.png 300w, /assets/uploads/2019/08/ss_shell1.png 722w" sizes="(max-width: 699px) 100vw, 699px" /> 
 
-I was going to find a way to upload LinEnum and do proper enumeration, but I remember reading on several forum posts that there&#8217;s a very basic permissions issue to use for root privileges escalation. One of the very first things to look for is <span class="lang:python decode:true crayon-inline">sudo</span> permissions, so that&#8217;s what I did:
+I was going to find a way to upload LinEnum and do proper enumeration, but I remember reading on several forum posts that there&#8217;s a very basic permissions issue to use for root privileges escalation. One of the very first things to look for is `sudo` permissions, so that&#8217;s what I did:
 
 <img class="alignnone wp-image-138" src="/assets/uploads/2019/08/ss_sudo-300x59.png" alt="" width="702" height="138" srcset="/assets/uploads/2019/08/ss_sudo-300x59.png 300w, /assets/uploads/2019/08/ss_sudo.png 721w" sizes="(max-width: 702px) 100vw, 702px" /> 
 
-Look at that! We can use <span class="lang:python decode:true crayon-inline">vi</span>  as root, and then a simple shell escape from inside vi:
+Look at that! We can use `vi` as root, and then a simple shell escape from inside vi:
 
-First, I used the command <span class="lang:python decode:true crayon-inline">sudo vi ./test.txt</span> &#8230; but it errors with &#8220;sudo: no tty present and no askpass program specified&#8221;
+First, I used the command `sudo vi ./test.txt` &#8230; but it errors with &#8220;sudo: no tty present and no askpass program specified&#8221;
 
-After trying a few things I landed on the fact that I didn&#8217;t type it in exactly as it is in <span class="lang:python decode:true crayon-inline">sudo -l</span> &#8230; so I tried again with: <span class="lang:python decode:true crayon-inline">sudo /usr/bin/vi /var/www/html/test.txt</span>  and that let me in as root.
+After trying a few things I landed on the fact that I didn&#8217;t type it in exactly as it is in `sudo -l` &#8230; so I tried again with: `sudo /usr/bin/vi /var/www/html/test.txt` and that let me in as root.
 
-To use a shell escape in vi, we can type <span class="lang:python decode:true crayon-inline">:!/bin/sh</span> for the win 🙂
+To use a shell escape in vi, we can type `:!/bin/sh` for the win 🙂
