@@ -23,7 +23,7 @@ subtitle: explored by PonderNG
 email: dwatts.comptech@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Collections of CTF walkthroughs and some original research.
-#baseurl: "/blog" # the subpath of your site, e.g. /blog
+baseurl: "/blog" # the subpath of your site, e.g. /blog
 #url: "https://ponderng.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 repository: ponderng/ponderng.github.io
 twitter_username: ponder_ng
