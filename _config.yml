@@ -35,10 +35,12 @@ author:
   location : "South Carolina, USA"   
 
 # Build settings
-theme: minimal-mistakes-jekyll
+#theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes@4.18.1"
 minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 plugins:
   - jekyll-feed
+  - jekyll-include-cache
 
 defaults:
   # _posts
