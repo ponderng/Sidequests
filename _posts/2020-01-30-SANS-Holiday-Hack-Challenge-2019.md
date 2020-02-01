@@ -1524,7 +1524,7 @@ For this Objective, you have to go to the Student Union and find the Sleigh Shop
 
 <img src="/assets/uploads/2020/01/image-32.png" alt="" class="wp-image-624" srcset="/assets/uploads/2020/01/image-32.png 698w, /assets/uploads/2020/01/image-32-300x232.png 300w" sizes="(max-width: 698px) 100vw, 698px" />
 
-#### Riddle 1
+### Riddle 1
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1536,7 +1536,7 @@ Follow the instructions and open the developer&#8217;s console to see the unlock
 
 [<img src="/assets/uploads/2020/01/image-33-1024x737.png" alt="" class="wp-image-625" srcset="/assets/uploads/2020/01/image-33-1024x737.png 1024w, /assets/uploads/2020/01/image-33-300x216.png 300w, /assets/uploads/2020/01/image-33-768x553.png 768w, /assets/uploads/2020/01/image-33.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-33.png)
 
-#### Riddle 2
+### Riddle 2
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1548,7 +1548,7 @@ This riddle is referring to print on paper, so look into the &#8220;Print Previe
 
 [<img src="/assets/uploads/2020/01/image-34.png" alt="" class="wp-image-626" srcset="/assets/uploads/2020/01/image-34.png 1000w, /assets/uploads/2020/01/image-34-300x198.png 300w, /assets/uploads/2020/01/image-34-768x507.png 768w" sizes="(max-width: 1000px) 100vw, 1000px" />](/assets/uploads/2020/01/image-34.png)
 
-#### Riddle 3
+### Riddle 3
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1560,7 +1560,7 @@ Open Network in the Developer Tools and see what&#8217;s loaded but never shown.
 
 [<img src="/assets/uploads/2020/01/image-35-1024x737.png" alt="" class="wp-image-627" srcset="/assets/uploads/2020/01/image-35-1024x737.png 1024w, /assets/uploads/2020/01/image-35-300x216.png 300w, /assets/uploads/2020/01/image-35-768x553.png 768w, /assets/uploads/2020/01/image-35.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-35.png)
 
-#### Riddle 4
+### Riddle 4
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1572,7 +1572,7 @@ Find this one in the Local Storage tab of Developer&#8217;s Console.
 
 [<img src="/assets/uploads/2020/01/image-36-1024x737.png" alt="" class="wp-image-628" srcset="/assets/uploads/2020/01/image-36-1024x737.png 1024w, /assets/uploads/2020/01/image-36-300x216.png 300w, /assets/uploads/2020/01/image-36-768x553.png 768w, /assets/uploads/2020/01/image-36.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-36.png)
 
-#### Riddle 5
+### Riddle 5
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1584,7 +1584,7 @@ Look at the title in the HTML Elements Tab.
 
 [<img src="/assets/uploads/2020/01/image-37-1024x737.png" alt="" class="wp-image-629" srcset="/assets/uploads/2020/01/image-37-1024x737.png 1024w, /assets/uploads/2020/01/image-37-300x216.png 300w, /assets/uploads/2020/01/image-37-768x553.png 768w, /assets/uploads/2020/01/image-37.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-37.png)
 
-#### Riddle 6
+### Riddle 6
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1600,7 +1600,7 @@ Then you&#8217;ll see a code in the rainbow box. Type it in as shown.
 
 [<img src="/assets/uploads/2020/01/image-39-1024x393.png" alt="" class="wp-image-631" srcset="/assets/uploads/2020/01/image-39-1024x393.png 1024w, /assets/uploads/2020/01/image-39-300x115.png 300w, /assets/uploads/2020/01/image-39-768x295.png 768w, /assets/uploads/2020/01/image-39.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-39.png)
 
-#### Riddle 7
+### Riddle 7
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1612,7 +1612,7 @@ Find the font-family property in the HTML head.
 
 [<img src="/assets/uploads/2020/01/image-40-1024x737.png" alt="" class="wp-image-632" srcset="/assets/uploads/2020/01/image-40-1024x737.png 1024w, /assets/uploads/2020/01/image-40-300x216.png 300w, /assets/uploads/2020/01/image-40-768x553.png 768w, /assets/uploads/2020/01/image-40.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-40.png)>
 
-#### Riddle 8
+### Riddle 8
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1624,7 +1624,7 @@ Search for &#8220;eggs&#8221; in the HTML for an element with a class of &#8220;
 
 [<img src="/assets/uploads/2020/01/image-41-1024x737.png" alt="" class="wp-image-633" srcset="/assets/uploads/2020/01/image-41-1024x737.png 1024w, /assets/uploads/2020/01/image-41-300x216.png 300w, /assets/uploads/2020/01/image-41-768x553.png 768w, /assets/uploads/2020/01/image-41.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-41.png)
 
-#### Riddle 9
+### Riddle 9
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1636,7 +1636,7 @@ Search for &#8220;chakra&#8221; in the HTML to find 5 words with the &#8220;chak
 
 [<img src="/assets/uploads/2020/01/image-42-1024x737.png" alt="" class="wp-image-635" srcset="/assets/uploads/2020/01/image-42-1024x737.png 1024w, /assets/uploads/2020/01/image-42-300x216.png 300w, /assets/uploads/2020/01/image-42-768x553.png 768w, /assets/uploads/2020/01/image-42.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-42.png) 
 
-#### Riddle 10
+### Riddle 10
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1660,7 +1660,7 @@ Find the lock&#8217;s code written on the circuit board.
 
 [<img src="/assets/uploads/2020/01/image-46.png" alt="" class="wp-image-641" srcset="/assets/uploads/2020/01/image-46.png 326w, /assets/uploads/2020/01/image-46-300x199.png 300w" sizes="(max-width: 326px) 100vw, 326px" />](/assets/uploads/2020/01/image-46.png)
 
-#### The Note
+### The Note
 
 After solving entering the code in for all of the locks, the note will appear with the answer on it.
 
