@@ -28,6 +28,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 repository: ponderng/ponderng.github.io
 twitter_username: ponder_ng
 github_username:  ponderng
+markdown: GFM
 
 author:
   name     : "PonderNG"
