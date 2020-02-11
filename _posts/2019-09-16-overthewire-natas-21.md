@@ -8,11 +8,11 @@ categories:
 ---
 ### LEVEL 21
 
-<img class="alignnone size-full wp-image-269" src="/assets/uploads/2019/09/2019-09-19_09h49_33.png" alt="" width="596" height="229" srcset="/assets/uploads/2019/09/2019-09-19_09h49_33.png 596w, /assets/uploads/2019/09/2019-09-19_09h49_33-300x115.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
+<img class="alignnone size-full wp-image-269" src="/Sidequests/assets/uploads/2019/09/2019-09-19_09h49_33.png" alt="" width="596" height="229" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_09h49_33.png 596w, /Sidequests/assets/uploads/2019/09/2019-09-19_09h49_33-300x115.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
 
 This level has a second site associated with it, where all the action is:
 
-<img class="alignnone size-full wp-image-270" src="/assets/uploads/2019/09/2019-09-19_09h50_09.png" alt="" width="848" height="511" srcset="/assets/uploads/2019/09/2019-09-19_09h50_09.png 848w, /assets/uploads/2019/09/2019-09-19_09h50_09-300x181.png 300w, /assets/uploads/2019/09/2019-09-19_09h50_09-768x463.png 768w" sizes="(max-width: 848px) 100vw, 848px" /> 
+<img class="alignnone size-full wp-image-270" src="/Sidequests/assets/uploads/2019/09/2019-09-19_09h50_09.png" alt="" width="848" height="511" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_09h50_09.png 848w, /Sidequests/assets/uploads/2019/09/2019-09-19_09h50_09-300x181.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-19_09h50_09-768x463.png 768w" sizes="(max-width: 848px) 100vw, 848px" /> 
 
 #### Main Site
 
@@ -93,10 +93,10 @@ There&#8217;s a line in the source that sets some HTML with values we have contr
 `$form .= “$key: <input name=’$key’ value=’$val’ />”;`
 
 Tested an injection of `‘ />admin:<input name=’admin’ value=’1` on the &#8220;bgcolor&#8221; value. Success with the injection!  
-<img class="alignnone size-full wp-image-272" src="/assets/uploads/2019/09/2019-09-19_10h11_15.png" alt="" width="599" height="431" srcset="/assets/uploads/2019/09/2019-09-19_10h11_15.png 599w, /assets/uploads/2019/09/2019-09-19_10h11_15-300x216.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-272" src="/Sidequests/assets/uploads/2019/09/2019-09-19_10h11_15.png" alt="" width="599" height="431" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_10h11_15.png 599w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h11_15-300x216.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 To use the debug flag while we submit the form, put it all in the address bar like `“/index.php?debug&align=center&fontsize=100%25&bgcolor=yellow%27%20/%3E%3Cbr%3Eadmin:%3Cinput%20name=%27admin%27%20value=%271&submit=Update”`  
-<img class="alignnone size-full wp-image-273" src="/assets/uploads/2019/09/2019-09-19_10h20_28.png" alt="" width="848" height="581" srcset="/assets/uploads/2019/09/2019-09-19_10h20_28.png 848w, /assets/uploads/2019/09/2019-09-19_10h20_28-300x206.png 300w, /assets/uploads/2019/09/2019-09-19_10h20_28-768x526.png 768w" sizes="(max-width: 848px) 100vw, 848px" /> 
+<img class="alignnone size-full wp-image-273" src="/Sidequests/assets/uploads/2019/09/2019-09-19_10h20_28.png" alt="" width="848" height="581" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_10h20_28.png 848w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h20_28-300x206.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h20_28-768x526.png 768w" sizes="(max-width: 848px) 100vw, 848px" /> 
 
 Looking at the page source for this is pretty revealing:
 
@@ -130,7 +130,7 @@ Looking at the page source for this is pretty revealing:
 
 From looking at the debug output, it looks like can modify our injection to get placed into the session array instead of the HTML. It&#8217;s a little easier to do within Burp Repeater than it would be in the browser:
 
-<img class="alignnone wp-image-274 size-full" src="/assets/uploads/2019/09/2019-09-19_10h27_28.png" alt="" width="1229" height="771" srcset="/assets/uploads/2019/09/2019-09-19_10h27_28.png 1229w, /assets/uploads/2019/09/2019-09-19_10h27_28-300x188.png 300w, /assets/uploads/2019/09/2019-09-19_10h27_28-768x482.png 768w, /assets/uploads/2019/09/2019-09-19_10h27_28-1024x642.png 1024w" sizes="(max-width: 1229px) 100vw, 1229px" />  
+<img class="alignnone wp-image-274 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-19_10h27_28.png" alt="" width="1229" height="771" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_10h27_28.png 1229w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h27_28-300x188.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h27_28-768x482.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h27_28-1024x642.png 1024w" sizes="(max-width: 1229px) 100vw, 1229px" />  
 Success! Notice how `"[admin] => 1"` is injected into the session array.
 
 All we should have to do is then change the PHPSESSID of the main site to this one and reload. Just load the main site request into Repeater and change the PHPSESSID value, then Send&#8230; BUT IT DOESN&#8217;T WORK!!
@@ -140,7 +140,7 @@ Since we have to interact with the &#8216;Update&#8217; button on the page, use 
 
 Check that it worked by using the Burp Repeater again on the main site, don&#8217;t forget to change the PHPSESSID value to the experimenter site!
 
-<img class="alignnone wp-image-275 size-full" src="/assets/uploads/2019/09/2019-09-19_10h53_28.png" alt="" width="1230" height="772" srcset="/assets/uploads/2019/09/2019-09-19_10h53_28.png 1230w, /assets/uploads/2019/09/2019-09-19_10h53_28-300x188.png 300w, /assets/uploads/2019/09/2019-09-19_10h53_28-768x482.png 768w, /assets/uploads/2019/09/2019-09-19_10h53_28-1024x643.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" /> 
+<img class="alignnone wp-image-275 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-19_10h53_28.png" alt="" width="1230" height="772" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_10h53_28.png 1230w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h53_28-300x188.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h53_28-768x482.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-19_10h53_28-1024x643.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" /> 
 
 AWESOME! It worked!
 
@@ -189,7 +189,7 @@ if(array_key_exists("revelio", $_GET)) {
 This time it is checking for a variable `'revelio'`. And that&#8217;s ALL it&#8217;s checking for!! This level must be a Harry Potter joke.
 
 Sure enough, that&#8217;s all it needed!  
-<img class="alignnone wp-image-280 size-full" src="/assets/uploads/2019/09/2019-09-19_11h40_39.png" alt="" width="1228" height="774" srcset="/assets/uploads/2019/09/2019-09-19_11h40_39.png 1228w, /assets/uploads/2019/09/2019-09-19_11h40_39-300x189.png 300w, /assets/uploads/2019/09/2019-09-19_11h40_39-768x484.png 768w, /assets/uploads/2019/09/2019-09-19_11h40_39-1024x645.png 1024w" sizes="(max-width: 1228px) 100vw, 1228px" /> 
+<img class="alignnone wp-image-280 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-19_11h40_39.png" alt="" width="1228" height="774" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_11h40_39.png 1228w, /Sidequests/assets/uploads/2019/09/2019-09-19_11h40_39-300x189.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-19_11h40_39-768x484.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-19_11h40_39-1024x645.png 1024w" sizes="(max-width: 1228px) 100vw, 1228px" /> 
 
 Doing this from the browser doesn&#8217;t get the same results though, because there&#8217;s a redirect, &#8220;Location: /&#8221;.
 
@@ -197,7 +197,7 @@ Doing this from the browser doesn&#8217;t get the same results though, because t
 
 ### LEVEL 23
 
-<img class="alignnone size-full wp-image-281" src="/assets/uploads/2019/09/2019-09-19_11h46_04.png" alt="" width="600" height="186" srcset="/assets/uploads/2019/09/2019-09-19_11h46_04.png 600w, /assets/uploads/2019/09/2019-09-19_11h46_04-300x93.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
+<img class="alignnone size-full wp-image-281" src="/Sidequests/assets/uploads/2019/09/2019-09-19_11h46_04.png" alt="" width="600" height="186" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_11h46_04.png 600w, /Sidequests/assets/uploads/2019/09/2019-09-19_11h46_04-300x93.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
 
 Here we only have a password entry form.
 
@@ -224,7 +224,7 @@ Password:
 
 Looks like the function strstr() is being used to search a variable &#8216;passwd&#8217; for the phrase &#8220;iloveyou&#8221;. The only other check is that &#8216;passwd&#8217; equals a number greater than 10. So there is a check for a number, and a check for a string. It appears that putting a mathematical operator in the second check must force it to treat the string as a number, dropping off the invalid non-numerical characters. Because &#8220;11iloveyou&#8221; works!!
 
-<img class="alignnone size-full wp-image-282" src="/assets/uploads/2019/09/2019-09-19_11h57_55.png" alt="" width="599" height="265" srcset="/assets/uploads/2019/09/2019-09-19_11h57_55.png 599w, /assets/uploads/2019/09/2019-09-19_11h57_55-300x133.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-282" src="/Sidequests/assets/uploads/2019/09/2019-09-19_11h57_55.png" alt="" width="599" height="265" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_11h57_55.png 599w, /Sidequests/assets/uploads/2019/09/2019-09-19_11h57_55-300x133.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 &nbsp;
 
@@ -273,7 +273,7 @@ One of the comments on the manual page is interesting:
 
 Getting it to return NULL might give us a useful side effect. In the example in the comment, the variable is assigned an array to get a failure. So to force the &#8216;passwd&#8217; variable to an array, put in `/?passwd[]=something` for the query. That returns an error message and success!
 
-<img class="alignnone size-full wp-image-284" src="/assets/uploads/2019/09/2019-09-19_12h29_45.png" alt="" width="848" height="493" srcset="/assets/uploads/2019/09/2019-09-19_12h29_45.png 848w, /assets/uploads/2019/09/2019-09-19_12h29_45-300x174.png 300w, /assets/uploads/2019/09/2019-09-19_12h29_45-768x446.png 768w" sizes="(max-width: 848px) 100vw, 848px" /> 
+<img class="alignnone size-full wp-image-284" src="/Sidequests/assets/uploads/2019/09/2019-09-19_12h29_45.png" alt="" width="848" height="493" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_12h29_45.png 848w, /Sidequests/assets/uploads/2019/09/2019-09-19_12h29_45-300x174.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-19_12h29_45-768x446.png 768w" sizes="(max-width: 848px) 100vw, 848px" /> 
 
 &nbsp;
 
@@ -281,7 +281,7 @@ Getting it to return NULL might give us a useful side effect. In the example in 
 
 This level starts out with a block of text that gets replaced when you change the language setting.
 
-<img class="alignnone size-full wp-image-287" src="/assets/uploads/2019/09/2019-09-19_12h47_46.png" alt="" width="595" height="683" srcset="/assets/uploads/2019/09/2019-09-19_12h47_46.png 595w, /assets/uploads/2019/09/2019-09-19_12h47_46-261x300.png 261w" sizes="(max-width: 595px) 100vw, 595px" /> 
+<img class="alignnone size-full wp-image-287" src="/Sidequests/assets/uploads/2019/09/2019-09-19_12h47_46.png" alt="" width="595" height="683" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_12h47_46.png 595w, /Sidequests/assets/uploads/2019/09/2019-09-19_12h47_46-261x300.png 261w" sizes="(max-width: 595px) 100vw, 595px" /> 
 
 Sourcecode:
 
@@ -377,7 +377,7 @@ I get the expected log output as:
 [19.09.2019 12::54:32] Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0 "Directory traversal attempt! fixing request."
 {% endhighlight %}
 
-<img class="alignnone size-full wp-image-288" src="/assets/uploads/2019/09/2019-09-19_12h58_22.png" alt="" width="599" height="531" srcset="/assets/uploads/2019/09/2019-09-19_12h58_22.png 599w, /assets/uploads/2019/09/2019-09-19_12h58_22-300x266.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-288" src="/Sidequests/assets/uploads/2019/09/2019-09-19_12h58_22.png" alt="" width="599" height="531" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_12h58_22.png 599w, /Sidequests/assets/uploads/2019/09/2019-09-19_12h58_22-300x266.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 #### Objective 2
 

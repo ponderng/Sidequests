@@ -10,7 +10,7 @@ categories:
 
 Kringle Con begins with you getting off a train at Elf University, the premier institution of higher learning in the ultra far north.
 
-[<img src="/assets/uploads/2019/12/Train-Station-1024x502.png" alt="" class="wp-image-490" srcset="/assets/uploads/2019/12/Train-Station-1024x502.png 1024w, /assets/uploads/2019/12/Train-Station-300x147.png 300w, /assets/uploads/2019/12/Train-Station-768x377.png 768w, /assets/uploads/2019/12/Train-Station-1536x754.png 1536w, /assets/uploads/2019/12/Train-Station.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2019/12/Train-Station.png)<img src="/assets/uploads/2019/12/Goofy-Face.png" alt="" class="wp-image-491" srcset="/assets/uploads/2019/12/Goofy-Face.png 318w, /assets/uploads/2019/12/Goofy-Face-300x288.png 300w" sizes="(max-width: 318px) 100vw, 318px" />
+[<img src="/Sidequests/assets/uploads/2019/12/Train-Station-1024x502.png" alt="" class="wp-image-490" srcset="/Sidequests/assets/uploads/2019/12/Train-Station-1024x502.png 1024w, /Sidequests/assets/uploads/2019/12/Train-Station-300x147.png 300w, /Sidequests/assets/uploads/2019/12/Train-Station-768x377.png 768w, /Sidequests/assets/uploads/2019/12/Train-Station-1536x754.png 1536w, /Sidequests/assets/uploads/2019/12/Train-Station.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2019/12/Train-Station.png)<img src="/Sidequests/assets/uploads/2019/12/Goofy-Face.png" alt="" class="wp-image-491" srcset="/Sidequests/assets/uploads/2019/12/Goofy-Face.png 318w, /Sidequests/assets/uploads/2019/12/Goofy-Face-300x288.png 300w" sizes="(max-width: 318px) 100vw, 318px" />
 
 Santa will tell you about how this year&#8217;s KringleCon is at Elf University because of how there were just so many people last year that his castle was a little cramped.
 
@@ -48,7 +48,7 @@ So you have to complete Objectives 1 &#8211; 5 then Santa will give more of the 
 
 That point is a good time to explore the campus. The turtle doves are in the Student Union area in front of the fireplace.
 
-<img src="/assets/uploads/2020/01/image.png" alt="" class="wp-image-496" srcset="/assets/uploads/2020/01/image.png 556w, /assets/uploads/2020/01/image-300x277.png 300w" sizes="(max-width: 556px) 100vw, 556px" />
+<img src="/Sidequests/assets/uploads/2020/01/image.png" alt="" class="wp-image-496" srcset="/Sidequests/assets/uploads/2020/01/image.png 556w, /Sidequests/assets/uploads/2020/01/image-300x277.png 300w" sizes="(max-width: 556px) 100vw, 556px" />
 
 ## Objective 2 &#8211; Unredact Threatening Document
 
@@ -62,15 +62,15 @@ That point is a good time to explore the campus. The turtle doves are in the Stu
 
 The letter is laying on the ground in the corner of the Quad left of the Student Union.
 
-<img src="/assets/uploads/2020/01/image-1.png" alt="" class="wp-image-497" srcset="/assets/uploads/2020/01/image-1.png 581w, /assets/uploads/2020/01/image-1-263x300.png 263w" sizes="(max-width: 581px) 100vw, 581px" />
+<img src="/Sidequests/assets/uploads/2020/01/image-1.png" alt="" class="wp-image-497" srcset="/Sidequests/assets/uploads/2020/01/image-1.png 581w, /Sidequests/assets/uploads/2020/01/image-1-263x300.png 263w" sizes="(max-width: 581px) 100vw, 581px" />
 
 Clicking the letter downloads a PDF, and within it most of the text is obstructed by red redaction blocks.
 
-[<img src="/assets/uploads/2020/01/image-2-1024x957.png" alt="" class="wp-image-499" srcset="/assets/uploads/2020/01/image-2-1024x957.png 1024w, /assets/uploads/2020/01/image-2-300x280.png 300w, /assets/uploads/2020/01/image-2-768x718.png 768w, /assets/uploads/2020/01/image-2.png 1259w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-2.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-2-1024x957.png" alt="" class="wp-image-499" srcset="/Sidequests/assets/uploads/2020/01/image-2-1024x957.png 1024w, /Sidequests/assets/uploads/2020/01/image-2-300x280.png 300w, /Sidequests/assets/uploads/2020/01/image-2-768x718.png 768w, /Sidequests/assets/uploads/2020/01/image-2.png 1259w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-2.png)
 
 The objective is to find a way to read the redacted text. All you have to do is select the text with your mouse or keyboard. I used Ctrl-A to select all the text and Ctrl-C to copy it. Then paste it into a text editor, like notepad, to read what the letter says and get the answer. The answer is &#8220;DEMAND&#8221;.
 
-[<img src="/assets/uploads/2020/01/image-3-1024x669.png" alt="" class="wp-image-500" srcset="/assets/uploads/2020/01/image-3-1024x669.png 1024w, /assets/uploads/2020/01/image-3-300x196.png 300w, /assets/uploads/2020/01/image-3-768x502.png 768w, /assets/uploads/2020/01/image-3.png 1138w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-3.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-3-1024x669.png" alt="" class="wp-image-500" srcset="/Sidequests/assets/uploads/2020/01/image-3-1024x669.png 1024w, /Sidequests/assets/uploads/2020/01/image-3-300x196.png 300w, /Sidequests/assets/uploads/2020/01/image-3-768x502.png 768w, /Sidequests/assets/uploads/2020/01/image-3.png 1138w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-3.png)
 
 ## Objective 3 &#8211; Windows Log Analysis: Evaluate Attack Outcome
 
@@ -84,7 +84,7 @@ The objective is to find a way to read the redacted text. All you have to do is 
 
 This objective has a hint from an elf named Bushy Evergreen. Find him on the right side of the train station platform beside a Christmas tree.
 
-<img src="/assets/uploads/2020/01/image-4.png" alt="" class="wp-image-501" srcset="/assets/uploads/2020/01/image-4.png 779w, /assets/uploads/2020/01/image-4-300x255.png 300w, /assets/uploads/2020/01/image-4-768x654.png 768w" sizes="(max-width: 779px) 100vw, 779px" />
+<img src="/Sidequests/assets/uploads/2020/01/image-4.png" alt="" class="wp-image-501" srcset="/Sidequests/assets/uploads/2020/01/image-4.png 779w, /Sidequests/assets/uploads/2020/01/image-4-300x255.png 300w, /Sidequests/assets/uploads/2020/01/image-4-768x654.png 768w" sizes="(max-width: 779px) 100vw, 779px" />
 
 ### Terminal Challenge &#8211; Escape Ed
 
@@ -135,7 +135,7 @@ Look for failed logon attempts since this was said to be a password spray attack
 
 There were many accounts attempted and they have the same number of attempts, 77. We were told there was only one compromised account and you&#8217;ll see there is only one account with an attempt count of 76, and that&#8217;s &#8220;**supatree**&#8220;.
 
-[<img src="/assets/uploads/2020/01/image-5-1024x701.png" alt="" class="wp-image-503" srcset="/assets/uploads/2020/01/image-5-1024x701.png 1024w, /assets/uploads/2020/01/image-5-300x205.png 300w, /assets/uploads/2020/01/image-5-768x526.png 768w, /assets/uploads/2020/01/image-5.png 1219w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-5.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-5-1024x701.png" alt="" class="wp-image-503" srcset="/Sidequests/assets/uploads/2020/01/image-5-1024x701.png 1024w, /Sidequests/assets/uploads/2020/01/image-5-300x205.png 300w, /Sidequests/assets/uploads/2020/01/image-5-768x526.png 768w, /Sidequests/assets/uploads/2020/01/image-5.png 1219w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-5.png)
 
 ## Objective 4 &#8211; Windows Log Analysis: Determine Attacker Technique
 
@@ -151,7 +151,7 @@ This Objective is to analyze a logfile from Sysmon in order to identify the tool
 
 You can get a hint on how to analyze Sysmon files from SugarPlum Mary. He is in Hermey Hall which is located on the left side of the Quad.
 
-[<img src="/assets/uploads/2020/01/image-6.png" alt="" class="wp-image-506" srcset="/assets/uploads/2020/01/image-6.png 754w, /assets/uploads/2020/01/image-6-300x192.png 300w" sizes="(max-width: 754px) 100vw, 754px" />](/assets/uploads/2020/01/image-6.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-6.png" alt="" class="wp-image-506" srcset="/Sidequests/assets/uploads/2020/01/image-6.png 754w, /Sidequests/assets/uploads/2020/01/image-6-300x192.png 300w" sizes="(max-width: 754px) 100vw, 754px" />](/Sidequests/assets/uploads/2020/01/image-6.png)
 
 <blockquote class="wp-block-quote">
   <p>
@@ -388,7 +388,7 @@ This is another defense related objective where you have to dig through logs and
 
 ### Terminal Challenge &#8211; Xmas Cheer Laser
 
-[<img src="/assets/uploads/2020/01/image-7.png" alt="" class="wp-image-533" srcset="/assets/uploads/2020/01/image-7.png 774w, /assets/uploads/2020/01/image-7-300x172.png 300w, /assets/uploads/2020/01/image-7-768x442.png 768w" sizes="(max-width: 774px) 100vw, 774px" />](/assets/uploads/2020/01/image-7.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-7.png" alt="" class="wp-image-533" srcset="/Sidequests/assets/uploads/2020/01/image-7.png 774w, /Sidequests/assets/uploads/2020/01/image-7-300x172.png 300w, /Sidequests/assets/uploads/2020/01/image-7-768x442.png 768w" sizes="(max-width: 774px) 100vw, 774px" />](/Sidequests/assets/uploads/2020/01/image-7.png)
 
 <blockquote class="wp-block-quote">
   <p>
@@ -822,7 +822,7 @@ This Objective is all about analyzing event log data with a Splunk App the ElfU 
 
 When you visit the Splunk site given, you&#8217;ll see a chat app with several elf members of the ELFU Security Operations Center. Since Prof Banas said to talk to Kent, click on his name on the left and see what chat text is available. Ultimately, the goal of the Splunk Objective is to find the message left for Kent in the event log.
 
-[<img src="/assets/uploads/2020/01/image-8-1024x941.png" alt="" class="wp-image-572" srcset="/assets/uploads/2020/01/image-8-1024x941.png 1024w, /assets/uploads/2020/01/image-8-300x276.png 300w, /assets/uploads/2020/01/image-8-768x706.png 768w, /assets/uploads/2020/01/image-8.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-8.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-8-1024x941.png" alt="" class="wp-image-572" srcset="/Sidequests/assets/uploads/2020/01/image-8-1024x941.png 1024w, /Sidequests/assets/uploads/2020/01/image-8-300x276.png 300w, /Sidequests/assets/uploads/2020/01/image-8-768x706.png 768w, /Sidequests/assets/uploads/2020/01/image-8.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-8.png)
 
 If you go through the chats that are available, you&#8217;ll get to talk to Alice Bluebird, who guides you through completing the training questions to the right side of the screen. By the time you finish the training questions you should be able to use what you&#8217;ve learned to figure out what the message for Kent is. Use the Search tab at the top of the page to analyze the event log data to get the answers.
 
@@ -888,7 +888,7 @@ First, search on &#8220;Holiday Cheer&#8221;, making sure you&#8217;re looking a
 Then look at the &#8220;results{}.workers.smtp.subject&#8221; field that&#8217;s associated with emails.  
 There are 21 emails that are related to the &#8220;Holiday Cheer Assignment Submission&#8221;
 
-[<img src="/assets/uploads/2020/01/image-9-1024x940.png" alt="" class="wp-image-574" srcset="/assets/uploads/2020/01/image-9-1024x940.png 1024w, /assets/uploads/2020/01/image-9-300x275.png 300w, /assets/uploads/2020/01/image-9-768x705.png 768w, /assets/uploads/2020/01/image-9.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-9.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-9-1024x940.png" alt="" class="wp-image-574" srcset="/Sidequests/assets/uploads/2020/01/image-9-1024x940.png 1024w, /Sidequests/assets/uploads/2020/01/image-9-300x275.png 300w, /Sidequests/assets/uploads/2020/01/image-9-768x705.png 768w, /Sidequests/assets/uploads/2020/01/image-9.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-9.png)
 
 ### Training Question 6
 
@@ -900,7 +900,7 @@ Search for the suspicious filename, which is &#8220;19th Century Holiday Cheer A
 Then go to the stoq event and open the dropdown pluses for the first result -> workers -> smtp.  
 There you&#8217;ll see the email body which contains the password.
 
-[<img src="/assets/uploads/2020/01/image-10-1024x940.png" alt="" class="wp-image-575" srcset="/assets/uploads/2020/01/image-10-1024x940.png 1024w, /assets/uploads/2020/01/image-10-300x275.png 300w, /assets/uploads/2020/01/image-10-768x705.png 768w, /assets/uploads/2020/01/image-10.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-10.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-10-1024x940.png" alt="" class="wp-image-575" srcset="/Sidequests/assets/uploads/2020/01/image-10-1024x940.png 1024w, /Sidequests/assets/uploads/2020/01/image-10-300x275.png 300w, /Sidequests/assets/uploads/2020/01/image-10-768x705.png 768w, /Sidequests/assets/uploads/2020/01/image-10.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-10.png)
 
 ### Training Question 7
 
@@ -918,7 +918,7 @@ Alice Bluebird provides you with link to the event you need to look through and 
 
 Here is the spath command that will show a list of all the files involved with the event. You can open them up one by one by copying the path and pasting in the address bar of the file archive.
 
-[<img src="/assets/uploads/2020/01/image-11-1024x150.png" alt="" class="wp-image-576" srcset="/assets/uploads/2020/01/image-11-1024x150.png 1024w, /assets/uploads/2020/01/image-11-300x44.png 300w, /assets/uploads/2020/01/image-11-768x112.png 768w, /assets/uploads/2020/01/image-11.png 1189w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-11.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-11-1024x150.png" alt="" class="wp-image-576" srcset="/Sidequests/assets/uploads/2020/01/image-11-1024x150.png 1024w, /Sidequests/assets/uploads/2020/01/image-11-300x44.png 300w, /Sidequests/assets/uploads/2020/01/image-11-768x112.png 768w, /Sidequests/assets/uploads/2020/01/image-11.png 1189w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-11.png)
 
 After traveling to the file path, you will have to go up a directory or two until you&#8217;re able to see the file download link. After downloading the file you want, just open it in a text editor to see if you have something interesting. The file with the answer is &#8220;core.xml&#8221;.
 
@@ -950,7 +950,7 @@ You can get a hint from the elf near it, Tangle Coalbox. He says:
 
 On the keypad, you can see three numbers that are used because there is less frost on them.
 
-[<img src="/assets/uploads/2020/01/image-13.png" alt="" class="wp-image-585" srcset="/assets/uploads/2020/01/image-13.png 780w, /assets/uploads/2020/01/image-13-241x300.png 241w, /assets/uploads/2020/01/image-13-768x955.png 768w" sizes="(max-width: 780px) 100vw, 780px" />](/assets/uploads/2020/01/image-13.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-13.png" alt="" class="wp-image-585" srcset="/Sidequests/assets/uploads/2020/01/image-13.png 780w, /Sidequests/assets/uploads/2020/01/image-13-241x300.png 241w, /Sidequests/assets/uploads/2020/01/image-13-768x955.png 768w" sizes="(max-width: 780px) 100vw, 780px" />](/Sidequests/assets/uploads/2020/01/image-13.png)
 
 Tangle said one of the numbers is repeated, and the code is a prime number.
 
@@ -974,23 +974,23 @@ Start the game and play around to see how it works, while watching the requests 
 
 To solve Easy Mode, you can modify variables in the url at the top of the game screen after you&#8217;re out of the store. One way to do it is modify &#8220;distance&#8221; to 8000 then press &#8220;GO&#8221;.
 
-<img src="/assets/uploads/2020/01/image-14.png" alt="" class="wp-image-586" srcset="/assets/uploads/2020/01/image-14.png 778w, /assets/uploads/2020/01/image-14-300x289.png 300w, /assets/uploads/2020/01/image-14-768x739.png 768w" sizes="(max-width: 778px) 100vw, 778px" />
+<img src="/Sidequests/assets/uploads/2020/01/image-14.png" alt="" class="wp-image-586" srcset="/Sidequests/assets/uploads/2020/01/image-14.png 778w, /Sidequests/assets/uploads/2020/01/image-14-300x289.png 300w, /Sidequests/assets/uploads/2020/01/image-14-768x739.png 768w" sizes="(max-width: 778px) 100vw, 778px" />
 
 #### Medium Mode
 
 In the Medium Mode, all of the variables were moved from the URL into POST data, which you can see in Burp. Use the Repeater tab to modify a variable, then press Send.
 
-[<img src="/assets/uploads/2020/01/image-16-1024x803.png" alt="" class="wp-image-588" srcset="/assets/uploads/2020/01/image-16-1024x803.png 1024w, /assets/uploads/2020/01/image-16-300x235.png 300w, /assets/uploads/2020/01/image-16-768x602.png 768w, /assets/uploads/2020/01/image-16.png 1266w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-16.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-16-1024x803.png" alt="" class="wp-image-588" srcset="/Sidequests/assets/uploads/2020/01/image-16-1024x803.png 1024w, /Sidequests/assets/uploads/2020/01/image-16-300x235.png 300w, /Sidequests/assets/uploads/2020/01/image-16-768x602.png 768w, /Sidequests/assets/uploads/2020/01/image-16.png 1266w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-16.png)
 
 #### Hard Mode
 
 In the POST variables on Hard mode, there is a &#8220;hash&#8221; value that has to be right or the game will give an error.
 
-[<img src="/assets/uploads/2020/01/image-17-1024x803.png" alt="" class="wp-image-589" srcset="/assets/uploads/2020/01/image-17-1024x803.png 1024w, /assets/uploads/2020/01/image-17-300x235.png 300w, /assets/uploads/2020/01/image-17-768x602.png 768w, /assets/uploads/2020/01/image-17.png 1266w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-17.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-17-1024x803.png" alt="" class="wp-image-589" srcset="/Sidequests/assets/uploads/2020/01/image-17-1024x803.png 1024w, /Sidequests/assets/uploads/2020/01/image-17-300x235.png 300w, /Sidequests/assets/uploads/2020/01/image-17-768x602.png 768w, /Sidequests/assets/uploads/2020/01/image-17.png 1266w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-17.png)
 
 For a strong clue, watch the talk [Web Apps: A Trailhead](http://www.youtube.com/watch?v=0T6-DQtzCgM). The algorithm is leaked about mid-way through the video. Not everything is seen perfectly, but you can sort out that the hash is adding the numeric values of variables together in a string and running &#8220;md5it&#8221; to get it&#8217;s md5 hash value. To find out exactly which variables are being put together simply change values and see which ones cause errors. 
 
-[<img src="/assets/uploads/2020/01/image-18-1024x578.png" alt="" class="wp-image-590" srcset="/assets/uploads/2020/01/image-18-1024x578.png 1024w, /assets/uploads/2020/01/image-18-300x169.png 300w, /assets/uploads/2020/01/image-18-768x433.png 768w, /assets/uploads/2020/01/image-18.png 1383w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-18.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-18-1024x578.png" alt="" class="wp-image-590" srcset="/Sidequests/assets/uploads/2020/01/image-18-1024x578.png 1024w, /Sidequests/assets/uploads/2020/01/image-18-300x169.png 300w, /Sidequests/assets/uploads/2020/01/image-18-768x433.png 768w, /Sidequests/assets/uploads/2020/01/image-18.png 1383w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-18.png)
 
 The variables used are:  
 money  
@@ -1005,7 +1005,7 @@ food
 
 Add the values together that you want to send and use an online MD5 generator to get the hash value.
 
-[<img src="/assets/uploads/2020/01/image-19-1024x803.png" alt="" class="wp-image-591" srcset="/assets/uploads/2020/01/image-19-1024x803.png 1024w, /assets/uploads/2020/01/image-19-300x235.png 300w, /assets/uploads/2020/01/image-19-768x602.png 768w, /assets/uploads/2020/01/image-19.png 1266w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-19.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-19-1024x803.png" alt="" class="wp-image-591" srcset="/Sidequests/assets/uploads/2020/01/image-19-1024x803.png 1024w, /Sidequests/assets/uploads/2020/01/image-19-300x235.png 300w, /Sidequests/assets/uploads/2020/01/image-19-768x602.png 768w, /Sidequests/assets/uploads/2020/01/image-19.png 1266w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-19.png)
 
 ### Hint
 
@@ -1021,15 +1021,15 @@ The hint Minty gives is regarding a key making machine in her room. And mentions
 
 When you walk into her room, you&#8217;ll see a guy hurry into the closet and shut the door behind him. And if your Network tab is open, it will record the download for his image file. The guy&#8217;s name is Krampus, and the key is very clearly visible.
 
-<img src="/assets/uploads/2020/01/image-20-463x1024.png" alt="" class="wp-image-592" srcset="/assets/uploads/2020/01/image-20-463x1024.png 463w, /assets/uploads/2020/01/image-20-136x300.png 136w, /assets/uploads/2020/01/image-20-768x1700.png 768w, /assets/uploads/2020/01/image-20-694x1536.png 694w, /assets/uploads/2020/01/image-20.png 881w" sizes="(max-width: 463px) 100vw, 463px" />
+<img src="/Sidequests/assets/uploads/2020/01/image-20-463x1024.png" alt="" class="wp-image-592" srcset="/Sidequests/assets/uploads/2020/01/image-20-463x1024.png 463w, /Sidequests/assets/uploads/2020/01/image-20-136x300.png 136w, /Sidequests/assets/uploads/2020/01/image-20-768x1700.png 768w, /Sidequests/assets/uploads/2020/01/image-20-694x1536.png 694w, /Sidequests/assets/uploads/2020/01/image-20.png 881w" sizes="(max-width: 463px) 100vw, 463px" />
 
 In the room, there is a key grinder on the desk that allows you to click on it and make a key. Click the key to download an image of it.
 
-[<img src="/assets/uploads/2020/01/image-21.png" alt="" class="wp-image-593" srcset="/assets/uploads/2020/01/image-21.png 778w, /assets/uploads/2020/01/image-21-300x219.png 300w, /assets/uploads/2020/01/image-21-768x561.png 768w" sizes="(max-width: 778px) 100vw, 778px" />](/assets/uploads/2020/01/image-21.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-21.png" alt="" class="wp-image-593" srcset="/Sidequests/assets/uploads/2020/01/image-21.png 778w, /Sidequests/assets/uploads/2020/01/image-21-300x219.png 300w, /Sidequests/assets/uploads/2020/01/image-21-768x561.png 768w" sizes="(max-width: 778px) 100vw, 778px" />](/Sidequests/assets/uploads/2020/01/image-21.png)
 
 When you go into the closet you see a keyhole on the back wall that you can click on. It will open a closeup view of the lock with a group of keys hanging up. Click on the keys to load your own key image that was saved from the grinder.
 
-[<img src="/assets/uploads/2020/01/image-22-1024x757.png" alt="" class="wp-image-594" srcset="/assets/uploads/2020/01/image-22-1024x757.png 1024w, /assets/uploads/2020/01/image-22-300x222.png 300w, /assets/uploads/2020/01/image-22-768x568.png 768w, /assets/uploads/2020/01/image-22.png 1309w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-22.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-22-1024x757.png" alt="" class="wp-image-594" srcset="/Sidequests/assets/uploads/2020/01/image-22-1024x757.png 1024w, /Sidequests/assets/uploads/2020/01/image-22-300x222.png 300w, /Sidequests/assets/uploads/2020/01/image-22-768x568.png 768w, /Sidequests/assets/uploads/2020/01/image-22.png 1309w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-22.png)
 
 There is a talk that will help figure out the key&#8217;s biting code called &#8220;[Optical Decoding of Keys](http://www.youtube.com/watch?v=KU6FJnbkeLA)&#8220;. It has some general info about the issue, and after watching that talk you should be able to figure out the code on Krampus&#8217;s key by looking closely at the picture and guessing the values. Then input your guess into the key grinder to save your own copy of the key to use in the secret door. 
 
@@ -1053,7 +1053,7 @@ Opening the secret door at the back of the closet goes to the steam tunnels. Wal
 
 Solving this Objective unlocks the rest of the Objectives, and you&#8217;ll get a new tab to your badge that allows you to fast travel through the steam tunnels.
 
-[<img src="/assets/uploads/2020/01/image-23.png" alt="" class="wp-image-595" srcset="/assets/uploads/2020/01/image-23.png 797w, /assets/uploads/2020/01/image-23-300x225.png 300w, /assets/uploads/2020/01/image-23-768x577.png 768w" sizes="(max-width: 797px) 100vw, 797px" />](/assets/uploads/2020/01/image-23.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-23.png" alt="" class="wp-image-595" srcset="/Sidequests/assets/uploads/2020/01/image-23.png 797w, /Sidequests/assets/uploads/2020/01/image-23-300x225.png 300w, /Sidequests/assets/uploads/2020/01/image-23-768x577.png 768w" sizes="(max-width: 797px) 100vw, 797px" />](/Sidequests/assets/uploads/2020/01/image-23.png)
 
 ## Objective 8 &#8211; Bypassing the Frido Sleigh CAPTEHA
 
@@ -1067,11 +1067,11 @@ Solving this Objective unlocks the rest of the Objectives, and you&#8217;ll get 
 
 This Objective was given by Krampus to help him win the [Frido Sleigh](https://fridosleigh.com/) competition by circumventing the custom captcha system called CAPTEHA ( Completely Automated Public Turing test to tell Elves and Humans Apart). Krampus provides some code to start with that uses an [API interface](https://downloads.elfu.org/capteha_api.py) to the competition. He also provides [12,000 images](https://downloads.elfu.org/capteha_images.tar.gz) he&#8217;s saved to use with a machine learning algorithm for the solution.
 
-[<img src="/assets/uploads/2020/01/image-24.png" alt="" class="wp-image-597" srcset="/assets/uploads/2020/01/image-24.png 702w, /assets/uploads/2020/01/image-24-255x300.png 255w" sizes="(max-width: 702px) 100vw, 702px" />](/assets/uploads/2020/01/image-24.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-24.png" alt="" class="wp-image-597" srcset="/Sidequests/assets/uploads/2020/01/image-24.png 702w, /Sidequests/assets/uploads/2020/01/image-24-255x300.png 255w" sizes="(max-width: 702px) 100vw, 702px" />](/Sidequests/assets/uploads/2020/01/image-24.png)
 
 When you fill in the info fields and check the CAPTEHA box it presents the challenge image and gives you only 5 seconds to complete it or else it determines you&#8217;re not an elf and exits.
 
-[<img src="/assets/uploads/2020/01/image-25-1024x940.png" alt="" class="wp-image-599" srcset="/assets/uploads/2020/01/image-25-1024x940.png 1024w, /assets/uploads/2020/01/image-25-300x275.png 300w, /assets/uploads/2020/01/image-25-768x705.png 768w, /assets/uploads/2020/01/image-25.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-25.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-25-1024x940.png" alt="" class="wp-image-599" srcset="/Sidequests/assets/uploads/2020/01/image-25-1024x940.png 1024w, /Sidequests/assets/uploads/2020/01/image-25-300x275.png 300w, /Sidequests/assets/uploads/2020/01/image-25-768x705.png 768w, /Sidequests/assets/uploads/2020/01/image-25.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-25.png)
 
 To inspect this screen a little closer, you can use the Developer Tools Console in your browser, and enter this code to change the timeout value:
 
@@ -1097,7 +1097,7 @@ Help Alabaster break out of the limited shell in the terminal challenge. The ban
 
 When trying to use the command &#8220;su&#8221; to get into alabaster&#8217;s account, you will be greated with a holiday nyancat!
 
-[<img src="/assets/uploads/2020/01/image-26.png" alt="" class="wp-image-602" srcset="/assets/uploads/2020/01/image-26.png 760w, /assets/uploads/2020/01/image-26-226x300.png 226w" sizes="(max-width: 760px) 100vw, 760px" />](/assets/uploads/2020/01/image-26.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-26.png" alt="" class="wp-image-602" srcset="/Sidequests/assets/uploads/2020/01/image-26.png 760w, /Sidequests/assets/uploads/2020/01/image-26-226x300.png 226w" sizes="(max-width: 760px) 100vw, 760px" />](/Sidequests/assets/uploads/2020/01/image-26.png)
 
 Dumping &#8220;/etc/passwd&#8221; shows that alabaster&#8217;s shell is set to &#8220;/bin/nsh&#8221;.
 
@@ -1230,7 +1230,7 @@ Submitting lots of entries until we win the contest! Entry #108
 {"data":"<h2 id=\"result_header\"> Entries for email address #################### no longer accepted as our systems show your email was already randomly selected as a winner! Go check your email to get your winning code. Please allow up to 3-5 minutes for the email to arrive in your inbox or check your spam filter settings. <br><br> Congratulations and Happy Holidays!</h2>","request":true}
 ```
 
-[<img src="/assets/uploads/2020/01/image-27.png" alt="" class="wp-image-609" srcset="/assets/uploads/2020/01/image-27.png 876w, /assets/uploads/2020/01/image-27-300x217.png 300w, /assets/uploads/2020/01/image-27-768x556.png 768w" sizes="(max-width: 876px) 100vw, 876px" />](/assets/uploads/2020/01/image-27.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-27.png" alt="" class="wp-image-609" srcset="/Sidequests/assets/uploads/2020/01/image-27.png 876w, /Sidequests/assets/uploads/2020/01/image-27-300x217.png 300w, /Sidequests/assets/uploads/2020/01/image-27-768x556.png 768w" sizes="(max-width: 876px) 100vw, 876px" />](/Sidequests/assets/uploads/2020/01/image-27.png)
 
 ## Objective 9 &#8211; Retrieve Scraps of Paper from Server
 
@@ -1456,7 +1456,7 @@ Table: krampus
 
 After you download all the images found, you&#8217;ll need to piece them together like a jigsaw puzzle and figure out what the original letter said. It could look something like this:
 
-[<img src="/assets/uploads/2020/01/image-28-890x1024.png" alt="" class="wp-image-618" srcset="/assets/uploads/2020/01/image-28-890x1024.png 890w, /assets/uploads/2020/01/image-28-261x300.png 261w, /assets/uploads/2020/01/image-28-768x884.png 768w, /assets/uploads/2020/01/image-28.png 923w" sizes="(max-width: 890px) 100vw, 890px" />](/assets/uploads/2020/01/image-28.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-28-890x1024.png" alt="" class="wp-image-618" srcset="/Sidequests/assets/uploads/2020/01/image-28-890x1024.png 890w, /Sidequests/assets/uploads/2020/01/image-28-261x300.png 261w, /Sidequests/assets/uploads/2020/01/image-28-768x884.png 768w, /Sidequests/assets/uploads/2020/01/image-28.png 923w" sizes="(max-width: 890px) 100vw, 890px" />](/Sidequests/assets/uploads/2020/01/image-28.png)
 
 After you study it a little bit, you&#8217;ll piece out what the text says, where you&#8217;ll find the name of Santa&#8217;s sleigh guidance system to answer the Objective.
 
@@ -1510,7 +1510,7 @@ Bwahahahahaha!</pre>
   </p>
 </blockquote>
 
-<img src="/assets/uploads/2020/01/image-31.png" alt="" class="wp-image-623" srcset="/assets/uploads/2020/01/image-31.png 565w, /assets/uploads/2020/01/image-31-300x269.png 300w" sizes="(max-width: 565px) 100vw, 565px" /> 
+<img src="/Sidequests/assets/uploads/2020/01/image-31.png" alt="" class="wp-image-623" srcset="/Sidequests/assets/uploads/2020/01/image-31.png 565w, /Sidequests/assets/uploads/2020/01/image-31-300x269.png 300w" sizes="(max-width: 565px) 100vw, 565px" /> 
 
 For this Objective, you have to go to the Student Union and find the Sleigh Shop in the corner. An elf named Shinny Upatree stands there, and at this point in the game there will be a crate also. Shinny claims to have written down the name of the attacker and put it in this crate, but it&#8217;s only opened by solving his riddles.
 
@@ -1522,7 +1522,7 @@ For this Objective, you have to go to the Student Union and find the Sleigh Shop
   <cite>Shinny Upatree</cite>
 </blockquote>
 
-<img src="/assets/uploads/2020/01/image-32.png" alt="" class="wp-image-624" srcset="/assets/uploads/2020/01/image-32.png 698w, /assets/uploads/2020/01/image-32-300x232.png 300w" sizes="(max-width: 698px) 100vw, 698px" />
+<img src="/Sidequests/assets/uploads/2020/01/image-32.png" alt="" class="wp-image-624" srcset="/Sidequests/assets/uploads/2020/01/image-32.png 698w, /Sidequests/assets/uploads/2020/01/image-32-300x232.png 300w" sizes="(max-width: 698px) 100vw, 698px" />
 
 ### Riddle 1
 
@@ -1534,7 +1534,7 @@ For this Objective, you have to go to the Student Union and find the Sleigh Shop
 
 Follow the instructions and open the developer&#8217;s console to see the unlock code. Then enter it into the lock image, and press &#8220;UNLOCK&#8221;. The light will turn red once that code is accepted.
 
-[<img src="/assets/uploads/2020/01/image-33-1024x737.png" alt="" class="wp-image-625" srcset="/assets/uploads/2020/01/image-33-1024x737.png 1024w, /assets/uploads/2020/01/image-33-300x216.png 300w, /assets/uploads/2020/01/image-33-768x553.png 768w, /assets/uploads/2020/01/image-33.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-33.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-33-1024x737.png" alt="" class="wp-image-625" srcset="/Sidequests/assets/uploads/2020/01/image-33-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-33-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-33-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-33.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-33.png)
 
 ### Riddle 2
 
@@ -1546,7 +1546,7 @@ Follow the instructions and open the developer&#8217;s console to see the unlock
 
 This riddle is referring to print on paper, so look into the &#8220;Print Preview&#8221; to see the code.
 
-[<img src="/assets/uploads/2020/01/image-34.png" alt="" class="wp-image-626" srcset="/assets/uploads/2020/01/image-34.png 1000w, /assets/uploads/2020/01/image-34-300x198.png 300w, /assets/uploads/2020/01/image-34-768x507.png 768w" sizes="(max-width: 1000px) 100vw, 1000px" />](/assets/uploads/2020/01/image-34.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-34.png" alt="" class="wp-image-626" srcset="/Sidequests/assets/uploads/2020/01/image-34.png 1000w, /Sidequests/assets/uploads/2020/01/image-34-300x198.png 300w, /Sidequests/assets/uploads/2020/01/image-34-768x507.png 768w" sizes="(max-width: 1000px) 100vw, 1000px" />](/Sidequests/assets/uploads/2020/01/image-34.png)
 
 ### Riddle 3
 
@@ -1558,7 +1558,7 @@ This riddle is referring to print on paper, so look into the &#8220;Print Previe
 
 Open Network in the Developer Tools and see what&#8217;s loaded but never shown. Might have to reload the page to capture the traffic.
 
-[<img src="/assets/uploads/2020/01/image-35-1024x737.png" alt="" class="wp-image-627" srcset="/assets/uploads/2020/01/image-35-1024x737.png 1024w, /assets/uploads/2020/01/image-35-300x216.png 300w, /assets/uploads/2020/01/image-35-768x553.png 768w, /assets/uploads/2020/01/image-35.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-35.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-35-1024x737.png" alt="" class="wp-image-627" srcset="/Sidequests/assets/uploads/2020/01/image-35-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-35-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-35-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-35.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-35.png)
 
 ### Riddle 4
 
@@ -1570,7 +1570,7 @@ Open Network in the Developer Tools and see what&#8217;s loaded but never shown.
 
 Find this one in the Local Storage tab of Developer&#8217;s Console.
 
-[<img src="/assets/uploads/2020/01/image-36-1024x737.png" alt="" class="wp-image-628" srcset="/assets/uploads/2020/01/image-36-1024x737.png 1024w, /assets/uploads/2020/01/image-36-300x216.png 300w, /assets/uploads/2020/01/image-36-768x553.png 768w, /assets/uploads/2020/01/image-36.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-36.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-36-1024x737.png" alt="" class="wp-image-628" srcset="/Sidequests/assets/uploads/2020/01/image-36-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-36-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-36-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-36.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-36.png)
 
 ### Riddle 5
 
@@ -1582,7 +1582,7 @@ Find this one in the Local Storage tab of Developer&#8217;s Console.
 
 Look at the title in the HTML Elements Tab.
 
-[<img src="/assets/uploads/2020/01/image-37-1024x737.png" alt="" class="wp-image-629" srcset="/assets/uploads/2020/01/image-37-1024x737.png 1024w, /assets/uploads/2020/01/image-37-300x216.png 300w, /assets/uploads/2020/01/image-37-768x553.png 768w, /assets/uploads/2020/01/image-37.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-37.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-37-1024x737.png" alt="" class="wp-image-629" srcset="/Sidequests/assets/uploads/2020/01/image-37-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-37-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-37-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-37.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-37.png)
 
 ### Riddle 6
 
@@ -1594,11 +1594,11 @@ Look at the title in the HTML Elements Tab.
 
 Delete the “perspective” CSS element.
 
-[<img src="/assets/uploads/2020/01/image-38-1024x737.png" alt="" class="wp-image-630" srcset="/assets/uploads/2020/01/image-38-1024x737.png 1024w, /assets/uploads/2020/01/image-38-300x216.png 300w, /assets/uploads/2020/01/image-38-768x553.png 768w, /assets/uploads/2020/01/image-38.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-38.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-38-1024x737.png" alt="" class="wp-image-630" srcset="/Sidequests/assets/uploads/2020/01/image-38-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-38-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-38-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-38.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-38.png)
 
 Then you&#8217;ll see a code in the rainbow box. Type it in as shown.
 
-[<img src="/assets/uploads/2020/01/image-39-1024x393.png" alt="" class="wp-image-631" srcset="/assets/uploads/2020/01/image-39-1024x393.png 1024w, /assets/uploads/2020/01/image-39-300x115.png 300w, /assets/uploads/2020/01/image-39-768x295.png 768w, /assets/uploads/2020/01/image-39.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-39.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-39-1024x393.png" alt="" class="wp-image-631" srcset="/Sidequests/assets/uploads/2020/01/image-39-1024x393.png 1024w, /Sidequests/assets/uploads/2020/01/image-39-300x115.png 300w, /Sidequests/assets/uploads/2020/01/image-39-768x295.png 768w, /Sidequests/assets/uploads/2020/01/image-39.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-39.png)
 
 ### Riddle 7
 
@@ -1610,7 +1610,7 @@ Then you&#8217;ll see a code in the rainbow box. Type it in as shown.
 
 Find the font-family property in the HTML head.
 
-[<img src="/assets/uploads/2020/01/image-40-1024x737.png" alt="" class="wp-image-632" srcset="/assets/uploads/2020/01/image-40-1024x737.png 1024w, /assets/uploads/2020/01/image-40-300x216.png 300w, /assets/uploads/2020/01/image-40-768x553.png 768w, /assets/uploads/2020/01/image-40.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-40.png)>
+[<img src="/Sidequests/assets/uploads/2020/01/image-40-1024x737.png" alt="" class="wp-image-632" srcset="/Sidequests/assets/uploads/2020/01/image-40-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-40-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-40-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-40.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-40.png)>
 
 ### Riddle 8
 
@@ -1622,7 +1622,7 @@ Find the font-family property in the HTML head.
 
 Search for &#8220;eggs&#8221; in the HTML for an element with a class of &#8220;eggs&#8221;. Highlight the found element and look at its &#8220;Event Listeners&#8221;. There is a listener for &#8220;spoil&#8221; and the handler makes assigns 'VERONICA = sad'. Type in VERONICA.
 
-[<img src="/assets/uploads/2020/01/image-41-1024x737.png" alt="" class="wp-image-633" srcset="/assets/uploads/2020/01/image-41-1024x737.png 1024w, /assets/uploads/2020/01/image-41-300x216.png 300w, /assets/uploads/2020/01/image-41-768x553.png 768w, /assets/uploads/2020/01/image-41.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-41.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-41-1024x737.png" alt="" class="wp-image-633" srcset="/Sidequests/assets/uploads/2020/01/image-41-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-41-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-41-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-41.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-41.png)
 
 ### Riddle 9
 
@@ -1634,7 +1634,7 @@ Search for &#8220;eggs&#8221; in the HTML for an element with a class of &#8220;
 
 Search for &#8220;chakra&#8221; in the HTML to find 5 words with the &#8220;chakra&#8221; class. Force each word to be in an &#8220;:active&#8221; state and sections of the code will appear. You can also just read the code sections in the CSS by searching for &#8220;chakra&#8221;.
 
-[<img src="/assets/uploads/2020/01/image-42-1024x737.png" alt="" class="wp-image-635" srcset="/assets/uploads/2020/01/image-42-1024x737.png 1024w, /assets/uploads/2020/01/image-42-300x216.png 300w, /assets/uploads/2020/01/image-42-768x553.png 768w, /assets/uploads/2020/01/image-42.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-42.png) 
+[<img src="/Sidequests/assets/uploads/2020/01/image-42-1024x737.png" alt="" class="wp-image-635" srcset="/Sidequests/assets/uploads/2020/01/image-42-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-42-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-42-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-42.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-42.png) 
 
 ### Riddle 10
 
@@ -1646,19 +1646,19 @@ Search for &#8220;chakra&#8221; in the HTML to find 5 words with the &#8220;chak
 
 First, remove the cover image by modifying a CSS property for &#8216;cover&#8217;.
 
-[<img src="/assets/uploads/2020/01/image-43-1024x737.png" alt="" class="wp-image-638" srcset="/assets/uploads/2020/01/image-43-1024x737.png 1024w, /assets/uploads/2020/01/image-43-300x216.png 300w, /assets/uploads/2020/01/image-43-768x553.png 768w, /assets/uploads/2020/01/image-43.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-43.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-43-1024x737.png" alt="" class="wp-image-638" srcset="/Sidequests/assets/uploads/2020/01/image-43-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-43-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-43-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-43.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-43.png)
 
 Next, you have to find three components that are defined in the CSS, and put them on the circuit board.
 
-[<img src="/assets/uploads/2020/01/image-44-1024x737.png" alt="" class="wp-image-639" srcset="/assets/uploads/2020/01/image-44-1024x737.png 1024w, /assets/uploads/2020/01/image-44-300x216.png 300w, /assets/uploads/2020/01/image-44-768x553.png 768w, /assets/uploads/2020/01/image-44.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-44.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-44-1024x737.png" alt="" class="wp-image-639" srcset="/Sidequests/assets/uploads/2020/01/image-44-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-44-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-44-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-44.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-44.png)
 
 Discover where they are in the HTML by searching for &#8220;component&#8221;. You can then drag the HTML element down to the lock area. That will allow you to enter the code and push the button.
 
-[<img src="/assets/uploads/2020/01/image-45-1024x737.png" alt="" class="wp-image-640" srcset="/assets/uploads/2020/01/image-45-1024x737.png 1024w, /assets/uploads/2020/01/image-45-300x216.png 300w, /assets/uploads/2020/01/image-45-768x553.png 768w, /assets/uploads/2020/01/image-45.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-45.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-45-1024x737.png" alt="" class="wp-image-640" srcset="/Sidequests/assets/uploads/2020/01/image-45-1024x737.png 1024w, /Sidequests/assets/uploads/2020/01/image-45-300x216.png 300w, /Sidequests/assets/uploads/2020/01/image-45-768x553.png 768w, /Sidequests/assets/uploads/2020/01/image-45.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-45.png)
 
 Find the lock&#8217;s code written on the circuit board.
 
-[<img src="/assets/uploads/2020/01/image-46.png" alt="" class="wp-image-641" srcset="/assets/uploads/2020/01/image-46.png 326w, /assets/uploads/2020/01/image-46-300x199.png 300w" sizes="(max-width: 326px) 100vw, 326px" />](/assets/uploads/2020/01/image-46.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-46.png" alt="" class="wp-image-641" srcset="/Sidequests/assets/uploads/2020/01/image-46.png 326w, /Sidequests/assets/uploads/2020/01/image-46-300x199.png 300w" sizes="(max-width: 326px) 100vw, 326px" />](/Sidequests/assets/uploads/2020/01/image-46.png)
 
 ### The Note
 
@@ -1676,7 +1676,7 @@ After solving entering the code in for all of the locks, the note will appear wi
 
 Opening this terminal slowly shows dialog text between Kent Tinseltooth and someone named &#8220;Inner Voice&#8221;.
 
-[<img src="/assets/uploads/2020/01/image-47.png" alt="" class="wp-image-645" srcset="/assets/uploads/2020/01/image-47.png 761w, /assets/uploads/2020/01/image-47-300x219.png 300w" sizes="(max-width: 761px) 100vw, 761px" />](/assets/uploads/2020/01/image-47.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-47.png" alt="" class="wp-image-645" srcset="/Sidequests/assets/uploads/2020/01/image-47.png 761w, /Sidequests/assets/uploads/2020/01/image-47-300x219.png 300w" sizes="(max-width: 761px) 100vw, 761px" />](/Sidequests/assets/uploads/2020/01/image-47.png)
 
 Read the file in the home directory, &#8220;IOTteethBraces.md&#8221; to find out what to do next. Due to questions about who the &#8220;Inner Voice&#8221; actually was, Kent wants to further secure the device by configuring the firewall to harden it.
 
@@ -1718,7 +1718,7 @@ Old school, huh? Oh sure &#8211; I&#8217;ve got what you need right here&#8230;
 
 ### The Tooth Fairy and Sleigh Shop
 
-[<img src="/assets/uploads/2020/01/image-48-1024x548.png" alt="" class="wp-image-649" srcset="/assets/uploads/2020/01/image-48-1024x548.png 1024w, /assets/uploads/2020/01/image-48-300x161.png 300w, /assets/uploads/2020/01/image-48-768x411.png 768w, /assets/uploads/2020/01/image-48.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/assets/uploads/2020/01/image-48.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-48-1024x548.png" alt="" class="wp-image-649" srcset="/Sidequests/assets/uploads/2020/01/image-48-1024x548.png 1024w, /Sidequests/assets/uploads/2020/01/image-48-300x161.png 300w, /Sidequests/assets/uploads/2020/01/image-48-768x411.png 768w, /Sidequests/assets/uploads/2020/01/image-48.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2020/01/image-48.png)
 
 <blockquote class="wp-block-quote">
   <p>
@@ -1746,4 +1746,4 @@ Clicking on the computer for the Sleigh Route Finder opens your browser to their
   <cite>Wunorse Openslae</cite>
 </blockquote>
 
-[<img src="/assets/uploads/2020/01/image-49.png" alt="" class="wp-image-650" srcset="/assets/uploads/2020/01/image-49.png 761w, /assets/uploads/2020/01/image-49-300x79.png 300w" sizes="(max-width: 761px) 100vw, 761px" />](/assets/uploads/2020/01/image-49.png)
+[<img src="/Sidequests/assets/uploads/2020/01/image-49.png" alt="" class="wp-image-650" srcset="/Sidequests/assets/uploads/2020/01/image-49.png 761w, /Sidequests/assets/uploads/2020/01/image-49-300x79.png 300w" sizes="(max-width: 761px) 100vw, 761px" />](/Sidequests/assets/uploads/2020/01/image-49.png)

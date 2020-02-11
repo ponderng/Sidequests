@@ -127,7 +127,7 @@ I used the Web Developer Tools in the browser to change the cookie and then refr
 
 ### LEVEL 6
 
-<img class="alignnone size-full wp-image-212" src="/assets/uploads/2019/09/level6.png" alt="" width="601" height="191" srcset="/assets/uploads/2019/09/level6.png 601w, /assets/uploads/2019/09/level6-300x95.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
+<img class="alignnone size-full wp-image-212" src="/Sidequests/assets/uploads/2019/09/level6.png" alt="" width="601" height="191" srcset="/Sidequests/assets/uploads/2019/09/level6.png 601w, /Sidequests/assets/uploads/2019/09/level6-300x95.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
 When viewing the sourcecode using the link provided, you&#8217;ll notice some PHP code:
 
@@ -161,7 +161,7 @@ When you put that secret string into the Input box, it gives you the password fo
 
 ### LEVEL 7
 
-<img class="alignnone size-full wp-image-214" src="/assets/uploads/2019/09/2019-09-11_09h36_35.png" alt="" width="607" height="136" srcset="/assets/uploads/2019/09/2019-09-11_09h36_35.png 607w, /assets/uploads/2019/09/2019-09-11_09h36_35-300x67.png 300w" sizes="(max-width: 607px) 100vw, 607px" /> 
+<img class="alignnone size-full wp-image-214" src="/Sidequests/assets/uploads/2019/09/2019-09-11_09h36_35.png" alt="" width="607" height="136" srcset="/Sidequests/assets/uploads/2019/09/2019-09-11_09h36_35.png 607w, /Sidequests/assets/uploads/2019/09/2019-09-11_09h36_35-300x67.png 300w" sizes="(max-width: 607px) 100vw, 607px" /> 
 
 This level gives us two pages we can browse to, &#8220;Home&#8221; and &#8220;About&#8221;. They&#8217;re equally boring and probably not worth clicking on. What is worth investigating is the page source however. There you&#8217;ll see:
 
@@ -171,13 +171,13 @@ That suggests to solve this level, we will need to pull a file from the server. 
 
 Sure enough, it does!
 
-<img class="alignnone wp-image-215 size-full" src="/assets/uploads/2019/09/2019-09-11_09h53_24.png" alt="" width="1029" height="297" srcset="/assets/uploads/2019/09/2019-09-11_09h53_24.png 1029w, /assets/uploads/2019/09/2019-09-11_09h53_24-300x87.png 300w, /assets/uploads/2019/09/2019-09-11_09h53_24-768x222.png 768w, /assets/uploads/2019/09/2019-09-11_09h53_24-1024x296.png 1024w" sizes="(max-width: 1029px) 100vw, 1029px" /> 
+<img class="alignnone wp-image-215 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-11_09h53_24.png" alt="" width="1029" height="297" srcset="/Sidequests/assets/uploads/2019/09/2019-09-11_09h53_24.png 1029w, /Sidequests/assets/uploads/2019/09/2019-09-11_09h53_24-300x87.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-11_09h53_24-768x222.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-11_09h53_24-1024x296.png 1024w" sizes="(max-width: 1029px) 100vw, 1029px" /> 
 
 &nbsp;
 
 ### LEVEL 8
 
-<img class="alignnone size-full wp-image-212" src="/assets/uploads/2019/09/level6.png" alt="" width="601" height="191" srcset="/assets/uploads/2019/09/level6.png 601w, /assets/uploads/2019/09/level6-300x95.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
+<img class="alignnone size-full wp-image-212" src="/Sidequests/assets/uploads/2019/09/level6.png" alt="" width="601" height="191" srcset="/Sidequests/assets/uploads/2019/09/level6.png 601w, /Sidequests/assets/uploads/2019/09/level6-300x95.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
 This is another secret sauce input box. Glad they have that sourcecode button or these might really be hard.
 
@@ -224,7 +224,7 @@ Take the result and submit it in the form to get the next password!
 
 ### LEVEL 9
 
-<img class="alignnone size-full wp-image-216" src="/assets/uploads/2019/09/2019-09-11_12h10_30.png" alt="" width="603" height="248" srcset="/assets/uploads/2019/09/2019-09-11_12h10_30.png 603w, /assets/uploads/2019/09/2019-09-11_12h10_30-300x123.png 300w" sizes="(max-width: 603px) 100vw, 603px" /> 
+<img class="alignnone size-full wp-image-216" src="/Sidequests/assets/uploads/2019/09/2019-09-11_12h10_30.png" alt="" width="603" height="248" srcset="/Sidequests/assets/uploads/2019/09/2019-09-11_12h10_30.png 603w, /Sidequests/assets/uploads/2019/09/2019-09-11_12h10_30-300x123.png 300w" sizes="(max-width: 603px) 100vw, 603px" /> 
 
 The PHP code in this page is:
 
@@ -252,7 +252,7 @@ But there is a _better_ way. What if I told you we could use the bash command su
 
 So the command become something like `cat /etc/natas_webpass/natas10 1> /proc/$$/fd/1` where &#8220;1>&#8221; is redirecting output and &#8220;/proc/$$/fd/1&#8221; is the output file descriptor for the current process. To send it to the PHP script, type this into the address bar: `?needle=$(cat+/etc/natas_webpass/natas10+1>+/proc/$$/fd/1)`
 
-<img class="alignnone size-full wp-image-217" src="/assets/uploads/2019/09/2019-09-11_13h40_47.png" alt="" width="598" height="274" srcset="/assets/uploads/2019/09/2019-09-11_13h40_47.png 598w, /assets/uploads/2019/09/2019-09-11_13h40_47-300x137.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
+<img class="alignnone size-full wp-image-217" src="/Sidequests/assets/uploads/2019/09/2019-09-11_13h40_47.png" alt="" width="598" height="274" srcset="/Sidequests/assets/uploads/2019/09/2019-09-11_13h40_47.png 598w, /Sidequests/assets/uploads/2019/09/2019-09-11_13h40_47-300x137.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
 
 This is the coolest solution I came up with for the whole NATAS site!
 
@@ -260,7 +260,7 @@ This is the coolest solution I came up with for the whole NATAS site!
 
 ### LEVEL 10
 
-<img class="alignnone size-full wp-image-219" src="/assets/uploads/2019/09/2019-09-11_13h51_21.png" alt="" width="601" height="285" srcset="/assets/uploads/2019/09/2019-09-11_13h51_21.png 601w, /assets/uploads/2019/09/2019-09-11_13h51_21-300x142.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
+<img class="alignnone size-full wp-image-219" src="/Sidequests/assets/uploads/2019/09/2019-09-11_13h51_21.png" alt="" width="601" height="285" srcset="/Sidequests/assets/uploads/2019/09/2019-09-11_13h51_21.png 601w, /Sidequests/assets/uploads/2019/09/2019-09-11_13h51_21-300x142.png 300w" sizes="(max-width: 601px) 100vw, 601px" /> 
 
 Oh great, a character filter! Looking into the sourcecode we can see which characters are bad:
 
@@ -284,6 +284,6 @@ if($key != "") {
 
 The characters &#8220;&#59; &#124; &#38;&#8221; can&#8217;t be used now. No problem, our last solution doesn&#8217;t use any of those! Lol, just send the same request as the last level, modified to get the correct password file of course.
 
-<img class="alignnone size-full wp-image-220" src="/assets/uploads/2019/09/2019-09-11_13h56_19.png" alt="" width="794" height="451" srcset="/assets/uploads/2019/09/2019-09-11_13h56_19.png 794w, /assets/uploads/2019/09/2019-09-11_13h56_19-300x170.png 300w, /assets/uploads/2019/09/2019-09-11_13h56_19-768x436.png 768w" sizes="(max-width: 794px) 100vw, 794px" /> 
+<img class="alignnone size-full wp-image-220" src="/Sidequests/assets/uploads/2019/09/2019-09-11_13h56_19.png" alt="" width="794" height="451" srcset="/Sidequests/assets/uploads/2019/09/2019-09-11_13h56_19.png 794w, /Sidequests/assets/uploads/2019/09/2019-09-11_13h56_19-300x170.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-11_13h56_19-768x436.png 768w" sizes="(max-width: 794px) 100vw, 794px" /> 
 
 Boom! Gotcha.

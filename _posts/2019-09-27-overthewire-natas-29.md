@@ -6,14 +6,14 @@ date: 2019-09-27T08:04:40-04:00
 categories:
   - OverTheWire
 ---
-<img class="alignnone wp-image-336 size-full" src="/assets/uploads/2019/09/2019-09-26_14h35_42.png" alt="" width="1098" height="293" srcset="/assets/uploads/2019/09/2019-09-26_14h35_42.png 1098w, /assets/uploads/2019/09/2019-09-26_14h35_42-300x80.png 300w, /assets/uploads/2019/09/2019-09-26_14h35_42-768x205.png 768w, /assets/uploads/2019/09/2019-09-26_14h35_42-1024x273.png 1024w" sizes="(max-width: 1098px) 100vw, 1098px" />
+<img class="alignnone wp-image-336 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-26_14h35_42.png" alt="" width="1098" height="293" srcset="/Sidequests/assets/uploads/2019/09/2019-09-26_14h35_42.png 1098w, /Sidequests/assets/uploads/2019/09/2019-09-26_14h35_42-300x80.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-26_14h35_42-768x205.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-26_14h35_42-1024x273.png 1024w" sizes="(max-width: 1098px) 100vw, 1098px" />
 
 This level presents you with several articles from an old ezine about perl hacking.
 
-<img class="alignnone wp-image-337 size-full" src="/assets/uploads/2019/09/2019-09-26_16h10_58.png" alt="" width="1079" height="685" srcset="/assets/uploads/2019/09/2019-09-26_16h10_58.png 1079w, /assets/uploads/2019/09/2019-09-26_16h10_58-300x190.png 300w, /assets/uploads/2019/09/2019-09-26_16h10_58-768x488.png 768w, /assets/uploads/2019/09/2019-09-26_16h10_58-1024x650.png 1024w" sizes="(max-width: 1079px) 100vw, 1079px" /> 
+<img class="alignnone wp-image-337 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-26_16h10_58.png" alt="" width="1079" height="685" srcset="/Sidequests/assets/uploads/2019/09/2019-09-26_16h10_58.png 1079w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h10_58-300x190.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h10_58-768x488.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h10_58-1024x650.png 1024w" sizes="(max-width: 1079px) 100vw, 1079px" /> 
 
 The page script &#8220;/index.pl&#8221; is what&#8217;s processing our selection. Here it is in Burp Suite:  
-<img class="alignnone wp-image-338 size-full" src="/assets/uploads/2019/09/2019-09-26_16h12_38.png" alt="" width="1225" height="770" srcset="/assets/uploads/2019/09/2019-09-26_16h12_38.png 1225w, /assets/uploads/2019/09/2019-09-26_16h12_38-300x189.png 300w, /assets/uploads/2019/09/2019-09-26_16h12_38-768x483.png 768w, /assets/uploads/2019/09/2019-09-26_16h12_38-1024x644.png 1024w" sizes="(max-width: 1225px) 100vw, 1225px" /> 
+<img class="alignnone wp-image-338 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-26_16h12_38.png" alt="" width="1225" height="770" srcset="/Sidequests/assets/uploads/2019/09/2019-09-26_16h12_38.png 1225w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h12_38-300x189.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h12_38-768x483.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h12_38-1024x644.png 1024w" sizes="(max-width: 1225px) 100vw, 1225px" /> 
 
 ### Objective 1 &#8211; sourcecode
 
@@ -27,7 +27,7 @@ The clue here is the &#8220;file&#8221; variable itself. The script is looking u
 
 Trying `?file=|cat+index.pl%00` works!
 
-<img class="alignnone wp-image-339 size-full" src="/assets/uploads/2019/09/2019-09-26_16h37_05.png" alt="" width="1229" height="773" srcset="/assets/uploads/2019/09/2019-09-26_16h37_05.png 1229w, /assets/uploads/2019/09/2019-09-26_16h37_05-300x189.png 300w, /assets/uploads/2019/09/2019-09-26_16h37_05-768x483.png 768w, /assets/uploads/2019/09/2019-09-26_16h37_05-1024x644.png 1024w" sizes="(max-width: 1229px) 100vw, 1229px" /> 
+<img class="alignnone wp-image-339 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-26_16h37_05.png" alt="" width="1229" height="773" srcset="/Sidequests/assets/uploads/2019/09/2019-09-26_16h37_05.png 1229w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h37_05-300x189.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h37_05-768x483.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-26_16h37_05-1024x644.png 1024w" sizes="(max-width: 1229px) 100vw, 1229px" /> 
 
 ### Objective 2 &#8211; password
 

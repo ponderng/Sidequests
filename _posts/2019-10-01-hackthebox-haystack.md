@@ -38,12 +38,12 @@ NMAP shows an SSH server, and two HTTP servers. The interesting thing is the HTT
 ## Website Investigations
 
 The site on regular HTTP port 80 is very bare, only giving us a picture and nothing else:  
-<img class="alignnone wp-image-347 size-large" src="/assets/uploads/2019/10/2019-10-01_09h41_20-1024x774.png" alt="" width="640" height="484" srcset="/assets/uploads/2019/10/2019-10-01_09h41_20-1024x774.png 1024w, /assets/uploads/2019/10/2019-10-01_09h41_20-300x227.png 300w, /assets/uploads/2019/10/2019-10-01_09h41_20-768x581.png 768w, /assets/uploads/2019/10/2019-10-01_09h41_20.png 1280w" sizes="(max-width: 640px) 100vw, 640px" /> 
+<img class="alignnone wp-image-347 size-large" src="/Sidequests/assets/uploads/2019/10/2019-10-01_09h41_20-1024x774.png" alt="" width="640" height="484" srcset="/Sidequests/assets/uploads/2019/10/2019-10-01_09h41_20-1024x774.png 1024w, /Sidequests/assets/uploads/2019/10/2019-10-01_09h41_20-300x227.png 300w, /Sidequests/assets/uploads/2019/10/2019-10-01_09h41_20-768x581.png 768w, /Sidequests/assets/uploads/2019/10/2019-10-01_09h41_20.png 1280w" sizes="(max-width: 640px) 100vw, 640px" /> 
 
 &nbsp;
 
 The site on HTTP 9200 has more going on. It is an elasticsearch service version 6.4.2:  
-<img class="alignnone size-full wp-image-348" src="/assets/uploads/2019/10/2019-10-01_09h42_54.png" alt="" width="616" height="447" srcset="/assets/uploads/2019/10/2019-10-01_09h42_54.png 616w, /assets/uploads/2019/10/2019-10-01_09h42_54-300x218.png 300w" sizes="(max-width: 616px) 100vw, 616px" /> 
+<img class="alignnone size-full wp-image-348" src="/Sidequests/assets/uploads/2019/10/2019-10-01_09h42_54.png" alt="" width="616" height="447" srcset="/Sidequests/assets/uploads/2019/10/2019-10-01_09h42_54.png 616w, /Sidequests/assets/uploads/2019/10/2019-10-01_09h42_54-300x218.png 300w" sizes="(max-width: 616px) 100vw, 616px" /> 
 
 So the picture is a clue that we&#8217;ll be looking up something in the search database. Hence the picture of a &#8220;needle&#8221;, which is what a search query is sometimes called.
 
@@ -402,11 +402,11 @@ root@kali /root/Downloads
 {% endhighlight %}
 
 At that point we can even open the Kibana app in the browser.  
-[<img class="alignnone wp-image-363 size-large" src="/assets/uploads/2019/10/2019-10-03_10h34_08-1024x422.png" alt="" width="640" height="264" srcset="/assets/uploads/2019/10/2019-10-03_10h34_08-1024x422.png 1024w, /assets/uploads/2019/10/2019-10-03_10h34_08-300x124.png 300w, /assets/uploads/2019/10/2019-10-03_10h34_08-768x316.png 768w, /assets/uploads/2019/10/2019-10-03_10h34_08.png 1095w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/10/2019-10-03_10h34_08.png)
+[<img class="alignnone wp-image-363 size-large" src="/Sidequests/assets/uploads/2019/10/2019-10-03_10h34_08-1024x422.png" alt="" width="640" height="264" srcset="/Sidequests/assets/uploads/2019/10/2019-10-03_10h34_08-1024x422.png 1024w, /Sidequests/assets/uploads/2019/10/2019-10-03_10h34_08-300x124.png 300w, /Sidequests/assets/uploads/2019/10/2019-10-03_10h34_08-768x316.png 768w, /Sidequests/assets/uploads/2019/10/2019-10-03_10h34_08.png 1095w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/10/2019-10-03_10h34_08.png)
 
 But what we really want is to run the exploit and get a reverse shell.
 
-<img class="alignnone wp-image-366 size-full" src="/assets/uploads/2019/10/2019-10-03_10h55_54.png" alt="" width="1106" height="522" srcset="/assets/uploads/2019/10/2019-10-03_10h55_54.png 1106w, /assets/uploads/2019/10/2019-10-03_10h55_54-300x142.png 300w, /assets/uploads/2019/10/2019-10-03_10h55_54-768x362.png 768w, /assets/uploads/2019/10/2019-10-03_10h55_54-1024x483.png 1024w" sizes="(max-width: 1106px) 100vw, 1106px" /> 
+<img class="alignnone wp-image-366 size-full" src="/Sidequests/assets/uploads/2019/10/2019-10-03_10h55_54.png" alt="" width="1106" height="522" srcset="/Sidequests/assets/uploads/2019/10/2019-10-03_10h55_54.png 1106w, /Sidequests/assets/uploads/2019/10/2019-10-03_10h55_54-300x142.png 300w, /Sidequests/assets/uploads/2019/10/2019-10-03_10h55_54-768x362.png 768w, /Sidequests/assets/uploads/2019/10/2019-10-03_10h55_54-1024x483.png 1024w" sizes="(max-width: 1106px) 100vw, 1106px" /> 
 
 The above screenshot shows a tunnel connection where I created the [payload](https://github.com/mpgn/CVE-2018-17246) file &#8220;shellb.js&#8221;, and it shows the exploit command being sent to my tunneled port, and finally it shows the reverse connected shell on the left =).
 
@@ -430,13 +430,13 @@ The kibana payload file:
 One caveat about the exploit though, if the reverse shell breaks, you may need to rename the payload file before sending the exploit again.
 
 Set up the PTY for the shell once you are in (makes things a little easier)&#8230;  
-<img class="alignnone size-full wp-image-367" src="/assets/uploads/2019/10/2019-10-03_11h14_55.png" alt="" width="617" height="74" srcset="/assets/uploads/2019/10/2019-10-03_11h14_55.png 617w, /assets/uploads/2019/10/2019-10-03_11h14_55-300x36.png 300w" sizes="(max-width: 617px) 100vw, 617px" /> 
+<img class="alignnone size-full wp-image-367" src="/Sidequests/assets/uploads/2019/10/2019-10-03_11h14_55.png" alt="" width="617" height="74" srcset="/Sidequests/assets/uploads/2019/10/2019-10-03_11h14_55.png 617w, /Sidequests/assets/uploads/2019/10/2019-10-03_11h14_55-300x36.png 300w" sizes="(max-width: 617px) 100vw, 617px" /> 
 
 I like to make the prompt better, but that&#8217;s just me&#8230;  
-<img class="alignnone wp-image-368 size-full" src="/assets/uploads/2019/10/2019-10-03_11h16_35-e1570121346109.png" alt="" width="565" height="52" srcset="/assets/uploads/2019/10/2019-10-03_11h16_35-e1570121346109.png 565w, /assets/uploads/2019/10/2019-10-03_11h16_35-e1570121346109-300x28.png 300w" sizes="(max-width: 565px) 100vw, 565px" /> 
+<img class="alignnone wp-image-368 size-full" src="/Sidequests/assets/uploads/2019/10/2019-10-03_11h16_35-e1570121346109.png" alt="" width="565" height="52" srcset="/Sidequests/assets/uploads/2019/10/2019-10-03_11h16_35-e1570121346109.png 565w, /Sidequests/assets/uploads/2019/10/2019-10-03_11h16_35-e1570121346109-300x28.png 300w" sizes="(max-width: 565px) 100vw, 565px" /> 
 
 Also, while playing with the prompt I goofed on a command and saw something interesting&#8230;  
-<img class="alignnone size-full wp-image-369" src="/assets/uploads/2019/10/2019-10-03_11h13_13.png" alt="" width="522" height="36" srcset="/assets/uploads/2019/10/2019-10-03_11h13_13.png 522w, /assets/uploads/2019/10/2019-10-03_11h13_13-300x21.png 300w" sizes="(max-width: 522px) 100vw, 522px" /> 
+<img class="alignnone size-full wp-image-369" src="/Sidequests/assets/uploads/2019/10/2019-10-03_11h13_13.png" alt="" width="522" height="36" srcset="/Sidequests/assets/uploads/2019/10/2019-10-03_11h13_13.png 522w, /Sidequests/assets/uploads/2019/10/2019-10-03_11h13_13-300x21.png 300w" sizes="(max-width: 522px) 100vw, 522px" /> 
 
 Lol, Spanish sure is key!
 
@@ -521,7 +521,7 @@ Ejecutar comando: /tmp/rshell.py
 
 And it&#8217;ll take a little while for the logstash routine to run the payload, but it does eventually work!
 
-<img class="alignnone size-full wp-image-375" src="/assets/uploads/2019/10/2019-10-04_14h30_08.png" alt="" width="723" height="148" srcset="/assets/uploads/2019/10/2019-10-04_14h30_08.png 723w, /assets/uploads/2019/10/2019-10-04_14h30_08-300x61.png 300w" sizes="(max-width: 723px) 100vw, 723px" /> 
+<img class="alignnone size-full wp-image-375" src="/Sidequests/assets/uploads/2019/10/2019-10-04_14h30_08.png" alt="" width="723" height="148" srcset="/Sidequests/assets/uploads/2019/10/2019-10-04_14h30_08.png 723w, /Sidequests/assets/uploads/2019/10/2019-10-04_14h30_08-300x61.png 300w" sizes="(max-width: 723px) 100vw, 723px" /> 
 
 From there, just grab the root flag and this box is done!!
 

