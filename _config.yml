@@ -23,6 +23,7 @@ subtitle: explored by PonderNG
 email: dwatts.comptech@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Collections of CTF walkthroughs and some original research.
+baseurl: "/Sidequests"
 repository: ponderng/Sidequests
 twitter_username: ponder_ng
 github_username:  ponderng
