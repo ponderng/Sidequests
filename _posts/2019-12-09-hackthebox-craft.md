@@ -8,7 +8,7 @@ toc_sticky: false
 toc_label: "Table of Awesome Content"
 toc_icon: "cog"
 ---
-<img class="alignnone size-full wp-image-402" src="/Sidequests/Sidequests/assets/uploads/2019/12/craft_logo.jpg" alt="" width="300" height="300" srcset="/Sidequests/assets/uploads/2019/12/craft_logo.jpg 300w, /Sidequests/assets/uploads/2019/12/craft_logo-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
+<img class="alignnone size-full wp-image-402" src="/Sidequests/assets/uploads/2019/12/craft_logo.jpg" alt="" width="300" height="300" srcset="/Sidequests/assets/uploads/2019/12/craft_logo.jpg 300w, /Sidequests/assets/uploads/2019/12/craft_logo-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
 
 ## Recon and Scans
 
