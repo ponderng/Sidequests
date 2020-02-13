@@ -6,6 +6,8 @@ date: 2020-01-17T20:14:59-05:00
 categories:
   - Uncategorized
 ---
+[<img src="/Sidequests/assets/uploads/2020/01/ElfUniversity.png" />](/Sidequests/assets/uploads/2020/01/ElfUniversity.png)
+
 ## Ille te videt dum dormit
 
 Kringle Con begins with you getting off a train at Elf University, the premier institution of higher learning in the ultra far north.
