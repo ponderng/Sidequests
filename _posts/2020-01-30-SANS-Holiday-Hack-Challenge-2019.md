@@ -1747,3 +1747,135 @@ Clicking on the computer for the Sleigh Route Finder opens your browser to their
 </blockquote>
 
 [<img src="/Sidequests/assets/uploads/2020/01/image-49.png" alt="" class="wp-image-650" srcset="/Sidequests/assets/uploads/2020/01/image-49.png 761w, /Sidequests/assets/uploads/2020/01/image-49-300x79.png 300w" sizes="(max-width: 761px) 100vw, 761px" />](/Sidequests/assets/uploads/2020/01/image-49.png)
+
+All you have to do is use `jq -s 'max_by(.duration)' conn.log` to get the maximum and answer the question with the resp_h address.
+
+```json
+{
+  "ts": "2019-04-18T21:27:45.402479Z",
+  "uid": "CmYAZn10sInxVD5WWd",
+  "id.orig_h": "192.168.52.132",
+  "id.orig_p": 8,
+  "id.resp_h": "13.107.21.200",
+  "id.resp_p": 0,
+  "proto": "icmp",
+  "duration": 1019365.337758,
+  "orig_bytes": 30781920,
+  "resp_bytes": 30382240,
+  "conn_state": "OTH",
+  "missed_bytes": 0,
+  "orig_pkts": 961935,
+  "orig_ip_bytes": 57716100,
+  "resp_pkts": 949445,
+  "resp_ip_bytes": 56966700
+}
+```
+
+#### Post Dialogue with Hints
+>That's got to be the one - thanks!  
+>Hey, you know what? We've got a crisis here.  
+>You see, Santa's flight route is planned by a complex set of machine learning algorithms which use available weather data.  
+>All the weather stations are reporting severe weather to Santa's Sleigh. I think someone might be forging intentionally false weather data!  
+>I'm so flummoxed I can't even remember how to login!  
+>Hmm... Maybe the Zeek http.log could help us.  
+>I worry about LFI, XSS, and SQLi in the Zeek log - oh my!  
+>And I'd be shocked if there weren't some shell stuff in there too.  
+>I'll bet if you pick through, you can find some naughty data from naughty hosts and block it in the firewall.  
+>If you find a log entry that definitely looks bad, try pivoting off other unusual attributes in that entry to find more bad IPs.  
+>The sleigh's machine learning device (SRF) needs most of the malicious IPs blocked in order to calculate a good route.  
+>Try not to block many legitimate weather station IPs as that could also cause route calculation failure.  
+>Remember, when looking at JSON data, jq is the tool for you!  
+
+### Sleigh Route Finder Application
+
+The computer in the sleigh room brings up the [Sleigh Route Finder](https://srf.elfu.org/) flight mapping app. The login is not provided so it will have to be discovered. Then use the hints gathered for solving Objective 12 within this app.
+
+#### Login Credentials
+
+There were some hints given about the login system:
+1. Kent Tinseltooth mentioned this system uses default credentials
+2. This is the system pictured in the encrypted PDF from Objective 10
+3. The PDF mentions the default credentials are in a ElfU Research Labs git repository
+
+With the above hints you know to look for default creds that are found in a git repo. The 'http.log' file given in the Objective Description has captured traffic from the mentioned git repo. Find the traffic with `cat http.log | jq '.[]' | grep -i 'readme'`. Then go to the address found and you'll find the creds.
+
+#### Hints gathered from Wunorse Openslae
+1. App is based on ML algorithms that consume weather data
+2. Weather stations are sending bad data to corrupt the algorithm
+3. Use the 'http.log' file 
+4. Look for Local File Includes
+5. Look for Cross Site Scripting
+6. Look for SQL injection
+7. Look for Shell Shock Exploits
+8. Block IP addresses from events found
+9. Pivoting will be involved
+10. Only most of the bad IPs need to be found (there are 100 according to Objective Description)
+11. Use 'jq'
+
+#### SQL Injection
+There are 29 SQLi events to find. Use these commands and note the originating host address:
+* `cat http.log | jq '.[] | select(. | tostring | match("SELECT"))'`
+* `cat http.log | jq '.[] | select(.username | contains("1=1"))'`
+* `cat http.log | jq '.[] | select(.user_agent | tostring | match("SELECT"))'`
+* `cat http.log | jq '.[] | select(.uri | tostring | match("SELECT"))'`
+
+#### Local File Includes
+There are 11 events to find for LFI.
+* `cat http.log | jq '.[] | select(. | tostring | contains("../.."))'`
+* `cat http.log | jq '.[] | select(. | tostring | contains(".|./.|."))'`
+* `cat http.log | jq '.[] | select(. | tostring | contains(".%2e/.%2e"))'`
+* `cat http.log | jq '.[] | select(. | tostring | contains("/etc/passwd"))'`
+
+#### Cross Site Scripting
+There are 16 XSS events to find.
+* `cat http.log | jq '.[] | select(. | tostring | match("<script>";"i"))'`
+
+#### Shellshock
+There are 6 Shellshock events to find.
+* `cat http.log | jq '.[] | select(. | tostring | contains("};"))'`
+
+#### Pivoting
+The extracted events found with the above queries will only get 62 addresses, and pivoting on the user-agent will be required to find the rest. There are several steps involved in the process.
+
+1. List all the addresses found so far and put them in a 'jq' query to find all the events. It could look like `cat http.log | jq '.[] | select(."id.orig_h" | contains("42.103.246.250") or contains("2.230.60.70") or contains("10.155.246.29") or contains("225.191.220.138") or contains("75.73.228.192") or contains("249.34.9.16") or contains("27.88.56.114") or contains("238.143.78.114") or contains("121.7.186.163") or contains("106.132.195.153") or contains("129.121.121.48") or contains("190.245.228.38") or contains("34.129.179.28") or contains("135.32.99.116") or contains("2.240.116.254") or contains("45.239.232.245") or contains("68.115.251.76") or contains("118.196.230.170") or contains("173.37.160.150") or contains("81.14.204.154") or contains("135.203.243.43") or contains("186.28.46.179") or contains("13.39.153.254") or contains("111.81.145.191") or contains("0.216.249.31") or contains("33.132.98.193") or contains("84.185.44.166") or contains("254.140.181.172") or contains("150.50.77.238") or contains("230.246.50.221") or contains("223.149.180.133") or contains("187.178.169.123") or contains("116.116.98.205") or contains("28.169.41.122") or contains("102.143.16.184") or contains("131.186.145.73") or contains("253.182.102.55") or contains("229.133.163.235") or contains("23.49.177.78") or contains("9.206.212.33") or contains("56.5.47.137") or contains("19.235.69.221") or contains("69.221.145.150") or contains("42.191.112.181") or contains("48.66.193.176") or contains("49.161.8.58") or contains("84.147.231.129") or contains("44.74.106.131") or contains("106.93.213.219") or contains("61.110.82.125") or contains("65.153.114.120") or contains("123.127.233.97") or contains("95.166.116.45") or contains("80.244.147.207") or contains("168.66.108.62") or contains("200.75.228.240") or contains("31.254.228.4") or contains("220.132.33.81") or contains("83.0.8.119") or contains("150.45.133.97") or contains("229.229.189.246") or contains("227.110.45.126"))'`
+2. Add "&#124; .user_agent" at the end of the query in order to extract the user agents.
+3. Weed out the user agents that are obviously malicious traffic and not really user agents.
+4. Use a 'jq' command to figure out which addresses had which user agent.
+5. Note the user agents with exactly two addresses each, there will be many.
+6. One of the addresses in each group of two is already known to be bad, and the other is an additional bad actor that can be added to the list. 
+
+The quick way to curate the final list is to extract each group of two and put in a spreadsheet with the original 62 addresses, then run a remove duplicates function on it. The final count should be 97. I don't know what the final 3 are. Make the list comma separated and submit it to the SRF Firewall for the win!
+
+> **Route Calculation Success! RID:0807198508261964**
+
+## Wrapping up
+Once the Route ID has been submitted to pass the Objective, you have access to the Bell Tower.
+[<img src="/Sidequests/assets/uploads/2020/01/2020-02-12-22-21-12.png" />](/Sidequests/assets/uploads/2020/01/2020-02-12-22-21-12.png)
+
+Where you'll see Santa again, along with Krampus and the guilty Tooth Fairy.
+[<img src="/Sidequests/assets/uploads/2020/01/2020-02-12-22-24-25.png" />](/Sidequests/assets/uploads/2020/01/2020-02-12-22-24-25.png)
+
+Santa's final dialogue:
+>You did it! Thank you! You uncovered the sinister plot to destroy the holiday season!
+>Through your diligent efforts, we’ve brought the Tooth Fairy to justice and saved the holidays!
+>Ho Ho Ho!
+>The more I laugh, the more I fill with glee.
+>And the more the glee,
+>The more I'm a merrier me!
+>Merry Christmas and Happy Holidays.
+
+Krampus's final dialogue:
+>Congratulations on a job well done!
+>Oh, by the way, I won the Frido Sleigh contest.
+>I got 31.8% of the prizes, though I'll have to figure that out.
+
+Tooth Fairy's final dialogue:
+>You foiled my dastardly plan! I’m ruined!
+>And I would have gotten away with it too, if it weren't for you meddling kids!
+
+And in the corner, you'll see a note on the ground.
+
+>Thankfully, I didn't have to implement my plan by myself! Jack Frost promised to use his wintry magic to help me subvert Santa's horrible reign of holiday merriment NOW and FOREVER!  
+>--<cite>LetterOfWintryMagic</cite>
+
+Seems next year we'll have to contend with Ol' Jack Frost!!
