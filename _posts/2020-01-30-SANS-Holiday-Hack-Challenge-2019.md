@@ -12,7 +12,10 @@ categories:
 
 Kringle Con begins with you getting off a train at Elf University, the premier institution of higher learning in the ultra far north.
 
-[<img src="/Sidequests/assets/uploads/2019/12/Train-Station-1024x502.png" alt="" class="wp-image-490" srcset="/Sidequests/assets/uploads/2019/12/Train-Station-1024x502.png 1024w, /Sidequests/assets/uploads/2019/12/Train-Station-300x147.png 300w, /Sidequests/assets/uploads/2019/12/Train-Station-768x377.png 768w, /Sidequests/assets/uploads/2019/12/Train-Station-1536x754.png 1536w, /Sidequests/assets/uploads/2019/12/Train-Station.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2019/12/Train-Station.png)<img src="/Sidequests/assets/uploads/2019/12/Goofy-Face.png" alt="" class="wp-image-491" srcset="/Sidequests/assets/uploads/2019/12/Goofy-Face.png 318w, /Sidequests/assets/uploads/2019/12/Goofy-Face-300x288.png 300w" sizes="(max-width: 318px) 100vw, 318px" />
+Sure was crowded the first day.
+[<img src="/Sidequests/assets/uploads/2019/12/Train-Station-1024x502.png" alt="" class="wp-image-490" srcset="/Sidequests/assets/uploads/2019/12/Train-Station-1024x502.png 1024w, /Sidequests/assets/uploads/2019/12/Train-Station-300x147.png 300w, /Sidequests/assets/uploads/2019/12/Train-Station-768x377.png 768w, /Sidequests/assets/uploads/2019/12/Train-Station-1536x754.png 1536w, /Sidequests/assets/uploads/2019/12/Train-Station.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" />](/Sidequests/assets/uploads/2019/12/Train-Station.png)
+
+[<img src="/Sidequests/assets/uploads/2019/12/Goofy-Face.png" align="center" alt="" class="wp-image-491" srcset="/Sidequests/assets/uploads/2019/12/Goofy-Face.png 318w, /Sidequests/assets/uploads/2019/12/Goofy-Face-300x288.png 300w" sizes="(max-width: 318px) 100vw, 318px" />](/Sidequests/assets/uploads/2019/12/Goofy-Face.png)
 
 Santa will tell you about how this year&#8217;s KringleCon is at Elf University because of how there were just so many people last year that his castle was a little cramped.
 
