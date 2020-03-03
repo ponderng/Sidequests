@@ -4,12 +4,29 @@ date: 2020-02-28
 categories:
   - HackTheBox
 toc: true
-toc_sticky: false
+toc_sticky: true
 toc_label: "Table of Awesome Content"
 toc_icon: "cog"
 ---
 
-<img class="alignnone size-full wp-image-402" src="/Sidequests/assets/uploads/2020/02/Registry-Logo.jpg" alt="" width="300" height="300" srcset="/Sidequests/assets/uploads/2020/02/Registry-Logo.jpg 300w, /Sidequests/assets/uploads/2020/02/Registry-Logo.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
+![Registry Box](/Sidequests/assets/registry/Registry-Logo.png)
 
-![Registry Box](/Sidequests/assets/uploads/Registry/Registry-Logo.png)
+| Name:             | Craft ![](/Sidequests/assets/icons/box-craft.png){:.img-av} |
+|-------------------|--:|
+| Release Date:     | 13 Jul 2019  |
+| OS:               | Linux ![](/Sidequests/assets/icons/Linux.png){:.img-os} |
+| Base Points:      | Medium [30]  |
+| Rated Difficulty: | ![](/Sidequests/assets/craft/craft-diff.png)  |
+| Radar Graph:      | ![](/Sidequests/assets/craft/craft-radar.png)  |
+| Creator:          | rotarydrone ![](/Sidequests/assets/icons/user-rotarydrone.png){:.img-av} |
+
+# About the box
+## User Overview
+
+## Root Overview
+
+# Initial Recon and Scans
+## Port Scans
+
+## Domains and Web Directories
 
