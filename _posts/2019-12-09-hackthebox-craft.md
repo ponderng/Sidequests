@@ -10,6 +10,15 @@ toc_icon: "cog"
 ---
 <img class="alignnone size-full wp-image-402" src="/Sidequests/assets/uploads/2019/12/craft_logo.jpg" alt="" width="300" height="300" srcset="/Sidequests/assets/uploads/2019/12/craft_logo.jpg 300w, /Sidequests/assets/uploads/2019/12/craft_logo-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" />
 
+| Name:             | Craft ![](/Sidequests/assets/icons/box-craft.png){:.img-av} |
+|-------------------|--:|
+| Release Date:     | 13 Jul 2019  |
+| OS:               | Linux ![](/Sidequests/assets/icons/Linux.png){:.img-os} |
+| Base Points:      | Medium [30]  |
+| Rated Difficulty: | ![](/Sidequests/assets/craft/craft-diff.png)  |
+| Radar Graph:      | ![](/Sidequests/assets/craft/craft-radar.png)  |
+| Creator:          | rotarydrone ![](/Sidequests/assets/icons/user-rotarydrone.png){:.img-av} |
+
 ## Recon and Scans
 
 ### NMAP
