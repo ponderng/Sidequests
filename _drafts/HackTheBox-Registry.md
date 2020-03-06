@@ -22,11 +22,7 @@ toc_icon: "cog"
 | Creator:          | thek ![](/Sidequests/assets/icons/user-thek.png){:.img-av} |
 
 # About the box
-Registry took me through several services that were obscure to me, including one that I wanted to get to know better, Docker. The box begins with an online Docker Registry available that's protected by easily guessable creds. 
-
-## User Overview
-
-## Root Overview
+Registry took me through several services that I've never used before, including one that I wanted to get to know better, Docker. The box begins with an online Docker registry available that's protected by easily guessable creds. After getting into the docker image, credentials are found that get SSH access for user. Using the SSH, enumerate the machine to find another service called "Bolt CMS" and figure out how to upload a webshell to get access to a second user. Then use another service "Restic Backup" to exfiltrate the root flag. Also, I explore a way to get root shell access.
 
 # Initial Recon and Scans
 ## Port Scans
