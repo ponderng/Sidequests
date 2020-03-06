@@ -3,6 +3,7 @@ title: 'HackTheBox: Registry'
 date: 2020-02-28
 categories:
   - HackTheBox
+tags: [docker, linux, nginx, restic, cms, webshell, ssh, reverse port forward, jtr, CVE-2019-9185, python, anti-csrf]
 toc: true
 toc_sticky: false
 toc_label: "Table of Awesome Content"
