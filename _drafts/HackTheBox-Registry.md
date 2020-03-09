@@ -289,6 +289,8 @@ bolt@bolt:~$ find /etc -name *nginx* 2>/dev/null
 bolt@bolt:~$ 
 {% endhighlight %}
 
+## Parsing Nginx config files
+
 The "nginx.conf" file links all config files under the "/etc/nginx/sites-enabled" as well. That's where you'll see which sites are on the box and their specific settings. There's a config file for the "docker.registry.htb" site that we already know about, and another one for "registry.htb". Look at that one to see more about it.
 
 {% highlight plain_text %}
@@ -337,4 +339,6 @@ That config file has details about a database called "bolt.db" and a URL locatio
 
 ![](\Sidequests\assets\registry\2020-03-08_21h19_20.png)
 
-You can try previously found credentials, but so far we don't have the right ones. Instead, continue the enumeration by looking into the other info found from the config file, "bolt.db". 
+## Accessing Bolt App
+
+It's usually good practice to try previously found credentials on new targets like this, but so far we don't have the right ones. Instead, continue the enumeration by looking into the other info found from the config file, "bolt.db". 
