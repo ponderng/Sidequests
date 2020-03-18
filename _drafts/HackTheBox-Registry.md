@@ -356,14 +356,13 @@ There must be some firewall rules set up to drop outgoing connections because no
 
 `nc -lvnp 5555 < bolt.db`
 
-And on your local machine use netcat to connect to the listener, with it set up to save data sent to it as the database file.
+And on your local machine use Netcat to connect to the listener, with it set up to save data sent to it as the database file.
 
 `nc registry.htb 5555 > bolt.db`
 
 Once you enter that command, it will connect and receive the database, then you'll just need to kill the connection and analyze the file!
 
 ## Analyzing bolt.db with sqlite3
-
 Open the newly downloaded database file with `sqlite3 bolt.db`, and it will tell you to use ".help" for usage directions.
 
 {% highlight console %}
@@ -394,7 +393,6 @@ sqlite>
 It looks like there is a user "admin" and a password hash in the record. Use whichever is your favorite password cracker for this, mine is John The Ripper.
 
 ## Bolt user credential cracking with John The Ripper
-
 Start by copying the hash into a text file. Then use the command to call john on it with `john --wordlist=/usr/share/wordlists/rockyou.txt bolt.admin.hash`.
 
 {% highlight console %}
@@ -418,13 +416,32 @@ Turns out the password is cracked right away as "strawberry". Just use "admin" a
 It turns out that there is a way to upload some files at two places in the app, both are options under "File Management".
 [![File Upload Capabilities](\Sidequests\assets\registry\2020-03-16_22h07_10.png)](\Sidequests\assets\registry\2020-03-16_22h07_10.png)
 
-Unfortunately the file upload doesn't allow PHP files. However, there's a [CVE](https://vuln.whitesourcesoftware.com/vulnerability/CVE-2019-9185/) on the version used that says extensions for file uploads can be changed to PHP. See the following screenshot taken after attempting a PHP file upload.
+If we test both upload points, we will notice that files sent via the regular **Uploaded Files** section only stay for a minute or so before being deleted. However, if we send files via the **View/edit Templates** section, it will stay until the box is reset. So only use the **View/edit Templates** method of file upload.
+
+Unfortunately, the file upload doesn't allow PHP files. However, there's a [CVE](https://vuln.whitesourcesoftware.com/vulnerability/CVE-2019-9185/) on the version used that says extensions for file uploads can be changed to PHP. See the following screenshot taken after attempting a PHP file upload.
 [![PHP File Type Error](\Sidequests\assets\registry\2020-03-16_22h09_13.png)](\Sidequests\assets\registry\2020-03-16_22h09_13.png)
 
 Also, there is a configuration file that defines which file types are allowed and which aren't. The config file can be found at "Configuration -> Main Configuration"
 [![Main Configuration](\Sidequests\assets\registry\2020-03-16_22h20_39.png)](\Sidequests\assets\registry\2020-03-16_22h20_39.png)
 
-It says that php files are never allowed even if they are in the list, but for some reason that's not true in this case. If you can change the list, you can upload php files. 
+It says that PHP files are never allowed even if they are within the list, but for some reason, that's not true in this case. If you can change the list, you can upload PHP files. 
 [![Accepted File Types](\Sidequests\assets\registry\2020-03-16_22h17_00.png)](\Sidequests\assets\registry\2020-03-16_22h17_00.png)
 
-## Editing the Main Configuration File
+## Editing the main config file and exploiting a race condition
+The configuration file can be changed from the Bolt dashboard, but it is almost immediately reverted back to its original state. This can be noticed by looking at the directory listing before and after saving the file. And if we look back at the config file, any changes made will have disappeared.
+
+Before:
+[![Before](\Sidequests\assets\registry\2020-03-17_20h05_21.png)](\Sidequests\assets\registry\2020-03-17_20h05_21.png)
+
+After:
+[![After](\Sidequests\assets\registry\2020-03-17_20h08_40.png)](\Sidequests\assets\registry\2020-03-17_20h08_40.png)
+
+Since the file can be changed at least momentarily, a race condition can be exploited to change the accepted file types and then upload a webshell before the config is reverted back. One way to do that is by writing a script that goes through the steps of saving the config and uploading a file in a fraction of a second. 
+
+> **Note:** Check out the source code for my version of this script on [github](\Sidequests\assets\registry\savephp.py). Notice that it involves CSRF tokens for everything, so those have to be extracted before making the API calls.
+
+## Uploading and using a webshell for enumeration
+Once we have the upload script working, use it to send your favorite PHP webshell, then browse to it or click on it from the dashboard.
+
+[![Uploaded File](\Sidequests\assets\registry\2020-03-17_21h56_56.png)](\Sidequests\assets\registry\2020-03-17_21h56_56.png)
+
