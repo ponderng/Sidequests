@@ -445,3 +445,9 @@ Once we have the upload script working, use it to send your favorite PHP webshel
 
 [![Uploaded File](\Sidequests\assets\registry\2020-03-17_21h56_56.png)](\Sidequests\assets\registry\2020-03-17_21h56_56.png)
 
+Running through basic enumeration with the PHP webshell, we find out that the `www-data` user (which we're logged in as) has a command it can run through `sudo` without a password. The program to run is *Restic*, which is a pretty good looking backup program (thanks **thek**, I might use this for actual backups later). 
+
+[![Sudo Command](\Sidequests\assets\registry\2020-03-17_22h14_54.png)](\Sidequests\assets\registry\2020-03-17_22h14_54.png)
+
+The reason this is exploitable is the `sudo` command has a wildcard after "rest", which means we can insert *any* rest server as the backup target. So all we need to do is [set up our own rest server](https://restic.readthedocs.io/en/latest/030_preparing_a_new_repo.html#rest-server) locally and send a command via our webshell to backup stuff to it.
+
