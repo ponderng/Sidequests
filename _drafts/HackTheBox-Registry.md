@@ -472,7 +472,7 @@ Getting the root flag is nice, but popping root shells is nicer! To do that on t
 ## Takeaways
 This was my first hard box, and I loved it. Up until that point I had been intending on learning more about Docker and how to exploit it for some time, and I'm really glad this gave me the opportunity to do so. 
 
-1. Probably the most valuable takeaway from this box is that I can work with Docker containers now. 
+1. Probably my most valuable takeaway from this box is that I can work with Docker containers now. 
 2. I'm also thankful for learning about the pretty cool backup program, Restic. 
 3. Bolt CMS isn't something I expect to see again, but it was fun exploiting a CMS of any kind. 
 4. I also used sqlite3 to access a local database file for the first time, and that will certainly be helpful in future scenarios.
