@@ -470,7 +470,14 @@ Getting the root flag is nice, but popping root shells is nicer! To do that on t
 
 # **~The end~**
 ## Takeaways
-This was my first hard box, and I loved it. Up until that point I had been intending on learning more about Docker and how to exploit it for some time, and I'm really glad this gave me the opportunity to do so.
+This was my first hard box, and I loved it. Up until that point I had been intending on learning more about Docker and how to exploit it for some time, and I'm really glad this gave me the opportunity to do so. 
+
+1. Probably the most valuable takeaway from this box is that I can work with Docker containers now. 
+2. I'm also thankful for learning about the pretty cool backup program, Restic. 
+3. Bolt CMS isn't something I expect to see again, but it was fun exploiting a CMS of any kind. 
+4. I also used sqlite3 to access a local database file for the first time, and that will certainly be helpful in future scenarios.
+5. This was the first time I successfully used a REVERSE SSH port forward tunnel. I have used the regular kind before though.
+6. For a standard tactic, I'll be paying more attention to file modification dates in the future, since the point I became the most stuck in this box was when I needed to edit the main config file for Bolt CMS, and realizing that it reverted back *after* first being saved, was crucial.
 
 ## References
 ```
