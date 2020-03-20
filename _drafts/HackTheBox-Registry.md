@@ -469,3 +469,20 @@ Getting the root flag is nice, but popping root shells is nicer! To do that on t
 [![Root SSH](\Sidequests\assets\registry\2020-03-19_23h34_27.png)](\Sidequests\assets\registry\2020-03-19_23h34_27.png)
 
 # **~The end~**
+## Takeaways
+This was my first hard box, and I loved it. Up until that point I had been intending on learning more about Docker and how to exploit it for some time, and I'm really glad this gave me the opportunity to do so.
+
+## References
+```
+1. Docker API Reference
+https://docs.docker.com/registry/spec/api/
+
+2. CVE-2019-9185 File Rename RCE Vuln
+https://vuln.whitesourcesoftware.com/vulnerability/CVE-2019-9185/
+
+3. Set up a local Restic Repo
+https://restic.readthedocs.io/en/latest/030_preparing_a_new_repo.html#rest-server
+
+4. Set up a local Restic Server
+https://github.com/restic/rest-server
+```
